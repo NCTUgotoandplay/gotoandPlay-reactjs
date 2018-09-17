@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import logo from './cover.png';
 import cover from './cover.png';
 import cover2 from './cover2.jpg';
 import mixer from './imgs/mixer.jpg';
@@ -17,6 +17,7 @@ class Header extends Component {
   render() {
     return (
         <header className="Header">
+          <img height="150" weight="150" src={logo}></img>
           <h1 className="App-title">{this.props.title}</h1>
           {this.renderURLs()}
         </header>
