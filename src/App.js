@@ -86,7 +86,7 @@ class App extends Component {
       ['About', '/about']
     ],
     audio_display: "交大網路電台",
-    audio_source: "https://www.sample-videos.com/audio/mp3/crowd-cheering.mp3"
+    audio_source: "http://140.113.52.126:8000/;"
   };
 
   render() {
