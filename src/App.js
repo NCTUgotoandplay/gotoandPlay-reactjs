@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from './cover.png';
-import cover from './cover.png';
-import cover2 from './cover2.jpg';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import logo from './imgs/cover.png';
+import cover from './imgs/cover.png';
+import cover2 from './imgs/cover2.jpg';
 import mixer from './imgs/mixer.jpg';
 import people from './imgs/people.jpg';
 import './App.css';
@@ -45,7 +46,7 @@ class HorizonPlayer extends Component {
         <div className="HorizonPlayer">
           <button onClick={this.togglePlay} className="HorizonPlayerControl"><i className="material-icons">{this.state.playing ? 'pause' : 'play_arrow'}</i></button>
           <div className="HorizonPlayerControl">
-            <span className="HorizonPlayerText"> <i className="material-icons">radio</i> "{this.props.display}"</span>
+            <span className="HorizonPlayerText"> <i className="material-icons">radio</i> {this.props.display}</span>
           </div>
         </div>
     );
@@ -56,11 +57,11 @@ class TextBlock extends Component {
   constructor(props) {
     super(props);
     this.style = {
-      'background-position': 'center',
-      'background-size': 'cover',
-      'background-image': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('+this.props.background+')',
-      'min-height': this.props.height,
-      'text-align': this.props.right? 'right': 'left'
+      'backgroundPosition': 'center',
+      'backgroundSize': 'cover',
+      'backgroundImage': 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('+this.props.background+')',
+      'minHeight': this.props.height,
+      'textAlign': this.props.right? 'right': 'left'
     };
   }
 
@@ -76,14 +77,38 @@ class TextBlock extends Component {
   }
 }
 
+class Home extends Component {
+  render() {
+    return (
+      <div>
+        <TextBlock title="電台一家親，強檔上映" contain="內容" background={people} height="100px"/>
+        <TextBlock title="goto&Play" right={true} contain="內容" background={cover} height="300px"/>
+        <TextBlock title="酷炫mixer，等你來摸"  contain="內容" background={mixer} height="500px"/>
+      </div>
+    )
+  }
+}
+
+class About extends Component {
+  render() {
+    return <p>about</p>;
+  }
+}
+
+class Library extends Component {
+  render() {
+    return <p>library</p>;
+  }
+}
+
 class App extends Component {
   state = {
     title: "gotoandPlay 交大網路電台",
     pages: [
-      ['Home', '/'],
-      ['Library', '/library'],
-      ['Facebook', 'https://www.facebook.com/gotoandplay.nctu'],
-      ['About', '/about']
+      ['首頁', '/'],
+      ['蒐藏', '/library'],
+      ['臉書', 'https://www.facebook.com/gotoandplay.nctu'],
+      ['關於', '/about']
     ],
     audio_display: "交大網路電台",
     audio_source: "http://140.113.52.126:8000/;"
@@ -94,9 +119,13 @@ class App extends Component {
       <div className="App">
         <Header title={this.state.title} header_urls={this.state.pages}/>
         <HorizonPlayer display={this.state.audio_display} source={this.state.audio_source}/>
-        <TextBlock title="電台一家親，強檔上映" contain="內容" background={people} height="100px"/>
-        <TextBlock title="goto&Play" right={true} contain="內容" background={cover} height="300px"/>
-        <TextBlock title="酷炫mixer，等你來摸"  contain="內容" background={mixer} height="500px"/>
+        <Router>
+          <div>
+            <Route exact path='/' component={Home} />
+            <Route path='/library' component={Library} />
+            <Route path='/about' component={About} />
+          </div>
+        </Router>
       </div>
     );
   }
