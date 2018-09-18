@@ -121,7 +121,8 @@ ul {
   transition: .3s;
 }
 .TextBlock p{
-  font-size: 32px;
+  font-size: 30px;
+  max-width: 350px;
 }
 .App-intro {
   font-size: large;

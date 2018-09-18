@@ -120,6 +120,14 @@ class Home extends Component {
   render() {
     return (
       <div>
+        <TextBlock
+          link="/about"
+          title="We are still building our site."
+
+          contain="This site is still under construction. In order to provide better experience. Please be patient and wait for our update. :)"
+          background="https://78.media.tumblr.com/793329ad53c0c6527a75da62435137cc/tumblr_pdoabfMWHI1uwz0gbo1_1280.gif" height="100px"
+          height="500px"
+        />
         <TextBlock link="/about" title="電台一家親，強檔上映" contain="內容" background={people} height="100px"/>
         <TextBlock title="goto&Play" right={true} contain="內容" background={cover} height="300px"/>
         <TextBlock title="酷炫mixer，等你來摸"  contain="內容" background={mixer} height="500px"/>
