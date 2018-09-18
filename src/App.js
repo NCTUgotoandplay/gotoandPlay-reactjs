@@ -20,11 +20,48 @@ class Header extends Component {
         <header className="Header">
           <img height="150" weight="150" src={logo}></img>
           <h1 className="App-title">{this.props.title}</h1>
-          {this.renderURLs()}
+          <div className="App-links">
+            {this.renderURLs()}
+          </div>
         </header>
     );
   }
 }
+
+class Footer extends Component {
+  constructor(props) {
+    super(props);
+    this.renderLinks = ()=> {
+      let linksblocks = this.props.links;
+      let result = [];
+      for(let blockname in this.props.links) {
+        result.push(
+          <div className="FooterBlock">
+            <h2>{blockname}</h2>
+            <ul>
+              {linksblocks[blockname].map(link=><li><a href={link[1]}>{link[0]}</a></li>)}
+            </ul>
+          </div>
+        );
+      }
+      return(
+        result
+      );
+    }
+  }
+  render() {
+    return(
+      <footer className="Footer">
+        <div className="FooterLinks">
+          {this.renderLinks()}
+        </div>
+        <div className="FooterCopyright">
+            copyright©2018 gotoandPlay, 交大網路電台.<br/> 保留一切權利.
+        </div>
+      </footer>
+    )
+  }
+};
 
 class HorizonPlayer extends Component {
   constructor(props) {
@@ -67,12 +104,14 @@ class TextBlock extends Component {
 
   render() {
     return (
+      <a href={this.props.link}>
         <div style={this.style} className="TextBlock">
           <div>
             <h2>{this.props.title}</h2>
             <p>{this.props.contain}</p>
           </div>
         </div>
+      </a>
     );
   }
 }
@@ -81,7 +120,7 @@ class Home extends Component {
   render() {
     return (
       <div>
-        <TextBlock title="電台一家親，強檔上映" contain="內容" background={people} height="100px"/>
+        <TextBlock link="/about" title="電台一家親，強檔上映" contain="內容" background={people} height="100px"/>
         <TextBlock title="goto&Play" right={true} contain="內容" background={cover} height="300px"/>
         <TextBlock title="酷炫mixer，等你來摸"  contain="內容" background={mixer} height="500px"/>
       </div>
@@ -111,7 +150,24 @@ class App extends Component {
       ['關於', '/about']
     ],
     audio_display: "交大網路電台",
-    audio_source: "http://140.113.52.126:8000/;"
+    audio_source: "http://140.113.52.126:8000/;",
+    footer_links: {
+      '深入了解':[
+        ['gotoandPlay?', '/'],
+        ['在tunein收聽', '/'],
+
+      ],
+      '關於我們':[
+        ['所有成員', '/'],
+        ['網頁人員', 'https://nooxy.org'],
+        ['網頁開源原始碼', 'https://github.com/magneticchen/gotoandPlay-reactjs']
+      ],
+      '社交連結':[
+        ['推特', 'https://nooxy.org'],
+        ['臉書', 'https://www.facebook.com/gotoandplay.nctu'],
+        ['tunein', '/']
+      ]
+    }
   };
 
   render() {
@@ -122,10 +178,11 @@ class App extends Component {
         <Router>
           <div>
             <Route exact path='/' component={Home} />
-            <Route path='/library' component={Library} />
-            <Route path='/about' component={About} />
+            <Route path='/library/' component={Library} />
+            <Route path='/about/' component={About} />
           </div>
         </Router>
+        <Footer links={this.state.footer_links}/>
       </div>
     );
   }
