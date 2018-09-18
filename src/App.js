@@ -81,10 +81,10 @@ class HorizonPlayer extends Component {
   render() {
     return (
         <div className="HorizonPlayer">
-          <button onClick={this.togglePlay} className="HorizonPlayerControl"><i className="material-icons">{this.state.playing ? 'pause' : 'play_arrow'}</i></button>
           <div className="HorizonPlayerControl">
             <span className="HorizonPlayerText"> <i className="material-icons">radio</i> {this.props.display}</span>
           </div>
+          <button onClick={this.togglePlay} className="HorizonPlayerControl"><i className="material-icons">{this.state.playing ? 'pause' : 'play_arrow'}</i></button>
         </div>
     );
   }
