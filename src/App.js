@@ -123,7 +123,6 @@ class Home extends Component {
         <TextBlock
           link="/about"
           title="We are still building our site."
-
           contain="This site is still under construction. In order to provide better experience. Please be patient and wait for our update. :)"
           background="https://78.media.tumblr.com/793329ad53c0c6527a75da62435137cc/tumblr_pdoabfMWHI1uwz0gbo1_1280.gif" height="100px"
           height="500px"
@@ -138,13 +137,29 @@ class Home extends Component {
 
 class About extends Component {
   render() {
-    return <p>about</p>;
+    return (
+      <TextBlock
+        link="/"
+        title="We are still building our site."
+        contain="This site is still under construction. In order to provide better experience. Please be patient and wait for our update. :)"
+        background="https://78.media.tumblr.com/793329ad53c0c6527a75da62435137cc/tumblr_pdoabfMWHI1uwz0gbo1_1280.gif" height="100px"
+        height="500px"
+      />
+    );
   }
 }
 
 class Library extends Component {
   render() {
-    return <p>library</p>;
+    return (
+      <TextBlock
+        link="/"
+        title="We are still building our site."
+        contain="This site is still under construction. In order to provide better experience. Please be patient and wait for our update. :)"
+        background="https://78.media.tumblr.com/793329ad53c0c6527a75da62435137cc/tumblr_pdoabfMWHI1uwz0gbo1_1280.gif" height="100px"
+        height="500px"
+      />
+    );
   }
 }
 
@@ -153,7 +168,7 @@ class App extends Component {
     title: "gotoandPlay 交大網路電台",
     pages: [
       ['首頁', '/'],
-      ['蒐藏', '/library'],
+      ['隨選即播', '/library'],
       ['臉書', 'https://www.facebook.com/gotoandplay.nctu'],
       ['關於', '/about']
     ],
