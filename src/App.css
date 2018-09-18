@@ -71,6 +71,7 @@ ul {
 .TextBlock:hover {
   transform: scale(1.02);
   box-shadow: 0 1px 1px 0 rgba(60,64,67,.08), 0 1px 3px 1px rgba(60,64,67,.16);
+  z-index: 999;
 }
 .TextBlock:hover h2{
   font-size: 41px;
