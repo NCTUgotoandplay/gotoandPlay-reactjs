@@ -1,9 +1,9 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import TalkRoom from "./commons/TalkRoom"
-import Home from "./home/Home"
-import Albums from "./albums/Albums"
-import AboutUS from "./aboutus/AboutUS"
+import Home from "./home"
+import Albums from "./albums"
+import AboutUs from "./aboutus"
 import Header from "./commons/Header"
 import Footer from "./commons/Footer"
 import logo from "./imgs/favicon.png"
@@ -104,7 +104,7 @@ class App extends Component {
     };
   }
   componentDidMount() {
-    
+
   }
   selectLanguage() {
     const lan = this.state.lan === "zh"? "en": "zh"
@@ -132,8 +132,8 @@ class App extends Component {
           props => <Albums picsrc={this.state.picsrc["AlbumIntro"]}
           cards={this.state.cards}
           decks={this.state.decks} />} />,
-        <Route path="/AboutUS" render={
-          props => <AboutUS text={this.state.text[this.state.lan]["about"]} />} />,
+        <Route path="/AboutUs" render={
+          props => <AboutUs text={this.state.text[this.state.lan]["about"]} />} />,
         <Footer />,
         <TalkRoom />
       ]
