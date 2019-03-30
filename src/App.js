@@ -103,6 +103,9 @@ class App extends Component {
       ]
     };
   }
+  componentDidMount() {
+    
+  }
   selectLanguage() {
     const lan = this.state.lan === "zh"? "en": "zh"
     this.setState( { lan: lan } )

@@ -47,7 +47,7 @@ class Header extends Component {
             TW / EN
           </div>
           <a className="log_select"
-            href="https://nooxy.org/static/NoService/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=https://nooxy.org/static/NoService/NoUserSettings.html">
+            href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
             {this.props.log?"Logout":"Login"}
           </a>
         </>
