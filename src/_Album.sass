@@ -1,0 +1,54 @@
+@import variable
+
+.albumpage
+  width: 100%
+  // max-width: $max_width
+  margin: auto
+  margin-top: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  hr
+    width: 80%
+  .intro
+    +size(100%, 320px)
+    background-image: url(https://cn.guidetoiceland.is/image/355420/x/0/aoeaaeaeyuaisaeeaeoeaeoeeecyyecscoeaeyuaaeaeaeaeyuaaaesea-1)
+    font-size: 48px
+    .pframe
+      position: absolute
+      left: 30%
+      bottom: 0
+      transform: translate(-50%, -50%)
+      .p
+        color: $color_white
+        font-size: 64px
+        letter-spacing: 40px
+  .cards, .decks
+    width: 100%
+    padding: 25px 25px
+    display: flex
+    flex-wrap: wrap
+    .card, .deck
+      +shadow()
+      cursor: pointer
+      margin: 50px
+      flex-grow: 0
+      flex-shrink: 0
+      display: flex
+      justify-content: space-around
+      align-items: center
+      border: solid 3px $color_white
+      border-radius: 5px
+      background-color: lighten($color_blue, 1)
+      img
+        +size(120px, 120px)
+        background-color: $color_black
+      .rightpart
+        +size(100px, 120px)
+        p
+          margin-top: 10px
+    .card
+      +size(250px, 180px)
+    .deck
+      +size(240px, 180px)
+      flex-direction: column

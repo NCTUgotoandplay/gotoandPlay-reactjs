@@ -1,0 +1,52 @@
+@import App
+@import Home
+@import Album
+@import AboutUS
+@import TalkRoom
+
+*
+  padding: 0
+  margin: 0
+  // border: solid 1px $color_black
+  position: relative
+  box-sizing: border-box
+  text-align: center
+  font-family: 'Fredoka One', 'Noto Sans TC'
+  transition-duration: 1s
+  // letter-spacing: 3px
+
+a
+  text-decoration: none
+  color: $color_black
+
+.container
+  margin: auto
+  width: 100%
+  max-width: $max_width
+
+.section
+  +size(100%, calc(100% - 160px - 70px))
+  display: flex
+  white-space: nowrap
+  overflow: hidden
+  // font-size:0px
+  letter-spacing: 0px
+
+html, body, #root
+  border: none
+  // background-color: $color_white
+  +size(100%, 100%)
+html
+  background-image: url("https://files.slack.com/files-tmb/TFCG8GUEM-FG9PXSQ1E-2337fcfb5d/wallpaper_720.png")
+  background-size: cover
+
+html
+  overflow: -moz-hidden-unscrollable
+
+body::-webkit-scrollbar
+  display: none
+
+// body
+  // -ms-overflow-style: none
+	// width: calc(100vw + 18px)
+	// overflow: auto
