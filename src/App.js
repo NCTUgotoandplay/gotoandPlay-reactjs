@@ -1,11 +1,24 @@
+// /src/App.js
+// Description:
+// "App.js" is the entry point of the project.
+// Copyright 2018-2019 NOOXY. All Rights Reserved.
+
+// React
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
+
+// Controller
+import Controller from './controller'
+
+// Components
 import TalkRoom from "./commons/TalkRoom"
 import Home from "./home"
 import Albums from "./albums"
 import AboutUs from "./aboutus"
 import Header from "./commons/Header"
 import Footer from "./commons/Footer"
+
+// Sources
 import logo from "./imgs/favicon.png"
 import hom_icon from "./imgs/home.png"
 import hom_tri from "./imgs/home_triggered.png"
@@ -16,11 +29,15 @@ import com_tri from "./imgs/fb_triggered.png"
 import abu_icon from "./imgs/us.png"
 import abu_tri from "./imgs/us_triggered.png"
 import alb_intro from "./imgs/cover2.jpg"
+
+// Css
 import "./All.min.css"
 
 class App extends Component {
   constructor(props){
     super(props);
+    this.controller = new Controller(this.setState);
+    this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.state = {
       lan : "zh",
       title: "goto & Play",
@@ -103,16 +120,20 @@ class App extends Component {
       ]
     };
   }
-  componentDidMount() {
 
+  componentDidMount() {
+    this.controller.start();
   }
+
   selectLanguage() {
     const lan = this.state.lan === "zh"? "en": "zh"
     this.setState( { lan: lan } )
   }
+
   clickMainStream() {
     this.setState( { playing: !this.state.playing } )
   }
+
   render() {
     return (
       [

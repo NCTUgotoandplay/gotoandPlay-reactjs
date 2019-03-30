@@ -45,9 +45,9 @@ function NSc(targetip, method, targetport) {
     debug: true,
     user: null,
     secure: true,
-    NSc_files_root: '/',
+    NSc_files_root: '/noservice/',
     connmethod: 'WebSocketSecure',
-    targetip: '0.0.0.0',
+    targetip: 'gotoandplay.nctu.edu.tw',
     targetport: 43581
   };
 
@@ -1835,7 +1835,7 @@ function NSc(targetip, method, targetport) {
 
     Utils.printLOGO(Constants.version, Constants.copyright);
 
-    Utils.TagLog('Init', 'host: nsp('+settings.connmethod+')://'+targetip+':'+settings.targetport);
+    Utils.TagLog('Init', 'host: nsp('+settings.connmethod+')://'+settings.targetip+':'+settings.targetport);
     _core.setupDefaultImplementation();
 
     try {

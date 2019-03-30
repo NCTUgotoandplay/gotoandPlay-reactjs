@@ -1,4 +1,13 @@
 {
   "version": "0.0.1",
-  "authors": ["BW Hu", "", ""]
+  "authors": [
+    "BW Hu",
+    "noowyee",
+    ""
+  ],
+  "settings": {
+    "noservice": {
+      "host": "gotoandplay.nctu.edu.tw"
+    }
+  }
 }

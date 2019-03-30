@@ -1,4 +1,4 @@
-let _NSc = new NSc('0.0.0.0', 'WebSocket');
+let _NSc = new NSc('gotoandplay.nctu.edu.tw', 'WebSocket');
 _NSc.createActivitySocket('NoShell', (err, as)=>{
   $(function () {
     var content = $('#messages1');

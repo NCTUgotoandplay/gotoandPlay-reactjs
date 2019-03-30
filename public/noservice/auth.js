@@ -1,4 +1,4 @@
-let _NSc = new NSc('0.0.0.0');
+let _NSc = new NSc();
 function getQueryVariable(variable)
 {
        var query = window.location.search.substring(1);
