@@ -1,6 +1,6 @@
 import React,
 { Component } from 'react'
-import radio from './imgs/radio.psd'
+import radio from '../imgs/radio.psd'
 
 class Table extends Component{
   render() {
