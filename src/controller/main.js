@@ -13,18 +13,18 @@ function Controller(setState) {
   };
 
   this.emitSignIn = ()=> {
-    
+
   };
 
   this.start = (next)=> {
-    _noservice_client.createActivitySocket('NoTalk', (err, NoTalk)=> {
-      if(err) {
-        console.log(err);
-      }
-      else {
-        Services.NoTalk = NoTalk;
-      }
-    });
+    // _noservice_client.createActivitySocket('NoTalk', (err, NoTalk)=> {
+    //   if(err) {
+    //     console.log(err);
+    //   }
+    //   else {
+    //     Services.NoTalk = NoTalk;
+    //   }
+    // });
   };
 };
 
