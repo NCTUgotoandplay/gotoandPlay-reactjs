@@ -14,7 +14,7 @@ import Controller from './controller'
 import TalkRoom from "./commons/TalkRoom"
 import Home from "./home"
 import Albums from "./albums"
-import AboutUs from "./aboutus"
+import AboutUs from "./aboutus/Aboutus"
 import Header from "./commons/Header"
 import Footer from "./commons/Footer"
 
