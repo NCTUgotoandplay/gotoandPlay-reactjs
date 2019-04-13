@@ -7,8 +7,8 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
 
-// Controller
-import Controller from './controller'
+// Flux
+import Flux from './flux'
 
 // Components
 import TalkRoom from "./commons/TalkRoom"
@@ -36,7 +36,7 @@ import "./All.min.css"
 class App extends Component {
   constructor(props){
     super(props);
-    this.controller = new Controller(this.setState);
+    this.controller = new Flux(this.setState);
     this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.actions = this.controller.Actions;
     this.state = {
@@ -124,7 +124,7 @@ class App extends Component {
 
   componentDidMount() {
     this.controller.start(()=> {
-      
+
     });
   }
 

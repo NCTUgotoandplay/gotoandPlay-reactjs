@@ -1,4 +1,4 @@
-// /src/controller/actions.js
+// /src/flux/actions.js
 // Description:
 // "actions.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
