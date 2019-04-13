@@ -38,6 +38,7 @@ class App extends Component {
     super(props);
     this.controller = new Controller(this.setState);
     this.controller.importNoServiceClientModule(props.NoServiceClient);
+    this.actions = this.controller.Actions;
     this.state = {
       lan : "zh",
       title: "goto & Play",
@@ -122,7 +123,9 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.controller.start();
+    this.controller.start(()=> {
+      
+    });
   }
 
   selectLanguage() {

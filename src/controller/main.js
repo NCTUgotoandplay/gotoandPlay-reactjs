@@ -2,7 +2,9 @@
 // Description:
 // "main.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
-import Constants from '../constants.json'
+import Constants from '../constants.json';
+import Dispatcher from './dispatcher';
+import Service from './service';
 
 function Controller(setState) {
   let _noservice_client;
@@ -12,19 +14,12 @@ function Controller(setState) {
     _noservice_client = new NoServiceClient(Constants.settings.noservice.host, 'WebSocket');
   };
 
-  this.emitSignIn = ()=> {
-
-  };
+  this.Dispatcher = Dispatcher.generateDispatcher(setState);
+  this.Service = new Service(_noservice_client, this.Dispatcher);
+  this.Actions = this.Service.Actions;
 
   this.start = (next)=> {
-    // _noservice_client.createActivitySocket('NoTalk', (err, NoTalk)=> {
-    //   if(err) {
-    //     console.log(err);
-    //   }
-    //   else {
-    //     Services.NoTalk = NoTalk;
-    //   }
-    // });
+    this.Service.start(next);
   };
 };
 
