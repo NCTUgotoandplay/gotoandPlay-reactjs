@@ -8,27 +8,27 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 
 // Flux
-import Flux from './flux'
+import Flux from '../flux'
 
 // Components
-import TalkRoom from "./commons/TalkRoom"
-import Home from "./home"
-import Albums from "./albums"
-import AboutUs from "./aboutus"
-import Header from "./commons/Header"
-import Footer from "./commons/Footer"
+import TalkRoom from "../components/commons/TalkRoom"
+import Home from "../components/home"
+import Albums from "../components/albums"
+import AboutUs from "../components/aboutus"
+import Header from "../components/commons/Header"
+import Footer from "../components/commons/Footer"
 
 // Sources
-import logo from "./imgs/favicon.png"
-import hom_icon from "./imgs/home.png"
-import hom_tri from "./imgs/home_triggered.png"
-import alb_icon from "./imgs/playlist.png"
-import alb_tri from "./imgs/playlist_triggered.png"
-import com_icon from "./imgs/fb.png"
-import com_tri from "./imgs/fb_triggered.png"
-import abu_icon from "./imgs/us.png"
-import abu_tri from "./imgs/us_triggered.png"
-import alb_intro from "./imgs/cover2.jpg"
+import logo from "../imgs/favicon.png"
+import hom_icon from "../imgs/home.png"
+import hom_tri from "../imgs/home_triggered.png"
+import alb_icon from "../imgs/playlist.png"
+import alb_tri from "../imgs/playlist_triggered.png"
+import com_icon from "../imgs/fb.png"
+import com_tri from "../imgs/fb_triggered.png"
+import abu_icon from "../imgs/us.png"
+import abu_tri from "../imgs/us_triggered.png"
+import alb_intro from "../imgs/cover2.jpg"
 
 // Css
 import "./All.min.css"

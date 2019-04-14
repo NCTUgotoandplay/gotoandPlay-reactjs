@@ -1,4 +1,7 @@
 import React from 'react';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
+
 
 class AboutUs extends React.Component {
   render () {
@@ -11,10 +14,12 @@ class AboutUs extends React.Component {
           </div>
           <div className="mail">
             <h2>{this.props.text["contact"]}</h2>
-            <input id="input_nickname" placeholder={this.props.text["nickname"]} type="text"/>
-            <input id="input_email" placeholder={this.props.text["e-mail"]} type="text"/>
-            <input id="input_message" placeholder={this.props.text["message"]} type="text"/>
-            <button>送出</button>
+            <TextField label={this.props.text["nickname"]} margin="dense"/>
+            <TextField label={this.props.text["e-mail"]} margin="dense"/>
+            <TextField label={this.props.text["message"]} margin="dense"/>
+            <Button variant="contained"  color="primary">
+              送出
+            </Button>
           </div>
           <div className="about">
             <h2>{this.props.text["title"]}</h2>

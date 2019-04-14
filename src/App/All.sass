@@ -1,8 +1,8 @@
-@import App
-@import ./home/Home
-@import ./albums/Album
-@import ./aboutus/AboutUs
-@import ./commons/TalkRoom
+@import ./App
+@import ../components/home/Home
+@import ../components/albums/Album
+@import ../components/aboutus/AboutUs
+@import ../components/commons/TalkRoom
 
 *
   padding: 0
@@ -11,7 +11,7 @@
   position: relative
   box-sizing: border-box
   text-align: center
-  font-family: 'Fredoka One', 'Noto Sans TC'
+  // font-family: 'Fredoka One', 'Noto Sans TC'
   transition-duration: 1s
   // letter-spacing: 3px
 
@@ -37,7 +37,7 @@ html, body, #root
   // background-color: $color_white
   +size(100%, 100%)
 html
-  background-image: url("https://files.slack.com/files-tmb/TFCG8GUEM-FG9PXSQ1E-2337fcfb5d/wallpaper_720.png")
+  background-image: url("../imgs/wallpaper.png")
   background-size: cover
 
 html

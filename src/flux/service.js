@@ -1,4 +1,4 @@
-// /src/controller/service.js
+// /src/flux/service.js
 // Description:
 // "service.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
@@ -19,7 +19,7 @@ function Service(NoService, Dispatcher) {
     if(Service.NoTalk) {
       Services.NoTalk.onEvent('whatever', ()=> {
         Dispatcher.dispatch({data_type: 'albums', data: {
-          
+
         }});
       });
     }

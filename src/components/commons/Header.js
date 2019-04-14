@@ -2,13 +2,23 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Stream from "./Stream"
 
-const NavPic = (props) => (
-  <>
-    <img className="navicon" src={props.src[0]} alt="" />
-    <img className="navicon overlay" src={props.src[1]} alt="" />
-    <p>{props.text}</p>
-  </>
-)
+class NavPic extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      hover: 0
+    };
+  }
+  render() {
+    return(<>
+      <img className="navicon" src={this.props.src[this.state.hover]}
+      onMouseOver={()=> {this.setState({hover:1})}}
+      onMouseOut={()=>{this.setState({hover:0})}}
+      alt="" />
+      <p>{this.props.text}</p>
+    </>)
+  }
+}
 
 class Header extends Component {
   renderNav(i) {

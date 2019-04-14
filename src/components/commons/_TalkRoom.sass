@@ -2,20 +2,20 @@
 .chat
   .chat_icon
     +botton
+    +shadow()
     +size(40px, 40px)
     position: absolute
     z-index: 100
     bottom : 10%
     right: 10%
     transform: translate(50%, 50%)
-    background-color: rgba($color_black, 0.4)
+    background-color: $color_white
     border-radius: 50%
     // display: none
     &:hover
-      background-color: rgba($color_black, 0.8)
-      color: $color_white
+      background-color: $color_white
+      color: $color_black
     i
-      +shadow
       border: none
       font-size: 20px
   .chat_room

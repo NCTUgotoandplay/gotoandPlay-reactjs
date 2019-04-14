@@ -1,4 +1,4 @@
-@import ./commons/variable
+@import ../components/commons/variable
 
 .header, .footer
   background-color: $color_yellow
@@ -21,7 +21,6 @@
     letter-spacing: 2px
     .logo
       +size(80px, 80px)
-      +shadow
       position: center
       object-fit: cover
   .navbar
@@ -39,14 +38,13 @@
       .navicon
         // position: absolute
         +size(60px, 60px)
-        border: solid 3px $color_black
-        border-radius: 4px
         padding: center
         object-fit: cover
       .overlay
         top: 0
         position: absolute
         opacity: 0
+        transition: 0.1s
         &:hover
           opacity: 1
       p
