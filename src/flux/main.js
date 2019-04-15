@@ -19,6 +19,7 @@ function Flux(setState) {
   this.Actions = this.Service.Actions;
 
   this.start = (next)=> {
+    this.Service.enqueueSnackbar = this.enqueueSnackbar;
     this.Service.start(next);
   };
 };

@@ -1,0 +1,90 @@
+@import ../commons/variable
+
+.header, .footer
+  background-color: $color_yellow
+  .container
+    display: flex
+    flex-direction: row
+    justify-content: space-around
+    align-items: center
+
+.header
+  +size(100%, 160px)
+  .lan_select, .log_select
+    +botton()
+    +size(70px, 20px)
+    font-weight: bold
+    left: 30%
+    top: 10px
+    display: inline-block
+    margin: 0px 5px
+  .key
+    margin: 10px 0px
+    letter-spacing: 2px
+    .logo
+      +size(80px, 80px)
+      position: center
+      object-fit: cover
+  .navbar
+    display: inline-flex
+    .btn
+      +size(100px, auto)
+      +botton()
+      margin: 2px
+      padding: 0px 3px
+      // border-bottom: 2px solid $color_brown
+      // border-radius: 4px
+      display: flex
+      flex-direction: column
+      justify-content: center
+      .navicon
+        // position: absolute
+        +size(60px, 60px)
+        padding: center
+        object-fit: cover
+      .overlay
+        top: 0
+        position: absolute
+        opacity: 0
+        transition: 0.1s
+        &:hover
+          opacity: 1
+      p
+        letter-spacing: 1px
+        line-height: 18px
+        margin: 0px 3px
+  &::after
+    +triangle-decorate()
+    top: 100%
+.stream
+  z-index: 3
+  position: absolute
+  left: 20%
+  top: 120%
+  transform: translate(-50%, -50%)
+  cursor: pointer
+  .main
+    +circle(100px)
+    background-color: rgba($color_white, 1)
+    border: solid 2px $color_black
+  .bar
+    +size(180px, 40px)
+    border-radius: 0 20px 20px 0
+    position: absolute
+    left: calc(100% - 20%)
+    bottom: 10%
+    background-color: rgba($color_white, 1)
+    border: solid 2px $color_black
+    padding: 0px 20px
+    line-height: 40px
+    text-align: left
+.footer
+  +size(100%, 70px)
+  h5
+    margin: 10px
+    margin-top: 20px
+    letter-spacing: 2px
+  &::before
+    +triangle-decorate()
+    bottom: 100%
+    transform: rotate(180deg)

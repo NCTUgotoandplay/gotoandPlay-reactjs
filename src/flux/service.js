@@ -2,6 +2,9 @@
 // Description:
 // "service.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
+import Constants from './constants.json';
+import Localize from '../App/localize.json';
+const audio_source = Constants.settings.audio_source;
 
 function Service(NoService, Dispatcher) {
   let Services = {
@@ -9,15 +12,29 @@ function Service(NoService, Dispatcher) {
     gotoandplay: null
   };
 
+  let gotoandplay_audio = new Audio(audio_source);
+  let gotoandplay_audio_playing = false;
+
   this.Actions = {
     emitSignin: ()=> {
       Dispatcher.dispatch({});
     },
     switchLang: ()=> {
+      this.enqueueSnackbar('Switched language.');
       Dispatcher.dispatch({type: 'reverseLang', data: null});
     },
     switchMainStream: ()=> {
-      Dispatcher.dispatch({type: 'reverseStreamStaus', data: null});
+      if(gotoandplay_audio_playing) {
+        gotoandplay_audio_playing = false;
+        gotoandplay_audio.pause();
+        this.enqueueSnackbar(Localize.en.pause_playing);
+      }
+      else {
+        gotoandplay_audio_playing = true;
+        gotoandplay_audio.play();
+        this.enqueueSnackbar(Localize.en.continue_playing);
+      }
+      Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandplay_audio_playing});
     }
   };
 

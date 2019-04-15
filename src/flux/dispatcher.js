@@ -22,6 +22,11 @@ function generateDispatcher(setState) {
         return({ playing: !prevstate.playing });
       })
     }
+    else if (payload.type === 'updateStreamStaus') {
+      setState(prevstate=>{
+        return({ playing: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

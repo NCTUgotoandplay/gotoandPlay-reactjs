@@ -41,7 +41,7 @@ class Header extends Component {
         <>
           <div className="lan_select"
             onClick={(e) => this.props.actions.switchLang(e)}>
-            TW / EN
+            {this.props.lang}
           </div>
           <a className="log_select"
             href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
@@ -58,6 +58,9 @@ class Header extends Component {
             <Link className="btn" to="/">
               <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Home}/>
             </Link>
+            <Link className="btn" to="/Albums">
+              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Albums}/>
+            </Link>
             <a className="btn"
               href="https://www.facebook.com/gotoandplay.nctu/"
               target="_blank"
@@ -65,9 +68,6 @@ class Header extends Component {
             >
               <NavPic src={[fb_icon, fb_tri]} text={this.props.localize.header.Community}/>
             </a>
-            <Link className="btn" to="/Albums">
-              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Albums}/>
-            </Link>
             <Link className="btn" to="/AboutUs">
               <NavPic src={[abu_icon, abu_tri]} text={this.props.localize.header.AboutUs}/>
             </Link>
