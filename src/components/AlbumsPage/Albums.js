@@ -9,7 +9,6 @@ class Albums extends React.Component {
   render () {
     return (
       <div className="albumpage">
-        <AlbumIntro bgisrc={alb_icon}/>
         <Cards cards={this.props.cards} />
         <hr />
         <Decks decks={this.props.decks} />

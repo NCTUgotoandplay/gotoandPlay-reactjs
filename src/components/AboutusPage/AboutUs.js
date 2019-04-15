@@ -6,8 +6,9 @@ import Button from '@material-ui/core/Button';
 class AboutUs extends React.Component {
   render () {
     return (
-      <div className="section aboutpage">
-        <div className="container">
+      <div className="aboutpage">
+      <div className="container">
+        <div className="grid">
           <div className="top">
           </div>
           <div className="item-b">
@@ -26,6 +27,7 @@ class AboutUs extends React.Component {
             <p>{this.props.localize.about.p}</p>
           </div>
         </div>
+      </div>
       </div>
     );
   }

@@ -1,53 +1,76 @@
 import React,
 { Component } from 'react'
+import { withStyles } from '@material-ui/core/styles';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
+
 import radio from '../../imgs/radio.png'
 
-class Table extends Component{
+const CustomTableCell = withStyles(theme => ({
+  head: {
+    backgroundColor: '#232f34',
+    color: theme.palette.common.white,
+  },
+  body: {
+    fontSize: 14,
+    whiteSpace: 'normal',
+    wordWrap: "break-word",
+    padding: '18px 18px 18px 18px'
+  },
+}))(TableCell);
+
+class TimetableTable extends Component{
   render() {
     let row = Array(this.props.programs.length).fill(null)
     for(let i=0 ; i<this.props.programs.length ; ++i){
       row[i] = this.props.programs[i].map((oj) =>
-        <td>
+        <CustomTableCell>
           <a className="pp"
             href={oj.url}
             target="_blank"
             rel='noreferrer noopener'>
+            <div>
             {oj.name}
+            </div>
           </a>
-        </td>
+        </CustomTableCell>
       )
     }
     return(
-      <table>
-        <thead>
-          <tr>
-            <td>{this.props.timeseg[0]}</td>
+      <Table fixedHeader={false} >
+        <TableHead>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[0]}</CustomTableCell>
             {row[0]}
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{this.props.timeseg[1]}</td>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[1]}</CustomTableCell>
             {row[1]}
-          </tr>
-          <tr>
-            <td>{this.props.timeseg[2]}</td>
+          </TableRow>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[2]}</CustomTableCell>
             {row[2]}
-          </tr>
-          <tr>
-            <td>{this.props.timeseg[3]}</td>
+          </TableRow>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[3]}</CustomTableCell>
             {row[3]}
-          </tr>
-          <tr>
-            <td>{this.props.timeseg[4]}</td>
+          </TableRow>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[4]}</CustomTableCell>
             {row[4]}
-          </tr>
-          <tr>
-            <td>{this.props.timeseg[5]}</td>
+          </TableRow>
+          <TableRow>
+            <CustomTableCell>{this.props.timeseg[5]}</CustomTableCell>
             {row[5]}
-          </tr>
-        </tbody>
-      </table>
+          </TableRow>
+        </TableBody>
+      </Table>
     );
   }
 }
@@ -160,7 +183,9 @@ class Timetable extends Component {
           <img src={radio} alt=""/>
           <p>PROGRAMS</p>
         </div>
-        <Table weekseg={this.state.weekseg} timeseg={this.state.timeseg} programs={this.state.programs}/>
+        <Paper className="contain">
+          <TimetableTable weekseg={this.state.weekseg} timeseg={this.state.timeseg} programs={this.state.programs}/>
+        </Paper>
       </div>
     );
   }

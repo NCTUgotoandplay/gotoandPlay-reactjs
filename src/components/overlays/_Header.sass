@@ -10,6 +10,8 @@
 
 .header
   +size(100%, 160px)
+  @media(max-width: 600px)
+    height: 120px
   .lan_select, .log_select
     +botton()
     +size(70px, 20px)
@@ -21,16 +23,21 @@
   .key
     margin: 10px 0px
     letter-spacing: 2px
+    @media(max-width: 600px)
+      font-size: 12px
     .logo
       +size(80px, 80px)
+      @media(max-width: 600px)
+        +size(50px, 50px)
       position: center
       object-fit: cover
   .navbar
     display: inline-flex
     .btn
-      +size(100px, auto)
       +botton()
-      margin: 2px
+      @media(max-width: 600px)
+        margin-left: 2px
+      margin-left: 10px
       padding: 0px 3px
       // border-bottom: 2px solid $color_brown
       // border-radius: 4px
@@ -40,6 +47,8 @@
       .navicon
         // position: absolute
         +size(60px, 60px)
+        @media(max-width: 600px)
+          +size(30px, 30px)
         padding: center
         object-fit: cover
       .overlay
