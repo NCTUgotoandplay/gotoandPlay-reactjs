@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Stream from "./Stream"
 
+// Sources
+import logo from "../../imgs/favicon.png"
 import hom_icon from "../../imgs/icons/home.png"
 import hom_tri from "../../imgs/icons/home_triggered.png"
 import alb_icon from "../../imgs/icons/playlist.png"
@@ -48,7 +50,7 @@ class Header extends Component {
         </>
         <div className="container">
           <Link className="key" to="/">
-            <img className="logo" src={this.props.logo} alt="" />
+            <img className="logo" src={logo} alt="" />
             <h4> - {this.props.localize.header.title} - </h4>
           </Link>
 
