@@ -27,6 +27,11 @@ function generateDispatcher(setState) {
         return({ playing: payload.data });
       })
     }
+    else if (payload.type === 'updateProgramsTable') {
+      setState(prevstate=>{
+        return({ programs: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

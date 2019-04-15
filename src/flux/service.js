@@ -16,6 +16,9 @@ function Service(NoService, Dispatcher) {
   let gotoandplay_audio_playing = false;
 
   this.Actions = {
+    updatePrograms: (data)=> {
+      Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
+    },
     emitSignin: ()=> {
       Dispatcher.dispatch({});
     },
@@ -61,6 +64,7 @@ function Service(NoService, Dispatcher) {
     //   }
     // });
     this.setupDispatchers();
+    this.Actions.updatePrograms(require('./data/programs.json'));
     next();
   };
 }

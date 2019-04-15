@@ -43,6 +43,7 @@ class App extends Component {
       },
       playing: false,
       log: false,
+      programs: null,
       audio_display: "交大網路電台",
       localize: require('./localize.json'),
       album_cards: [
@@ -99,7 +100,9 @@ class App extends Component {
           playing={this.state.playing}
           log={this.state.log}
         />
-        <Route exact path="/" component={HomePage} />
+        <Route exact path="/" render={props=> {
+          return(<HomePage programs = {this.state.programs}/>);
+        }} />
         <Route path="/Albums" render={
           props => {
             if(ab_not_finished) {
