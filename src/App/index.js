@@ -7,6 +7,7 @@
 import React, { Component } from "react"
 import { BrowserRouter, Route } from "react-router-dom"
 
+import Constants from '../flux/constants.json';
 // Flux
 import Flux from '../flux'
 
@@ -21,14 +22,6 @@ import AboutUsPage from "../components/AboutusPage"
 
 // Sources
 import logo from "../imgs/favicon.png"
-import hom_icon from "../imgs/home.png"
-import hom_tri from "../imgs/home_triggered.png"
-import alb_icon from "../imgs/playlist.png"
-import alb_tri from "../imgs/playlist_triggered.png"
-import com_icon from "../imgs/fb.png"
-import com_tri from "../imgs/fb_triggered.png"
-import abu_icon from "../imgs/us.png"
-import abu_tri from "../imgs/us_triggered.png"
 import alb_intro from "../imgs/cover2.jpg"
 
 // Css
@@ -41,20 +34,12 @@ class App extends Component {
     this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.actions = this.controller.Actions;
     this.state = {
-      lang : "zh",
-      title: "goto & Play",
+      lang : Constants.settings.default_lang,
       logo: logo,
       playing: false,
       log: false,
       audio_display: "交大網路電台",
-      audio_source: "http://140.113.52.126:8000/;",
-      picsrc: {
-        "Home": [hom_icon, hom_tri],
-        "Albums": [alb_icon, alb_tri],
-        "Community": [com_icon, com_tri],
-        "AboutUs": [abu_icon, abu_tri],
-        "AlbumIntro": alb_intro
-      },
+      audio_source: Constants.settings.audio_source,
       localize: require('./localize.json'),
       cards: [
         {
@@ -98,22 +83,21 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Header
-          lang={this.state.lang}
           localize={this.state.localize[this.state.lang]}
           actions={this.actions}
           logo={this.state.logo}
           playing={this.state.playing}
           log={this.state.log}
-          picsrc={this.state.picsrc}
         />
         <Route exact path="/" component={HomePage} />
         <Route path="/Albums" render={
-          props => <AlbumsPage picsrc={this.state.picsrc["AlbumIntro"]}
+          props =>
+          <AlbumsPage
           cards={this.state.cards}
           decks={this.state.decks} />} />
         <Route path="/AboutUs" render={
           props => <AboutUsPage localize={this.state.localize[this.state.lang]} />} />
-        <Footer />
+        <Footer localize={this.state.localize[this.state.lang]}/>
         <TalkRoom />
       </BrowserRouter>
     );

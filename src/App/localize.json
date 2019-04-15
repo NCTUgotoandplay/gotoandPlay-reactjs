@@ -1,6 +1,7 @@
 {
   "zh": {
     "header": {
+      "title": "交大網路電台",
       "Home": "首頁",
       "Albums": "隨選即播",
       "Community": "臉書",
@@ -13,10 +14,12 @@
       "nickname": "暱稱",
       "email": "e-mail",
       "message": "訊息"
-    }
+    },
+    "copyright": "版權所有©2019 NCTU goto&Play. 保留一切權利"
   },
   "en": {
     "header": {
+      "title": "goto & Play",
       "Home": "Home",
       "Albums": "Albums",
       "Community": "Facebook",
@@ -29,6 +32,7 @@
       "nickname": "Nickname",
       "email": "e-mail",
       "message": "message"
-    }
+    },
+    "copyright": "copyright©2019 NCTU goto&Play. All rights reserved."
   }
 }

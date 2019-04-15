@@ -1,9 +1,9 @@
 import React from "react"
 
-const Footer = (e) => (
+const Footer = (props) => (
   <div className="footer">
     <div className="container">
-      <h5> - Copyright © 2019 - </h5>
+      <h5> {props.localize.copyright} </h5>
     </div>
   </div>
 )
