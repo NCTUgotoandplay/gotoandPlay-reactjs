@@ -5,18 +5,19 @@
 
 // React
 import React, { Component } from "react"
-import { Route } from "react-router-dom"
+import { BrowserRouter, Route } from "react-router-dom"
 
 // Flux
 import Flux from '../flux'
 
 // Components
-import TalkRoom from "../components/commons/TalkRoom"
-import Home from "../components/home"
-import Albums from "../components/albums"
-import AboutUs from "../components/aboutus"
-import Header from "../components/commons/Header"
-import Footer from "../components/commons/Footer"
+import {Footer, Header} from "../components/overlays"
+import TalkRoom from "../components/TalkRoom"
+
+// Pages
+import HomePage from "../components/HomePage"
+import AlbumsPage from "../components/AlbumsPage"
+import AboutUsPage from "../components/AboutusPage"
 
 // Sources
 import logo from "../imgs/favicon.png"
@@ -36,11 +37,11 @@ import "../All.min.css"
 class App extends Component {
   constructor(props){
     super(props);
-    this.controller = new Flux(this.setState);
+    this.controller = new Flux(this.setState.bind(this));
     this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.actions = this.controller.Actions;
     this.state = {
-      lan : "zh",
+      lang : "zh",
       title: "goto & Play",
       logo: logo,
       playing: false,
@@ -54,44 +55,7 @@ class App extends Component {
         "AboutUs": [abu_icon, abu_tri],
         "AlbumIntro": alb_intro
       },
-      text: {
-        "zh": {
-          "header": {
-            "Home": "首頁",
-            "Albums": "隨選即播",
-            "Community": "臉書",
-            "AboutUs": "關於我們"
-          },
-          "about": {
-            "title": "關於電台",
-            "p": "交大網路電台goto&Play自開播以來，\n" +
-                 "就一直是系上熱門的話題組織，\n" +
-                 "直到今日電台組織架構及人數持續增長茁壯，\n" +
-                 "相信未來交大網路電台goto&Play也將會持續為聽眾獻上\n" +
-                 "最不一樣的好聲音。",
-            "contact": "聯絡我們",
-            "nickname": "暱稱",
-            "e-mail": "e-mail",
-            "message": "訊息"
-          }
-        },
-        "en": {
-          "header": {
-            "Home": "Home",
-            "Albums": "Albums",
-            "Community": "Facebook",
-            "AboutUs": "About us"
-          },
-          "about": {
-            "title": "About US",
-            "p": "We're goto&Play @ NCTU :))",
-            "contact": "Contact Us",
-            "nickname": "Nickname",
-            "e-mail": "e-mail",
-            "message": "message"
-          }
-        }
-      },
+      localize: require('./localize.json'),
       cards: [
         {
           "title": "噓韓問暖",
@@ -124,43 +88,34 @@ class App extends Component {
 
   componentDidMount() {
     this.controller.start(()=> {
-
+      console.log('background started.');
     });
   }
 
-  selectLanguage() {
-    const lan = this.state.lan === "zh"? "en": "zh"
-    this.setState( { lan: lan } )
-  }
 
-  clickMainStream() {
-    this.setState( { playing: !this.state.playing } )
-  }
 
   render() {
     return (
-      [
+      <BrowserRouter>
         <Header
-          lan={this.state.lan}
-          title={this.state.title}
+          lang={this.state.lang}
+          localize={this.state.localize[this.state.lang]}
+          actions={this.actions}
           logo={this.state.logo}
           playing={this.state.playing}
           log={this.state.log}
           picsrc={this.state.picsrc}
-          text={this.state.text[this.state.lan]["header"]}
-          selectLanguage={ () => this.selectLanguage() }
-          clickMainStream={ () => this.clickMainStream() }
-        />,
-        <Route exact path="/" component={Home} />,
+        />
+        <Route exact path="/" component={HomePage} />
         <Route path="/Albums" render={
-          props => <Albums picsrc={this.state.picsrc["AlbumIntro"]}
+          props => <AlbumsPage picsrc={this.state.picsrc["AlbumIntro"]}
           cards={this.state.cards}
-          decks={this.state.decks} />} />,
+          decks={this.state.decks} />} />
         <Route path="/AboutUs" render={
-          props => <AboutUs text={this.state.text[this.state.lan]["about"]} />} />,
-        <Footer />,
+          props => <AboutUsPage localize={this.state.localize[this.state.lang]} />} />
+        <Footer />
         <TalkRoom />
-      ]
+      </BrowserRouter>
     );
   }
 }

@@ -10,8 +10,14 @@ function Service(NoService, Dispatcher) {
   };
 
   this.Actions = {
-    'emitSignin': ()=> {
+    emitSignin: ()=> {
       Dispatcher.dispatch({});
+    },
+    switchLang: ()=> {
+      Dispatcher.dispatch({type: 'reverseLang', data: null});
+    },
+    switchMainStream: ()=> {
+      Dispatcher.dispatch({type: 'reverseStreamStaus', data: null});
     }
   };
 

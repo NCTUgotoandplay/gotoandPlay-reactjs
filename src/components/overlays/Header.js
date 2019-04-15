@@ -21,11 +21,14 @@ class NavPic extends Component {
 }
 
 class Header extends Component {
+  constructor(props) {
+    super(props);
+  }
   renderNav(i) {
     if ( i === "Home" ) {
       return (
         <Link className="btn" to="">
-          <NavPic src={this.props.picsrc[i]} text={this.props.text[i]}/>
+          <NavPic src={this.props.picsrc[i]} text={this.props.localize.header[i]}/>
         </Link>
       );
     }
@@ -36,14 +39,14 @@ class Header extends Component {
           target="_blank"
           rel="noreferrer noopener"
         >
-          <NavPic src={this.props.picsrc[i]} text={this.props.text[i]}/>
+          <NavPic src={this.props.picsrc[i]} text={this.props.localize.header[i]}/>
         </a>
       );
     }
     else {
       return (
         <Link className="btn" to={i}>
-          <NavPic src={this.props.picsrc[i]} text={this.props.text[i]}/>
+          <NavPic src={this.props.picsrc[i]} text={this.props.localize.header[i]}/>
         </Link>
       );
     }
@@ -53,7 +56,7 @@ class Header extends Component {
       <div className="header">
         <>
           <div className="lan_select"
-            onClick={(e) => this.props.selectLanguage(e)}>
+            onClick={(e) => this.props.actions.switchLang(e)}>
             TW / EN
           </div>
           <a className="log_select"
@@ -75,7 +78,7 @@ class Header extends Component {
         </div>
         <Stream playing={this.props.playing}
           activeBar={1}
-          onClick={(e) => this.props.clickMainStream(e)} />
+          onClick={(e) => this.props.actions.switchMainStream(e)} />
       </div>
     );
   }

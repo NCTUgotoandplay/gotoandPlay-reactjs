@@ -1,0 +1,34 @@
+{
+  "zh": {
+    "header": {
+      "Home": "首頁",
+      "Albums": "隨選即播",
+      "Community": "臉書",
+      "AboutUs": "關於我們"
+    },
+    "about": {
+      "title": "關於電台",
+      "p": "交大網路電台goto&Play自開播以來，\n就一直是系上熱門的話題組織，\n直到今日電台組織架構及人數持續增長茁壯，\n相信未來交大網路電台goto&Play也將會持續為聽眾獻上\n最不一樣的好聲音。",
+      "contact": "聯絡我們",
+      "nickname": "暱稱",
+      "email": "e-mail",
+      "message": "訊息"
+    }
+  },
+  "en": {
+    "header": {
+      "Home": "Home",
+      "Albums": "Albums",
+      "Community": "Facebook",
+      "AboutUs": "About us"
+    },
+    "about": {
+      "title": "About US",
+      "p": "We're goto&Play @ NCTU :))",
+      "contact": "Contact Us",
+      "nickname": "Nickname",
+      "email": "e-mail",
+      "message": "message"
+    }
+  }
+}

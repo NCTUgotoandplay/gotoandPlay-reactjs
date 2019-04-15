@@ -1,8 +1,9 @@
 @import ./App/App
-@import ./components/home/Home
-@import ./components/albums/Album
-@import ./components/aboutus/AboutUs
-@import ./components/commons/TalkRoom
+@import ./components/HomePage/Home
+@import ./components/AlbumsPage/Album
+@import ./components/AboutusPage/AboutUs
+@import ./components/TalkRoom/TalkRoom
+@import ./components/Header/Header
 @import ./fonts/MinstrelPosterTwoNF/MinstrelPosterTwoNF
 
 *
@@ -36,6 +37,7 @@ a
 html, body, #root
   border: none
   // background-color: $color_white
+  color: $color_primary_inverse
   +size(100%, 100%)
 html
   background-image: url("./imgs/wallpaper.png")

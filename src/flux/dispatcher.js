@@ -6,8 +6,22 @@ import Dispatcher from './lib/dispatcher';
 
 function generateDispatcher(setState) {
   let _dispatcher = new Dispatcher();
-  let id1 = _dispatcher.register((payload)=> {
 
+  let id1 = _dispatcher.register((payload)=> {
+    if(payload.type === 'updateLang') {
+      setState( { lan: payload.data } );
+    }
+    else if(payload.type === 'reverseLang') {
+      setState(prevstate=>{
+        const lan = (prevstate.lang === "zh")? "en": "zh";
+        return ({ lang: lan })
+      });
+    }
+    else if (payload.type === 'reverseStreamStaus') {
+      setState(prevstate=>{
+        return({ playing: !prevstate.playing });
+      })
+    }
   });
 
   return _dispatcher;
