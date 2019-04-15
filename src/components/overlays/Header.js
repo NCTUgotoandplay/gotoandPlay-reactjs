@@ -59,7 +59,7 @@ class Header extends Component {
               <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Home}/>
             </Link>
             <Link className="btn" to="/Albums">
-              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Albums}/>
+              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header.Albums}/>
             </Link>
             <a className="btn"
               href="https://www.facebook.com/gotoandplay.nctu/"
