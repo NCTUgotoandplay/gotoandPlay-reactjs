@@ -7,7 +7,7 @@
   ],
   "settings": {
     "default_lang": "zh",
-    "audio_source": "http://140.113.52.126:8000/",
+    "audio_source": "http://140.113.52.126:8000/;",
     "noservice": {
       "host": "gotoandplay.nctu.edu.tw"
     }
