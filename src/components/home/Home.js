@@ -158,7 +158,7 @@ class Timetable extends Component {
       <div className="timetable">
         <div className="head">
           <img src={radio} alt=""/>
-          <p>節目單</p>
+          <p>PROGRAMS</p>
         </div>
         <Table weekseg={this.state.weekseg} timeseg={this.state.timeseg} programs={this.state.programs}/>
       </div>

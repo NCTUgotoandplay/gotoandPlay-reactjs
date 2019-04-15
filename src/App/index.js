@@ -31,7 +31,7 @@ import abu_tri from "../imgs/us_triggered.png"
 import alb_intro from "../imgs/cover2.jpg"
 
 // Css
-import "./All.min.css"
+import "../All.min.css"
 
 class App extends Component {
   constructor(props){
