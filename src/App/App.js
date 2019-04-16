@@ -40,7 +40,8 @@ class App extends Component {
       lang2string : {
         zh: "中文",
         en: "english",
-        jp: "日本語"
+        jp: "日本語",
+        zhuyin: "ㄓㄨˋㄧㄣ"
       },
       playing: false,
       log: false,

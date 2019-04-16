@@ -70,5 +70,29 @@
     "album_collections": "コレクション",
     "suggestion": "あなたにおすすめ",
     "news": "ニュース"
+  },
+  "zhuyin": {
+    "lang2string": "ㄓㄨˋㄧㄣ",
+    "header_title": "goto & Play",
+    "header_Home": "ㄕㄡˇㄧㄝˋ",
+    "header_Albums": "ㄓㄨㄢ ㄐㄧˊ",
+    "header_Community": "Facebook",
+    "header_AboutUs": "ㄨㄛˇㄇㄣ˙",
+    "about_title": "ㄨㄛˇㄇㄣ˙",
+    "about_p": "We're goto&Play @ NCTU :))",
+    "about_contact": "ㄌㄧㄢˊㄌㄨㄛˋㄨㄛˇㄇㄣ˙",
+    "about_nickname": "ㄋㄧˋㄔㄥ",
+    "about_email": "e-mail",
+    "about_message": "ㄒㄩㄣˋㄒㄧˊ",
+    "copyright": "copyright©2019 NCTU goto&Play. ㄅㄢˇㄑㄩㄢˊㄙㄨㄛˇㄧㄡˇ。",
+    "continue_playing": "ㄐㄧˋㄒㄩˋㄅㄛ ㄈㄤˋ",
+    "pause_playing": "ㄓㄢˋㄊㄧㄥˊㄅㄛ ㄈㄤˋ",
+    "login": "ㄉㄥ ㄖㄨˋ",
+    "logout": "ㄉㄥ ㄔㄨ",
+    "switch_this_lang": "ㄓㄨˋㄧㄣ",
+    "hightlight_albums": "ㄐㄧㄥ ㄒㄩㄢˇ ㄓㄨㄢ ㄐㄧˊ",
+    "album_collections": " ㄓㄨㄢ ㄐㄧˊ ㄙㄡ ㄘㄤˊ",
+    "suggestion": "ㄊㄨㄟ ㄐㄧㄢˋ ㄍㄟˇ ㄋㄧㄣˊ",
+    "news": "ㄒㄧㄠ ㄒㄧˊ"
   }
 }
