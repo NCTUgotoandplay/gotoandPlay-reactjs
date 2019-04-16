@@ -36,7 +36,7 @@ function Service(NoService, Dispatcher) {
 
   let lang = getCookie('lang');
   if(!lang) {
-    lang = Constants.lang;
+    lang = Constants.settings.default_lang;
     setCookie('lang', lang, 360);
   }
   let gotoandplay_audio = new Audio(audio_source);
@@ -67,12 +67,14 @@ function Service(NoService, Dispatcher) {
       this.enqueueSnackbar(Localize[lang].switch_this_lang);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
-    updateLang: (lang)=> {
+    updateLang: (l)=> {
+      lang = l
       setCookie('lang', lang, 360);
       this.enqueueSnackbar(Localize[lang].switch_this_lang);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
-    initLang: (lang)=> {
+    initLang: (l)=> {
+      lang = l
       setCookie('lang', lang, 360);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
