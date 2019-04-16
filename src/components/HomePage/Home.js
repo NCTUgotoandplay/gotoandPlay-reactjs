@@ -23,8 +23,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ShareIcon from '@material-ui/icons/Share';
 
-import ScrollMenu from 'react-horizontal-scrolling-menu';
-
 import abu_tri from "../../imgs/icons/us_triggered.png"
 
 import radio from '../../imgs/radio.png'
