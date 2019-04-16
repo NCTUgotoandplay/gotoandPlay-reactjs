@@ -13,7 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ShareIcon from '@material-ui/icons/Share';
 
-function Cards(props) {
+let Cards = (props)=> {
   const listItems = props.cards.map((oj) =>
     <Grid item xs={10} sm={5} md={3} lg={2.2} xl={2}>
       <Card>

@@ -46,6 +46,7 @@ class App extends Component {
       programs: null,
       audio_display: "交大網路電台",
       localize: {},
+      news: [],
       album_cards: [],
       album_decks: []
     };
@@ -76,7 +77,14 @@ class App extends Component {
           log={this.state.log}
         />
         <Route exact path="/" render={props=> {
-          return(<HomePage programs = {this.state.programs}/>);
+          return(
+            <HomePage
+            news={this.state.news}
+            cards={this.state.album_cards}
+            programs = {this.state.programs}
+            localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+            />
+          );
         }} />
         <Route path="/Albums" render={
           props => {
@@ -87,6 +95,7 @@ class App extends Component {
 
             return(
               <AlbumsPage
+              localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
               cards={this.state.album_cards}
               decks={this.state.album_decks} />
             )

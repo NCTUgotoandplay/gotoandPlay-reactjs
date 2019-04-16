@@ -52,6 +52,11 @@ function generateDispatcher(setState) {
         return({ lang: payload.data });
       })
     }
+    else if (payload.type === 'updateNews') {
+      setState(prevstate=>{
+        return({ news: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

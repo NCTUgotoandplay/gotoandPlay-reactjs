@@ -11,8 +11,6 @@ class AboutUs extends React.Component {
         <div className="grid">
           <div className="top">
           </div>
-          <div className="item-b">
-          </div>
           <div className="mail">
             <h2>{this.props.localize.about_contact}</h2>
             <TextField label={this.props.localize.about_nickname} margin="dense"/>

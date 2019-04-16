@@ -16,7 +16,11 @@
     "pause_playing": "暫停播放",
     "login": "登入帳號",
     "logout": "登出帳號",
-    "switch_this_lang": "語言中文"
+    "switch_this_lang": "語言中文",
+    "hightlight_albums": "精選專輯",
+    "album_collections": "專輯蒐藏",
+    "suggestion": "推薦給您",
+    "news": "最新消息"
   },
   "en": {
     "header_title": "goto & Play",
@@ -35,6 +39,10 @@
     "pause_playing": "Paused playing",
     "login": "login",
     "logout": "logout",
-    "switch_this_lang": "switched to english"
+    "switch_this_lang": "switched to english",
+    "hightlight_albums": "Hightlight",
+    "album_collections": "Collections",
+    "suggestion": "suggestion for you",
+    "news": "Our news"
   }
 }

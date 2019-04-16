@@ -8,6 +8,25 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 
+
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Collapse from '@material-ui/core/Collapse';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+import Grid from "@material-ui/core/Grid";
+import IconButton from '@material-ui/core/IconButton';
+
+import MusicNoteIcon from '@material-ui/icons/MusicNote';
+import ShareIcon from '@material-ui/icons/Share';
+
+import ScrollMenu from 'react-horizontal-scrolling-menu';
+
+import abu_tri from "../../imgs/icons/us_triggered.png"
+
 import radio from '../../imgs/radio.png'
 
 const CustomTableCell = withStyles(theme => ({
@@ -96,12 +115,54 @@ class Timetable extends Component {
 }
 
 class Home extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  renderCards () {
+    return(this.props.cards.map((oj) =>
+      <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+        <Card>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              wide
+              image={oj["img"]}
+            />
+          </CardActionArea>
+          <CardActions>
+          <IconButton aria-label="Share">
+            <ShareIcon />
+          </IconButton>
+          <IconButton aria-label="Share">
+            <MusicNoteIcon />
+          </IconButton>
+        </CardActions>
+        </Card>
+      </Grid>
+      ))
+  }
+
   render () {
     return (
-      <div className="section homepage">
-        <div className="card_orbit">
+      <div className="homepage">
+        <div className="timetable-container">
+          <div className="intro">
+            <h1>{this.props.localize.news}</h1>
+            <p>
+              <ul>
+                {this.props.news.map((text)=> <li>{text}</li>)}
+              </ul>
+            </p>
+          </div>
+          <Timetable programs={this.props.programs}/>
         </div>
-        <Timetable programs={this.props.programs}/>
+        <div className="cards">
+        <h1>{this.props.localize.suggestion}</h1>
+        <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
+          {this.renderCards()}
+        </Grid>
+        </div>
       </div>
     );
   }

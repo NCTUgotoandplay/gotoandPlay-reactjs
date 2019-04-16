@@ -19,27 +19,24 @@
       // overflow: hidden
       display: grid
       grid-template-columns: 250px auto
-      grid-template-rows: 35% 150px auto
-      grid-template-areas: "header header""mail news""mail intro"
+      grid-template-rows: 35% auto 100px
+      grid-template-areas: "header header""mail intro""mail intro"
       @media(max-width: 800px)
-        grid-template-areas: "header""news ""mail ""intro"
+        grid-template-areas: "header""intro""mail"
         grid-template-columns: auto
-        grid-template-rows: 300px 300px 300px 300px
+        grid-template-rows: 300px 300px
       .top
-        background-image: linear-gradient(rgba(#000, 0.7), rgba(#000, 0.7)), url("./imgs/people.jpg")
+        background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url("./imgs/cover2.jpg")
         background-position: center center
         background-size: cover
-        border: solid 2px $color_black
         grid-area: header
         background-color: purple
 
-      .item-b
-        border: solid 2px $color_black
-        grid-area: news
-        background-color: orange
+      .social
+        grid-area: social
+        background-color: $color_primary_inverse
 
       .mail
-        border: solid 2px $color_black
         grid-area: mail
         background-color: $color_primary
         display: flex
@@ -50,9 +47,9 @@
           +size(150px, 40px)
 
       .about
-        border: solid 2px $color_black
         color: $color_white
         font-weight: 200
+        padding: 20px
         grid-area: intro
         background-image: linear-gradient(rgba(#000, 0.7), rgba(#000, 0.7)), url("./imgs/mixer.jpg")
         background-position: center center

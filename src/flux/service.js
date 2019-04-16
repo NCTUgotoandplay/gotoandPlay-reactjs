@@ -20,6 +20,9 @@ function Service(NoService, Dispatcher) {
     importLocalize: (data)=> {
       Dispatcher.dispatch({type: 'updateLocalize', data: data});
     },
+    updateNews: (data)=> {
+      Dispatcher.dispatch({type: 'updateNews', data: data});
+    },
     updateAlbumCards: (data)=> {
       Dispatcher.dispatch({type: 'updateAlbumCards', data: data});
     },
@@ -78,6 +81,7 @@ function Service(NoService, Dispatcher) {
     this.Actions.updatePrograms(require('./data/programs.json'));
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
+    this.Actions.updateNews(require('./data/news.json'));
     this.Actions.importLocalize(Localize);
     next();
   };
