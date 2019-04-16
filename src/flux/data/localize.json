@@ -25,7 +25,7 @@
   },
   "en": {
     "lang2string": "english",
-    "header_title": "goto & Play",
+    "header_title": "goto&Play",
     "header_Home": "Home",
     "header_Albums": "Albums",
     "header_Community": "Facebook",
@@ -49,7 +49,7 @@
   },
   "jp": {
     "lang2string": "日本語",
-    "header_title": "goto & Play",
+    "header_title": "goto&Play",
     "header_Home": "ホーム",
     "header_Albums": "アルバム",
     "header_Community": "Facebook",
@@ -73,7 +73,7 @@
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
-    "header_title": "goto & Play",
+    "header_title": "goto&Play",
     "header_Home": "ㄕㄡˇㄧㄝˋ",
     "header_Albums": "ㄓㄨㄢ ㄐㄧˊ",
     "header_Community": "Facebook",

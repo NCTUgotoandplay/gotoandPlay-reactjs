@@ -59,7 +59,7 @@ class Header extends Component {
           <Link to="/">
             <div className="key">
               <img className="logo" src={logo} alt="" />
-              <h4> - {this.props.localize.header_title} - </h4>
+              <h4>{this.props.localize.header_title}</h4>
             </div>
           </Link>
 
