@@ -22,7 +22,8 @@
     "album_collections": "專輯蒐藏",
     "suggestion": "推薦給您",
     "news": "最新消息",
-    "more_info": "更多消息"
+    "more_info": "更多消息",
+    "n_people_listening": " 人正在收聽電台"
   },
   "en": {
     "lang2string": "english",
@@ -47,7 +48,8 @@
     "album_collections": "Collections",
     "suggestion": "suggestion for you",
     "news": "news",
-    "more_info": "more information"
+    "more_info": "more information",
+    "n_people_listening": " people are listening"
   },
   "jp": {
     "lang2string": "日本語",
@@ -72,7 +74,8 @@
     "album_collections": "コレクション",
     "suggestion": "あなたにおすすめ",
     "news": "ニュース",
-    "more_info": "その他"
+    "more_info": "その他",
+    "n_people_listening": "人はラジオを聞きます"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -97,6 +100,7 @@
     "album_collections": " ㄓㄨㄢ ㄐㄧˊ ㄙㄡ ㄘㄤˊ",
     "suggestion": "ㄊㄨㄟ ㄐㄧㄢˋ ㄍㄟˇ ㄋㄧㄣˊ",
     "news": "ㄒㄧㄠ ㄒㄧˊ",
-    "more_info": "ㄍㄥˋㄉㄨㄛ"
+    "more_info": "ㄍㄥˋㄉㄨㄛ",
+    "n_people_listening": " ㄖㄣˊㄗㄞˋㄕㄡ ㄊㄧㄥ"
   }
 }

@@ -102,7 +102,8 @@ class Timetable extends Component {
       <div className="timetable">
         <div className="head">
           <img src={radio} alt=""/>
-          <p>PROGRAMS</p>
+          <h2>PROGRAMS</h2><br/>
+          <p>{this.props.online_count+this.props.localize.n_people_listening}</p>
         </div>
         <Paper className="contain">
           {this.props.programs?<TimetableTable weekseg={this.props.programs.weekseg} timeseg={this.props.programs.timeseg} programs={this.props.programs.programs}/>:null}
@@ -165,7 +166,7 @@ class Home extends React.Component {
               </p>
             </div>
           </div>
-          <Timetable programs={this.props.programs}/>
+          <Timetable localize={this.props.localize} programs={this.props.programs}/>
         </div>
 
         <div className="cards">
