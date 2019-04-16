@@ -2,6 +2,9 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import Stream from "./Stream"
 
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+
 // Sources
 import logo from "../../imgs/favicon.png"
 import hom_icon from "../../imgs/icons/home.png"
@@ -39,10 +42,14 @@ class Header extends Component {
     return (
       <div className="header">
         <>
-          <div className="lan_select"
-            onClick={(e) => this.props.actions.switchLang(e)}>
-            {this.props.lang}
+          <div className="lan_select">
+            <Select value={this.props.lang} onChange={evt => {
+                this.props.actions.updateLang(evt.target.value);
+              }}>
+              {Object.keys(this.props.lang2string).map(key=><MenuItem key={key} value={key}>{this.props.lang2string[key]}</MenuItem>)}
+            </Select>
           </div>
+
           <a className="log_select"
             href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
             {this.props.log?this.props.localize.logout:this.props.localize.login}

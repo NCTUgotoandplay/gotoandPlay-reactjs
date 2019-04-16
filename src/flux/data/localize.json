@@ -1,5 +1,6 @@
 {
   "zh": {
+    "lang2string": "中文",
     "header_title": "交大網路電台",
     "header_Home": "首頁",
     "header_Albums": "隨選即播",
@@ -20,9 +21,10 @@
     "hightlight_albums": "精選專輯",
     "album_collections": "專輯蒐藏",
     "suggestion": "推薦給您",
-    "news": "最新消息"
+    "news": "推薦給您"
   },
   "en": {
+    "lang2string": "english",
     "header_title": "goto & Play",
     "header_Home": "Home",
     "header_Albums": "Albums",
@@ -43,6 +45,30 @@
     "hightlight_albums": "Hightlight",
     "album_collections": "Collections",
     "suggestion": "suggestion for you",
-    "news": "Our news"
+    "news": "news"
+  },
+  "jp": {
+    "lang2string": "日本語",
+    "header_title": "goto & Play",
+    "header_Home": "ホーム",
+    "header_Albums": "アルバム",
+    "header_Community": "Facebook",
+    "header_AboutUs": "私たち",
+    "about_title": "私たち",
+    "about_p": "We're goto&Play @ NCTU :))",
+    "about_contact": "お問い合わせ",
+    "about_nickname": "ニックネーム",
+    "about_email": "e-mail",
+    "about_message": "メッセージ",
+    "copyright": "copyright©2019 NCTU goto&Play. 全著作権所有。",
+    "continue_playing": "続き",
+    "pause_playing": "一時停止",
+    "login": "ログイン",
+    "logout": "ログアウト",
+    "switch_this_lang": "日本語を選択しました",
+    "hightlight_albums": "ハイライト",
+    "album_collections": "コレクション",
+    "suggestion": "あなたにおすすめ",
+    "news": "ニュース"
   }
 }

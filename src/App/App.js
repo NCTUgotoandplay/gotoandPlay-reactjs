@@ -38,8 +38,9 @@ class App extends Component {
     this.state = {
       lang : Constants.settings.default_lang,
       lang2string : {
-        zh: "english",
-        en: "中文"
+        zh: "中文",
+        en: "english",
+        jp: "日本語"
       },
       playing: false,
       log: false,
@@ -55,9 +56,6 @@ class App extends Component {
   componentDidMount() {
     this.controller.start(()=> {
       console.log('background started.');
-      this.props.enqueueSnackbar('Have connected to NoService', {variant: 'succeess'});
-      this.props.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
-      this.props.enqueueSnackbar('We are still constructing the site!', {variant: 'error'});
     });
   }
 
@@ -71,7 +69,8 @@ class App extends Component {
       <BrowserRouter>
         <Header
           localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
-          lang={this.state.lang2string[this.state.lang]}
+          lang={this.state.lang}
+          lang2string = {this.state.lang2string}
           actions={this.actions}
           playing={this.state.playing}
           log={this.state.log}

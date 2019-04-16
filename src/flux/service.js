@@ -6,13 +6,39 @@ import Constants from './constants.json';
 import Localize from './data/localize.json';
 const audio_source = Constants.settings.audio_source;
 
+const setCookie = (cname, cvalue, exdays)=> {
+  let d = new Date();
+  d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+  let expires = "expires="+d.toUTCString();
+  document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+};
+
+const getCookie = (cname)=> {
+    let name = cname + "=";
+    let ca = document.cookie.split(';');
+    for(let i = 0; i < ca.length; i++) {
+      let c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return "";
+};
+
 function Service(NoService, Dispatcher) {
   let Services = {
     NoTalk: null,
     gotoandplay: null
   };
 
-  let lang = Constants.default_lang;
+  let lang = getCookie('lang');
+  if(!lang) {
+    lang = Constants.lang;
+    setCookie('lang', lang, 360);
+  }
   let gotoandplay_audio = new Audio(audio_source);
   let gotoandplay_audio_playing = false;
 
@@ -37,7 +63,17 @@ function Service(NoService, Dispatcher) {
     },
     switchLang: ()=> {
       lang = (lang === "zh")? "en": "zh";
+      setCookie('lang', lang, 360);
       this.enqueueSnackbar(Localize[lang].switch_this_lang);
+      Dispatcher.dispatch({type: 'updateLang', data: lang});
+    },
+    updateLang: (lang)=> {
+      setCookie('lang', lang, 360);
+      this.enqueueSnackbar(Localize[lang].switch_this_lang);
+      Dispatcher.dispatch({type: 'updateLang', data: lang});
+    },
+    initLang: (lang)=> {
+      setCookie('lang', lang, 360);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
     switchMainStream: ()=> {
@@ -78,11 +114,21 @@ function Service(NoService, Dispatcher) {
     //   }
     // });
     this.setupDispatchers();
+    this.Actions.initLang(lang);
     this.Actions.updatePrograms(require('./data/programs.json'));
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
     this.Actions.importLocalize(Localize);
+
+    if(lang === 'zh') {
+      this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
+    }
+    else {
+      this.enqueueSnackbar('We are still constructing the site!', {variant: 'error'});
+    }
+
+    this.enqueueSnackbar('Initialized.', {variant: 'succeess'});
     next();
   };
 }
