@@ -49,6 +49,9 @@ function Service(NoService, Dispatcher) {
     updateNews: (data)=> {
       Dispatcher.dispatch({type: 'updateNews', data: data});
     },
+    updateInfos: (data)=> {
+      Dispatcher.dispatch({type: 'updateInfos', data: data});
+    },
     updateAlbumCards: (data)=> {
       Dispatcher.dispatch({type: 'updateAlbumCards', data: data});
     },
@@ -121,6 +124,7 @@ function Service(NoService, Dispatcher) {
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
+    this.Actions.updateInfos(require('./data/more_info.json'));
     this.Actions.importLocalize(Localize);
 
     if(lang === 'zh') {

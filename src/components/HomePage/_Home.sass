@@ -6,23 +6,30 @@
   .timetable-container
     display: inline-block
     width: 100%
-    .intro
-      h1
-        margin-bottom: 25px
-        color: white
-        text-align: left
-      p
-        color: white
-        text-align: left
+    .intro_container
       float: left
-      height: inherit
       left: 120px
-      width: 300px
-      margin: 150px 0 100px 0
+      margin: 150px 50px 100px 0
+      display: inline-block
+      width: calc(100% - 800px)
+      max-width: 800px
       @media(max-width: 900px)
         left: 50px
         width: 250px
         margin: 100px 0 0 0
+      .intro
+        h1
+          margin-bottom: 25px
+          color: white
+          text-align: left
+        p
+          color: white
+          text-align: left
+        display: inline-block
+        width: 300px
+        height: inherit
+        margin: 0 50px 25px 0
+        vertical-align: top
 
     .timetable
       // cursor: pointer
@@ -31,7 +38,7 @@
       width: 55%
       float: right
       min-width: 250px
-      max-width: 670px
+      max-width: 600px
       min-height: 400px
       position: relative
       margin: 150px 0 100px 0
@@ -44,6 +51,8 @@
       overflow: hidden
       @media(max-width: 900px)
         width: calc(100% - 60px)
+        float: left
+        left: 30px
         margin: 100px 0 45px 0
 
       +shadow

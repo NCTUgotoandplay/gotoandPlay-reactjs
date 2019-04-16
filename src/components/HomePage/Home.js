@@ -147,16 +147,27 @@ class Home extends React.Component {
     return (
       <div className="homepage">
         <div className="timetable-container">
-          <div className="intro">
-            <h1>{this.props.localize.news}</h1>
-            <p>
-              <ul>
-                {this.props.news.map((text)=> <li>{text}</li>)}
-              </ul>
-            </p>
+          <div className="intro_container">
+            <div className="intro">
+              <h1>{this.props.localize.news}</h1>
+              <p>
+                <ul>
+                  {this.props.news.map((text)=> <li>{text}</li>)}
+                </ul>
+              </p>
+            </div>
+            <div className="intro">
+              <h1>{this.props.localize.more_info}</h1>
+              <p>
+                <ul>
+                  {this.props.more_info.map((text)=> <li>{text}</li>)}
+                </ul>
+              </p>
+            </div>
           </div>
           <Timetable programs={this.props.programs}/>
         </div>
+
         <div className="cards">
         <h1>{this.props.localize.suggestion}</h1>
         <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>

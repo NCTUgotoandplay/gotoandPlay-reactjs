@@ -49,6 +49,7 @@ class App extends Component {
       audio_display: "交大網路電台",
       localize: {},
       news: [],
+      more_info: [],
       album_cards: [],
       album_decks: []
     };
@@ -79,6 +80,7 @@ class App extends Component {
         <Route exact path="/" render={props=> {
           return(
             <HomePage
+            more_info={this.state.more_info}
             news={this.state.news}
             cards={this.state.album_cards}
             programs = {this.state.programs}

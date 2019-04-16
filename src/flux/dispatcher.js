@@ -57,6 +57,11 @@ function generateDispatcher(setState) {
         return({ news: payload.data });
       })
     }
+    else if (payload.type === 'updateInfos') {
+      setState(prevstate=>{
+        return({ more_info: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

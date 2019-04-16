@@ -21,7 +21,8 @@
     "hightlight_albums": "精選專輯",
     "album_collections": "專輯蒐藏",
     "suggestion": "推薦給您",
-    "news": "最新消息"
+    "news": "最新消息",
+    "more_info": "更多消息"
   },
   "en": {
     "lang2string": "english",
@@ -45,7 +46,8 @@
     "hightlight_albums": "Hightlight",
     "album_collections": "Collections",
     "suggestion": "suggestion for you",
-    "news": "news"
+    "news": "news",
+    "more_info": "more information"
   },
   "jp": {
     "lang2string": "日本語",
@@ -69,7 +71,8 @@
     "hightlight_albums": "ハイライト",
     "album_collections": "コレクション",
     "suggestion": "あなたにおすすめ",
-    "news": "ニュース"
+    "news": "ニュース",
+    "more_info": "その他"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -93,6 +96,7 @@
     "hightlight_albums": "ㄐㄧㄥ ㄒㄩㄢˇ ㄓㄨㄢ ㄐㄧˊ",
     "album_collections": " ㄓㄨㄢ ㄐㄧˊ ㄙㄡ ㄘㄤˊ",
     "suggestion": "ㄊㄨㄟ ㄐㄧㄢˋ ㄍㄟˇ ㄋㄧㄣˊ",
-    "news": "ㄒㄧㄠ ㄒㄧˊ"
+    "news": "ㄒㄧㄠ ㄒㄧˊ",
+    "more_info": "ㄍㄥˋㄉㄨㄛ"
   }
 }
