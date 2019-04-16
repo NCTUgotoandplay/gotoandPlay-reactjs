@@ -45,6 +45,7 @@ class App extends Component {
         jp: "日本語",
         zhuyin: "ㄓㄨˋㄧㄣ",
       },
+      online_count: 999,
       playing: false,
       log: false,
       programs: null,
@@ -82,6 +83,7 @@ class App extends Component {
         <Route exact path="/" render={props=> {
           return(
             <HomePage
+            online_count={this.state.online_count}
             more_info={this.state.more_info}
             news={this.state.news}
             cards={this.state.album_cards}

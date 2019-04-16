@@ -166,7 +166,7 @@ class Home extends React.Component {
               </p>
             </div>
           </div>
-          <Timetable localize={this.props.localize} programs={this.props.programs}/>
+          <Timetable online_count={this.props.online_count} localize={this.props.localize} programs={this.props.programs}/>
         </div>
 
         <div className="cards">
