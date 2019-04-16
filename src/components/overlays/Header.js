@@ -42,11 +42,11 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="tools">
-          <Link to={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
+          <a href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
             <div className="log_select">
             {this.props.log?this.props.localize.logout:this.props.localize.login}
             </div>
-          </Link>
+          </a>
           <div className="lan_select">
             <Select value={this.props.lang} onChange={evt => {
                 this.props.actions.updateLang(evt.target.value);
