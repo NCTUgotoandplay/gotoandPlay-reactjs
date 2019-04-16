@@ -14,17 +14,17 @@ class AboutUs extends React.Component {
           <div className="item-b">
           </div>
           <div className="mail">
-            <h2>{this.props.localize.about.contact}</h2>
-            <TextField label={this.props.localize.about.nickname} margin="dense"/>
-            <TextField label={this.props.localize.about.email} margin="dense"/>
-            <TextField label={this.props.localize.about.message} margin="dense"/>
+            <h2>{this.props.localize.about_contact}</h2>
+            <TextField label={this.props.localize.about_nickname} margin="dense"/>
+            <TextField label={this.props.localize.about_email} margin="dense"/>
+            <TextField label={this.props.localize.about_message} margin="dense"/>
             <Button variant="contained"  color="primary">
               送出
             </Button>
           </div>
           <div className="about">
-            <h2>{this.props.localize.about.title}</h2>
-            <p>{this.props.localize.about.p}</p>
+            <h2>{this.props.localize.about_title}</h2>
+            <p>{this.props.localize.about_p}</p>
           </div>
         </div>
       </div>

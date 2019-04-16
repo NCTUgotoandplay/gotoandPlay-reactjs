@@ -3,7 +3,7 @@
 // "service.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
 import Constants from './constants.json';
-import Localize from '../App/localize.json';
+import Localize from './data/localize.json';
 const audio_source = Constants.settings.audio_source;
 
 function Service(NoService, Dispatcher) {
@@ -12,10 +12,20 @@ function Service(NoService, Dispatcher) {
     gotoandplay: null
   };
 
+  let lang = Constants.default_lang;
   let gotoandplay_audio = new Audio(audio_source);
   let gotoandplay_audio_playing = false;
 
   this.Actions = {
+    importLocalize: (data)=> {
+      Dispatcher.dispatch({type: 'updateLocalize', data: data});
+    },
+    updateAlbumCards: (data)=> {
+      Dispatcher.dispatch({type: 'updateAlbumCards', data: data});
+    },
+    updateAlbumDecks: (data)=> {
+      Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
+    },
     updatePrograms: (data)=> {
       Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
     },
@@ -23,19 +33,20 @@ function Service(NoService, Dispatcher) {
       Dispatcher.dispatch({});
     },
     switchLang: ()=> {
-      this.enqueueSnackbar('Switched language.');
-      Dispatcher.dispatch({type: 'reverseLang', data: null});
+      lang = (lang === "zh")? "en": "zh";
+      this.enqueueSnackbar(Localize[lang].switch_this_lang);
+      Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
     switchMainStream: ()=> {
       if(gotoandplay_audio_playing) {
         gotoandplay_audio_playing = false;
         gotoandplay_audio.pause();
-        this.enqueueSnackbar(Localize.en.pause_playing);
+        this.enqueueSnackbar(Localize[lang].pause_playing);
       }
       else {
         gotoandplay_audio_playing = true;
         gotoandplay_audio.play();
-        this.enqueueSnackbar(Localize.en.continue_playing);
+        this.enqueueSnackbar(Localize[lang].continue_playing);
       }
       Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandplay_audio_playing});
     }
@@ -65,6 +76,9 @@ function Service(NoService, Dispatcher) {
     // });
     this.setupDispatchers();
     this.Actions.updatePrograms(require('./data/programs.json'));
+    this.Actions.updateAlbumCards(require('./data/albumcards.json'));
+    this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
+    this.Actions.importLocalize(Localize);
     next();
   };
 }

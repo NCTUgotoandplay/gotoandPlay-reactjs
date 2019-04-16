@@ -45,31 +45,31 @@ class Header extends Component {
           </div>
           <a className="log_select"
             href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
-            {this.props.log?"Logout":"Login"}
+            {this.props.log?this.props.localize.logout:this.props.localize.login}
           </a>
         </>
         <div className="container">
           <Link className="key" to="/">
             <img className="logo" src={logo} alt="" />
-            <h4> - {this.props.localize.header.title} - </h4>
+            <h4> - {this.props.localize.header_title} - </h4>
           </Link>
 
           <div className="navbar">
             <Link className="btn" to="/">
-              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header.Home}/>
+              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header_Home}/>
             </Link>
             <Link className="btn" to="/Albums">
-              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header.Albums}/>
+              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header_Albums}/>
             </Link>
             <a className="btn"
               href="https://www.facebook.com/gotoandplay.nctu/"
               target="_blank"
               rel="noreferrer noopener"
             >
-              <NavPic src={[fb_icon, fb_tri]} text={this.props.localize.header.Community}/>
+              <NavPic src={[fb_icon, fb_tri]} text={this.props.localize.header_Community}/>
             </a>
             <Link className="btn" to="/AboutUs">
-              <NavPic src={[abu_icon, abu_tri]} text={this.props.localize.header.AboutUs}/>
+              <NavPic src={[abu_icon, abu_tri]} text={this.props.localize.header_AboutUs}/>
             </Link>
           </div>
         </div>

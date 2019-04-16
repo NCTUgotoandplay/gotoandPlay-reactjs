@@ -38,41 +38,16 @@ class App extends Component {
     this.state = {
       lang : Constants.settings.default_lang,
       lang2string : {
-        zh: "中文",
-        en: "english"
+        zh: "english",
+        en: "中文"
       },
       playing: false,
       log: false,
       programs: null,
       audio_display: "交大網路電台",
-      localize: require('./localize.json'),
-      album_cards: [
-        {
-          "title": "噓韓問暖",
-          "img": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.0-9/54430364_282023362697265_4573382752757350400_n.jpg?_nc_cat=107&_nc_ht=scontent.ftpe8-3.fna&oh=e6ba38c67e66c2e73bdda24da220a8f4&oe=5D0D9076",
-          "p": "噓, 你也在這裡嗎...?",
-          "link": ""
-        },
-        {
-          "title": "MC麥卵共",
-          "img": "https://scontent.ftpe8-4.fna.fbcdn.net/v/t1.0-9/43632697_308532823277059_5085982675718635520_n.jpg?_nc_cat=111&_nc_ht=scontent.ftpe8-4.fna&oh=9d9a3f679fac19ca5392d6989c867df9&oe=5D048179",
-          "p": "從不同的角度看電影\n一起探索MOVIE COSMOS!",
-          "link": ""
-        },
-        {
-          "title": "TITLE",
-          "img": "",
-          "p": "PPPP",
-          "link": ""
-        }
-      ],
-      album_decks: [
-        {
-          "title": "2018 Autumn",
-          "img": "",
-          "link": ""
-        }
-      ]
+      localize: {},
+      album_cards: [],
+      album_decks: []
     };
   }
 
@@ -94,7 +69,7 @@ class App extends Component {
     return (
       <BrowserRouter>
         <Header
-          localize={this.state.localize[this.state.lang]}
+          localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
           lang={this.state.lang2string[this.state.lang]}
           actions={this.actions}
           playing={this.state.playing}
@@ -122,9 +97,9 @@ class App extends Component {
               this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
               au_not_finished = 0;
             }
-            return(<AboutUsPage localize={this.state.localize[this.state.lang]} />);
+            return(<AboutUsPage localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} />);
           }} />
-        <Footer localize={this.state.localize[this.state.lang]}/>
+        <Footer localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}/>
         <TalkRoom />
       </BrowserRouter>
     );

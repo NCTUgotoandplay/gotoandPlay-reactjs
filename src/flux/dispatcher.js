@@ -9,7 +9,7 @@ function generateDispatcher(setState) {
 
   let id1 = _dispatcher.register((payload)=> {
     if(payload.type === 'updateLang') {
-      setState( { lan: payload.data } );
+      setState( { lang: payload.data } );
     }
     else if(payload.type === 'reverseLang') {
       setState(prevstate=>{
@@ -30,6 +30,26 @@ function generateDispatcher(setState) {
     else if (payload.type === 'updateProgramsTable') {
       setState(prevstate=>{
         return({ programs: payload.data });
+      })
+    }
+    else if (payload.type === 'updateAlbumCards') {
+      setState(prevstate=>{
+        return({ album_cards: payload.data });
+      })
+    }
+    else if (payload.type === 'updateAlbumDecks') {
+      setState(prevstate=>{
+        return({ album_decks: payload.data });
+      })
+    }
+    else if (payload.type === 'updateLocalize') {
+      setState(prevstate=>{
+        return({ localize: payload.data });
+      })
+    }
+    else if (payload.type === 'updateLang') {
+      setState(prevstate=>{
+        return({ lang: payload.data });
       })
     }
   });

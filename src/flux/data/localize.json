@@ -1,0 +1,40 @@
+{
+  "zh": {
+    "header_title": "交大網路電台",
+    "header_Home": "首頁",
+    "header_Albums": "隨選即播",
+    "header_Community": "臉書",
+    "header_AboutUs": "關於我們",
+    "about_title": "關於電台",
+    "about_p": "交大網路電台goto&Play自開播以來，\n就一直是系上熱門的話題組織，\n直到今日電台組織架構及人數持續增長茁壯，\n相信未來交大網路電台goto&Play也將會持續為聽眾獻上\n最不一樣的好聲音。",
+    "about_contact": "聯絡我們",
+    "about_nickname": "暱稱",
+    "about_email": "e-mail",
+    "about_message": "訊息",
+    "copyright": "版權所有©2019 NCTU goto&Play. 保留一切權利",
+    "continue_playing": "繼續播放",
+    "pause_playing": "暫停播放",
+    "login": "登入帳號",
+    "logout": "登出帳號",
+    "switch_this_lang": "語言中文"
+  },
+  "en": {
+    "header_title": "goto & Play",
+    "header_Home": "Home",
+    "header_Albums": "Albums",
+    "header_Community": "Facebook",
+    "header_AboutUs": "About us",
+    "about_title": "About US",
+    "about_p": "We're goto&Play @ NCTU :))",
+    "about_contact": "Contact Us",
+    "about_nickname": "Nickname",
+    "about_email": "e-mail",
+    "about_message": "message",
+    "copyright": "copyright©2019 NCTU goto&Play. All rights reserved.",
+    "continue_playing": "Continued playing",
+    "pause_playing": "Paused playing",
+    "login": "login",
+    "logout": "logout",
+    "switch_this_lang": "switched to english"
+  }
+}
