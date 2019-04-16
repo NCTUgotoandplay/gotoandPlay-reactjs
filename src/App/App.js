@@ -38,10 +38,12 @@ class App extends Component {
     this.state = {
       lang : Constants.settings.default_lang,
       lang2string : {
-        zh: "中文",
         en: "english",
+        ru: "русский",
+        de: "Deutsche",
+        zh: "中文",
         jp: "日本語",
-        zhuyin: "ㄓㄨˋㄧㄣ"
+        zhuyin: "ㄓㄨˋㄧㄣ",
       },
       playing: false,
       log: false,
