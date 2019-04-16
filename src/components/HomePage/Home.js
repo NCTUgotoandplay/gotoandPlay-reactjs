@@ -119,7 +119,7 @@ class Home extends React.Component {
 
   renderCards () {
     return(this.props.cards.map((oj) =>
-      <Grid item xs={6} sm={4} md={3} lg={2} xl={2}>
+      <Grid item xs={12} sm={4} md={3} lg={2} xl={2}>
         <Card>
           <CardActionArea>
             <CardMedia
@@ -127,13 +127,15 @@ class Home extends React.Component {
               wide
               image={oj["img"]}
             />
+            <CardContent>
+            <Typography component="p">
+              {oj["p"]}
+            </Typography>
+            </CardContent>
           </CardActionArea>
           <CardActions>
           <IconButton aria-label="Share">
             <ShareIcon />
-          </IconButton>
-          <IconButton aria-label="Share">
-            <MusicNoteIcon />
           </IconButton>
         </CardActions>
         </Card>

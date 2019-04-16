@@ -3,50 +3,69 @@
 .header, .footer
   background-color: $color_yellow
   .container
-    display: flex
-    flex-direction: row
-    justify-content: space-around
+    display: inline-block
+    padding: 0 19%
     align-items: center
+    margin: 0
+    width: 100%
+    @media(max-width: 650px)
+      padding: 0 10%
 
 .header
   +size(100%, 160px)
-  @media(max-width: 600px)
-    height: 120px
-  .lan_select, .log_select
-    +botton()
-    font-weight: bold
-    left: 30%
+  @media(max-width: 650px)
+    height: 150px
+  .tools
     top: 10px
-    display: inline-block
-    margin: 0px 5px
+    .lan_select, .log_select
+      font-weight: bold
+      float: right
+      display: inline-block
+      margin: 0px 5px
+    .log_select
+      top: 5px
+      float: right
+      @media(max-width: 650px)
+        display: none
+    float: right
+    margin-right: 19%
+    @media(max-width: 650px)
+      margin-right: 10%
   .key
+    float: left
     margin: 10px 0px
     letter-spacing: 2px
-    @media(max-width: 600px)
-      font-size: 12px
+    @media(max-width: 650px)
+      font-size: 10px
     .logo
       +size(80px, 80px)
-      @media(max-width: 600px)
-        +size(50px, 50px)
+      @media(max-width: 650px)
+        +size(45px, 45px)
+        letter-spacing: 0
       position: center
       object-fit: cover
   .navbar
-    display: inline-flex
+    float: right
+    top: 20px
+    white-space: nowrap
+    display: inline-block
     .btn
       +botton()
-      @media(max-width: 600px)
+      @media(max-width: 650px)
         margin-left: 2px
-      margin-left: 10px
+        max-width: 55px
+        font-size: 12px
+      margin-left: 12px
       padding: 0px 3px
       // border-bottom: 2px solid $color_brown
       // border-radius: 4px
-      display: flex
+      display: inline-block
       flex-direction: column
       justify-content: center
       .navicon
         // position: absolute
-        +size(60px, 60px)
-        @media(max-width: 600px)
+        +size(48px, 48px)
+        @media(max-width: 650px)
           +size(30px, 30px)
         padding: center
         object-fit: cover

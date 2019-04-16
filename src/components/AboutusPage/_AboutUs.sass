@@ -3,28 +3,34 @@
 .aboutpage
   min-height: calc(100% - 160px - 70px)
   text-align: center
-  @media(max-width: 800px)
-    height: 1200px
+  display: inline-block
+  width: 100%
   .container
     display: inline-block
-    height: 100%
-    position: absolute
-    transform: translate(-50%, 0)
+    width: 100%
+    min-height: 100%
+    position: relative
     .grid
       position: absolute
-      height: 100%
+      left: 50%
+      transform: translate(-50%, 0)
+      height: 900px
       width: 100%
-      +size(100%, 100%)
+      max-width: 900px
       border: solid 2px $color_black
       // overflow: hidden
       display: grid
       grid-template-columns: 250px auto
-      grid-template-rows: 35% auto 100px
+      grid-template-rows: 35% 65%
       grid-template-areas: "header header""mail intro""mail intro"
       @media(max-width: 800px)
-        grid-template-areas: "header""intro""mail"
+        position: relative
+        left: 0
+        transform: translate(0, 0)
+        grid-template-areas: "header""mail""intro"
         grid-template-columns: auto
-        grid-template-rows: 300px 300px
+        height: auto
+        grid-template-rows: 450px 450px 450px
       .top
         background-image: linear-gradient(rgba(#000, 0.2), rgba(#000, 0.2)), url("./imgs/cover2.jpg")
         background-position: center center

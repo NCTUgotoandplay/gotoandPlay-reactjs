@@ -108,7 +108,7 @@ class App extends Component {
             }
             return(<AboutUsPage localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} />);
           }} />
-        <Footer localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}/>
+        <Footer localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} version={Constants.version}/>
         <TalkRoom />
       </BrowserRouter>
     );

@@ -41,7 +41,12 @@ class Header extends Component {
   render() {
     return (
       <div className="header">
-        <>
+        <div className="tools">
+          <Link to={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
+            <div className="log_select">
+            {this.props.log?this.props.localize.logout:this.props.localize.login}
+            </div>
+          </Link>
           <div className="lan_select">
             <Select value={this.props.lang} onChange={evt => {
                 this.props.actions.updateLang(evt.target.value);
@@ -49,16 +54,13 @@ class Header extends Component {
               {Object.keys(this.props.lang2string).map(key=><MenuItem key={key} value={key}>{this.props.lang2string[key]}</MenuItem>)}
             </Select>
           </div>
-
-          <a className="log_select"
-            href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
-            {this.props.log?this.props.localize.logout:this.props.localize.login}
-          </a>
-        </>
+        </div>
         <div className="container">
-          <Link className="key" to="/">
-            <img className="logo" src={logo} alt="" />
-            <h4> - {this.props.localize.header_title} - </h4>
+          <Link to="/">
+            <div className="key">
+              <img className="logo" src={logo} alt="" />
+              <h4> - {this.props.localize.header_title} - </h4>
+            </div>
           </Link>
 
           <div className="navbar">
