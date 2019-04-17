@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+
 import Stream from "./Stream"
+import Button from '@material-ui/core/Button';
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -42,11 +44,24 @@ class Header extends Component {
     return (
       <div className="header">
         <div className="tools">
-          <a href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=nooxy.org&port=43581&redirect=/"}>
+
+
+          <div className="log_select">
+            <a href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=gotoandplay.nctu.edu.tw&port=43581&redirect=/"}>
+              <Button  color="primary">
+                {this.props.log?this.props.localize.logout:this.props.localize.login}
+              </Button>
+            </a>
+          </div>
+          {this.props.show_admin?
             <div className="log_select">
-            {this.props.log?this.props.localize.logout:this.props.localize.login}
-            </div>
-          </a>
+              <Link to="/admin">
+                <Button color="primary">
+                {this.props.localize.admin_page}
+                </Button>
+              </Link>
+            </div>:null
+          }
           <div className="lan_select">
             <Select value={this.props.lang} onChange={evt => {
                 this.props.actions.updateLang(evt.target.value);
@@ -54,6 +69,7 @@ class Header extends Component {
               {Object.keys(this.props.lang2string).map(key=><MenuItem key={key} value={key}>{this.props.lang2string[key]}</MenuItem>)}
             </Select>
           </div>
+
         </div>
         <div className="container">
           <Link to="/">

@@ -1,0 +1,29 @@
+@import ../commons/variable
+
+.adminpage
+  width: 100%
+  // max-width: $max_width
+  margin: auto
+  padding: 100px 19%
+  @media(max-width: 650px)
+    padding: 100px 8%
+  margin-top: 0
+  display: flex
+  flex-direction: column
+  align-items: center
+  min-height: calc(100% - 160px - 70px)
+
+  h1
+    text-align: left
+    color: white
+    width: 100%
+  hr
+    width: 100%
+    margin: 25px 0
+
+  .heading
+    text-align: left
+    flex-basis: 33.33%
+    flex-shrink: 0
+  .description
+    opacity: .5

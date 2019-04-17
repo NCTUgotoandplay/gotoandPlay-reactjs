@@ -18,12 +18,21 @@
     "login": "login",
     "logout": "logout",
     "switch_this_lang": "switched to english",
-    "hightlight_albums": "Highlight",
+    "highlighted_albums": "Highlight",
     "album_collections": "Collections",
     "suggestion": "recommendation for you",
     "news": "news",
     "more_info": "more information",
-    "n_people_listening": " people are listening"
+    "n_people_listening": " people are listening",
+    "admin_page": "Admin page",
+    "settings": "settings",
+    "timetable": "timetable",
+    "site_status": "site status",
+    "site_status_description": "monitor your site's current status",
+    "chat_room": "chat room",
+    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
+    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
+    "settings_complie_site_from_git": "update and compile new site from github"
   },
   "zh": {
     "lang2string": "中文",
@@ -44,12 +53,22 @@
     "login": "登入帳號",
     "logout": "登出帳號",
     "switch_this_lang": "語言中文",
-    "hightlight_albums": "精選專輯",
+    "highlighted_albums": "精選專輯",
     "album_collections": "專輯蒐藏",
     "suggestion": "推薦給您",
     "news": "最新消息",
     "more_info": "更多消息",
-    "n_people_listening": " 人正在收聽電台"
+    "n_people_listening": " 人正在收聽電台",
+    "admin_page": "管理頁面",
+    "settings": "設定",
+    "timetable": "節目表",
+    "site_status": "網站狀態",
+    "site_status_description": "監看網站的狀態",
+    "chat_room": "聊天室",
+    "settings_chat_room_description": "像是修改聊天室ID",
+    "settings_timetable_description": "修改你的節目表",
+    "settings_complie_site_from_git": "從github編譯並且更新網站"
+
   },
   "jp": {
     "lang2string": "日本語",
@@ -70,12 +89,22 @@
     "login": "ログイン",
     "logout": "ログアウト",
     "switch_this_lang": "日本語を選択しました",
-    "hightlight_albums": "ハイライト",
+    "highlighted_albums": "ハイライト",
     "album_collections": "コレクション",
     "suggestion": "あなたにおすすめ",
     "news": "ニュース",
     "more_info": "その他",
-    "n_people_listening": "人はラジオを聞きます"
+    "n_people_listening": "人はラジオを聞きます",
+    "admin_page": "Admin page",
+    "settings": "settings",
+    "timetable": "timetable",
+    "site_status": "site status",
+    "site_status_description": "monitor your site's current status",
+    "chat_room": "chat room",
+    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
+    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
+    "settings_complie_site_from_git": "update and compile new site from github"
+
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -96,12 +125,22 @@
     "login": "ㄉㄥ ㄖㄨˋ",
     "logout": "ㄉㄥ ㄔㄨ",
     "switch_this_lang": "ㄓㄨˋㄧㄣ",
-    "hightlight_albums": "ㄐㄧㄥ ㄒㄩㄢˇ ㄓㄨㄢ ㄐㄧˊ",
+    "highlighted_albums": "ㄐㄧㄥ ㄒㄩㄢˇ ㄓㄨㄢ ㄐㄧˊ",
     "album_collections": " ㄓㄨㄢ ㄐㄧˊ ㄙㄡ ㄘㄤˊ",
     "suggestion": "ㄊㄨㄟ ㄐㄧㄢˋ ㄍㄟˇ ㄋㄧㄣˊ",
     "news": "ㄒㄧㄠ ㄒㄧˊ",
     "more_info": "ㄍㄥˋㄉㄨㄛ",
-    "n_people_listening": " ㄖㄣˊㄗㄞˋㄕㄡ ㄊㄧㄥ"
+    "n_people_listening": " ㄖㄣˊㄗㄞˋㄕㄡ ㄊㄧㄥ",
+    "admin_page": "ㄍㄨㄢˇㄌㄧˇㄧㄝˋㄇㄧㄢˋ",
+    "settings": "settings",
+    "timetable": "timetable",
+    "site_status": "site status",
+    "site_status_description": "monitor your site's current status",
+    "chat_room": "chat room",
+    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
+    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
+    "settings_complie_site_from_git": "update and compile new site from github"
+
   },
   "ru": {
     "lang2string": "русский",
@@ -122,12 +161,22 @@
     "login": "авторизоваться",
     "logout": "выйти",
     "switch_this_lang": "перешел на русский",
-    "hightlight_albums": "основной момент",
+    "highlighted_albums": "основной момент",
     "album_collections": "Коллекции",
     "suggestion": "рекомендация для вас",
     "news": "Новости",
     "more_info": "Дополнительная информация",
-    "n_people_listening": " человек слушают"
+    "n_people_listening": " человек слушают",
+    "admin_page": "Admin page",
+    "settings": "settings",
+    "timetable": "timetable",
+    "site_status": "site status",
+    "site_status_description": "monitor your site's current status",
+    "chat_room": "chat room",
+    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
+    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
+    "settings_complie_site_from_git": "update and compile new site from github"
+
   },
   "de": {
     "lang2string": "Deutsche",
@@ -148,11 +197,21 @@
     "login": "Anmeldung",
     "logout": "Ausloggen",
     "switch_this_lang": "auf deutsch umgestellt",
-    "hightlight_albums": "Markieren",
+    "highlighted_albums": "Markieren",
     "album_collections": "Sammlungen",
     "suggestion": "Empfehlung für Sie",
     "news": "Nachrichten",
     "more_info": "Mehr Informationen",
-    "n_people_listening": " Leute hören zu"
+    "n_people_listening": " Leute hören zu",
+    "admin_page": "Admin page",
+    "settings": "settings",
+    "timetable": "timetable",
+    "site_status": "site status",
+    "site_status_description": "monitor your site's current status",
+    "chat_room": "chat room",
+    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
+    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
+    "settings_complie_site_from_git": "update and compile new site from github"
+
   }
 }

@@ -1,6 +1,7 @@
 @import ./App/App
 @import ./components/HomePage/Home
 @import ./components/AlbumsPage/Album
+@import ./components/AdminPage/Admin
 @import ./components/AboutusPage/AboutUs
 @import ./components/TalkRoom/TalkRoom
 @import ./components/overlays/Header
@@ -13,7 +14,6 @@
   // border: solid 1px $color_black
   position: relative
   box-sizing: border-box
-  text-align: center
   // font-family: 'Fredoka One', 'Noto Sans TC'
   // letter-spacing: 3px
 
@@ -42,7 +42,7 @@ a
 
 html, body, #root
   border: none
-  overflow-x: scroll
+  overflow-y: scroll
   // background-color: $color_white
   color: $color_primary_inverse
   +size(100%, 100%)

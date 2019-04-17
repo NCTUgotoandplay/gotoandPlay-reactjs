@@ -20,9 +20,17 @@ import TalkRoom from "../components/TalkRoom"
 import HomePage from "../components/HomePage"
 import AlbumsPage from "../components/AlbumsPage"
 import AboutUsPage from "../components/AboutusPage"
+import AdminPage from "../components/AdminPage"
 
+import Button from '@material-ui/core/Button';
 // Css
 import "../All.min.css"
+
+//
+import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+
+const Theme = createMuiTheme();
 
 //dirty code
 let ab_not_finished = 1;
@@ -45,6 +53,7 @@ class App extends Component {
         jp: "日本語",
         zhuyin: "ㄓㄨˋㄧㄣ",
       },
+      isadmin: true,
       online_count: 999,
       playing: false,
       log: false,
@@ -71,6 +80,7 @@ class App extends Component {
   render() {
 
     return (
+      <MuiThemeProvider theme={Theme}>
       <BrowserRouter>
         <Header
           localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
@@ -78,7 +88,8 @@ class App extends Component {
           lang2string = {this.state.lang2string}
           actions={this.actions}
           playing={this.state.playing}
-          log={this.state.log}
+          login_link={Constants.settings.noservice.host}
+          show_admin={this.state.isadmin}
         />
         <Route exact path="/" render={props=> {
           return(
@@ -89,6 +100,14 @@ class App extends Component {
             cards={this.state.album_cards}
             programs = {this.state.programs}
             localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+            />
+          );
+        }} />
+        <Route path="/Admin" render={props=> {
+          return(
+            <AdminPage
+              app_state={this.state}
+              localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
             />
           );
         }} />
@@ -117,6 +136,7 @@ class App extends Component {
         <Footer localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} version={Constants.version}/>
         <TalkRoom />
       </BrowserRouter>
+      </MuiThemeProvider>
     );
   }
 }
