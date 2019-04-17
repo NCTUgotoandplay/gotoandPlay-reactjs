@@ -12,7 +12,7 @@ class Albums extends React.Component {
   render () {
     return (
       <div className="albumpage">
-        <h1>{this.props.localize.hightlight_albums}</h1>
+        <h1>{this.props.localize.highlighted_albums}</h1>
         <Cards cards={this.props.cards} />
         <hr />
         <h1>{this.props.localize.album_collections}</h1>
