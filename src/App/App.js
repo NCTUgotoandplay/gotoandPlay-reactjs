@@ -45,14 +45,7 @@ class App extends Component {
     this.actions = this.controller.Actions;
     this.state = {
       lang : Constants.settings.default_lang,
-      lang2string : {
-        en: "english",
-        ru: "русский",
-        de: "Deutsche",
-        zh: "中文",
-        jp: "日本語",
-        zhuyin: "ㄓㄨˋㄧㄣ",
-      },
+      lang2string : {},
       isadmin: true,
       online_count: 999,
       playing: false,

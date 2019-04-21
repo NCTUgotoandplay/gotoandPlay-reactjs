@@ -44,7 +44,11 @@ function generateDispatcher(setState) {
     }
     else if (payload.type === 'updateLocalize') {
       setState(prevstate=>{
-        return({ localize: payload.data });
+        let lang2string = {};
+        for(let lang in payload.data) {
+          lang2string[lang] = payload.data[lang].lang2string;
+        }
+        return({ localize: payload.data, lang2string: lang2string});
       })
     }
     else if (payload.type === 'updateLang') {
