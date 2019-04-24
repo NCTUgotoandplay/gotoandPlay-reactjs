@@ -3,7 +3,7 @@
 // "service.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
 import Constants from './constants.json';
-import Localize from './data/localize.json';
+import Localize from './data/localizes.json';
 const audio_source = Constants.settings.audio_source;
 
 const setCookie = (cname, cvalue, exdays)=> {
