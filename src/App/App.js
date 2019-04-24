@@ -52,7 +52,7 @@ class App extends Component {
       log: false,
       programs: null,
       audio_display: "交大網路電台",
-      localize: {},
+      localizes: {},
       news: [],
       more_info: [],
       album_cards: [],
@@ -76,7 +76,7 @@ class App extends Component {
       <MuiThemeProvider theme={Theme}>
       <BrowserRouter>
         <Header
-          localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+          localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
           lang={this.state.lang}
           lang2string = {this.state.lang2string}
           actions={this.actions}
@@ -92,7 +92,7 @@ class App extends Component {
             news={this.state.news}
             cards={this.state.album_cards}
             programs = {this.state.programs}
-            localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+            localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
             />
           );
         }} />
@@ -100,7 +100,7 @@ class App extends Component {
           return(
             <AdminPage
               app_state={this.state}
-              localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+              localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
             />
           );
         }} />
@@ -113,7 +113,7 @@ class App extends Component {
 
             return(
               <AlbumsPage
-              localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}}
+              localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
               cards={this.state.album_cards}
               decks={this.state.album_decks} />
             )
@@ -124,9 +124,9 @@ class App extends Component {
               this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
               au_not_finished = 0;
             }
-            return(<AboutUsPage localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} />);
+            return(<AboutUsPage localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}} />);
           }} />
-        <Footer localize={this.state.localize[this.state.lang]?this.state.localize[this.state.lang]:{}} version={Constants.version}/>
+        <Footer localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}} version={Constants.version}/>
         <TalkRoom />
       </BrowserRouter>
       </MuiThemeProvider>

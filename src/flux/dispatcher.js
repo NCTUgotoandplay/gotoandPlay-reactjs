@@ -42,13 +42,13 @@ function generateDispatcher(setState) {
         return({ album_decks: payload.data });
       })
     }
-    else if (payload.type === 'updateLocalize') {
+    else if (payload.type === 'updateLocalizes') {
       setState(prevstate=>{
         let lang2string = {};
         for(let lang in payload.data) {
           lang2string[lang] = payload.data[lang].lang2string;
         }
-        return({ localize: payload.data, lang2string: lang2string});
+        return({ localizes: payload.data, lang2string: lang2string});
       })
     }
     else if (payload.type === 'updateLang') {

@@ -3,7 +3,7 @@
 // "service.js"
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
 import Constants from './constants.json';
-import Localize from './data/localizes.json';
+import Localizes from './data/localizes.json';
 const audio_source = Constants.settings.audio_source;
 
 const setCookie = (cname, cvalue, exdays)=> {
@@ -43,8 +43,8 @@ function Service(NoService, Dispatcher) {
   let gotoandplay_audio_playing = false;
 
   this.Actions = {
-    importLocalize: (data)=> {
-      Dispatcher.dispatch({type: 'updateLocalize', data: data});
+    importLocalizes: (data)=> {
+      Dispatcher.dispatch({type: 'updateLocalizes', data: data});
     },
     updateNews: (data)=> {
       Dispatcher.dispatch({type: 'updateNews', data: data});
@@ -67,13 +67,13 @@ function Service(NoService, Dispatcher) {
     switchLang: ()=> {
       lang = (lang === "zh")? "en": "zh";
       setCookie('lang', lang, 360);
-      this.enqueueSnackbar(Localize[lang].switch_this_lang);
+      this.enqueueSnackbar(Localizes[lang].switch_this_lang);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
     updateLang: (l)=> {
       lang = l
       setCookie('lang', lang, 360);
-      this.enqueueSnackbar(Localize[lang].switch_this_lang);
+      this.enqueueSnackbar(Localizes[lang].switch_this_lang);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
     initLang: (l)=> {
@@ -85,12 +85,12 @@ function Service(NoService, Dispatcher) {
       if(gotoandplay_audio_playing) {
         gotoandplay_audio_playing = false;
         gotoandplay_audio.pause();
-        this.enqueueSnackbar(Localize[lang].pause_playing);
+        this.enqueueSnackbar(Localizes[lang].pause_playing);
       }
       else {
         gotoandplay_audio_playing = true;
         gotoandplay_audio.play();
-        this.enqueueSnackbar(Localize[lang].continue_playing);
+        this.enqueueSnackbar(Localizes[lang].continue_playing);
       }
       Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandplay_audio_playing});
     }
@@ -125,7 +125,7 @@ function Service(NoService, Dispatcher) {
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
     this.Actions.updateInfos(require('./data/more_info.json'));
-    this.Actions.importLocalize(Localize);
+    this.Actions.importLocalizes(Localizes);
 
     if(lang === 'zh') {
       this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
