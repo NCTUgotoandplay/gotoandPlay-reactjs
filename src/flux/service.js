@@ -43,6 +43,9 @@ function Service(NoService, Dispatcher) {
   let gotoandplay_audio_playing = false;
 
   this.Actions = {
+    logout: ()=> {
+      NoService.logout();
+    },
     importLocalizes: (data)=> {
       Dispatcher.dispatch({type: 'updateLocalizes', data: data});
     },
@@ -110,14 +113,14 @@ function Service(NoService, Dispatcher) {
   };
 
   this.start = (next)=> {
-    // NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
-    //   if(err) {
-    //     console.log(err);
-    //   }
-    //   else {
-    //     Services.NoTalk = NoTalk;
-    //   }
-    // });
+    NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
+      if(err) {
+        console.log(err);
+      }
+      else {
+        Services.NoTalk = NoTalk;
+      }
+    });
     this.setupDispatchers();
     this.Actions.initLang(lang);
     this.Actions.updatePrograms(require('./data/programs.json'));

@@ -40,8 +40,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.controller = new Flux(this.setState.bind(this));
-    this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.controller.enqueueSnackbar = this.props.enqueueSnackbar;
+    this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.actions = this.controller.Actions;
     this.state = {
       lang : Constants.settings.default_lang,
@@ -79,6 +79,7 @@ class App extends Component {
           localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
           lang={this.state.lang}
           lang2string = {this.state.lang2string}
+          username = {this.controller.NoService.returnUsername()}
           actions={this.actions}
           playing={this.state.playing}
           login_link={Constants.settings.noservice.host}

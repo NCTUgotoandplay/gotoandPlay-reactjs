@@ -7,6 +7,7 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import ComputerIcon from '@material-ui/icons/Computer';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 import Divider from '@material-ui/core/Divider';
 
@@ -16,6 +17,11 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
 
 import { withStyles } from '@material-ui/core/styles';
 
@@ -70,6 +76,15 @@ class AdminPage extends React.Component {
             {this.props.localize.settings_complie_site_from_git}
             </Button>
           </ExpansionPanelActions>
+        </CustomExpansionPanel>
+
+        <CustomExpansionPanel expanded={this.state.expanded === 'notification'} onChange={()=>{this.setState({expanded: this.state.expanded==='notification'?null:'notification'})}}>
+          <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
+            <Typography className="heading">{this.props.localize.push_notification}</Typography>
+            <Typography className="description">{this.props.localize.settings_push_notification_description}</Typography>
+          </ExpansionPanelSummary>
+          <ExpansionPanelDetails>
+          </ExpansionPanelDetails>
         </CustomExpansionPanel>
 
         <CustomExpansionPanel expanded={this.state.expanded === 'chatroom'} onChange={()=>{this.setState({expanded: this.state.expanded==='chatroom'?null:'chatroom'})}}>
@@ -128,7 +143,39 @@ class AdminPage extends React.Component {
             <Typography className="heading">{'NoService '+this.props.localize.settings}</Typography>
             <Typography className="description">{'noservice management'}</Typography>
           </ExpansionPanelSummary>
-          <ExpansionPanelDetails>
+          <ExpansionPanelDetails style={{display: 'inline-block'}}>
+
+          <List >
+            <a href={'/noservice/shell.html'}>
+              <ListItem>
+                <Avatar>
+                  <ComputerIcon />
+                </Avatar>
+                <ListItemText primary="NoShell" secondary="manipulate your noservice daemon by commands." />
+              </ListItem>
+            </a>
+          </List>
+          <List >
+            <a href={'/noservice/signup.html'}>
+              <ListItem>
+                <Avatar>
+                  <ComputerIcon />
+                </Avatar>
+                <ListItemText primary="Signup" secondary="signup a noservice acccount." />
+              </ListItem>
+            </a>
+          </List>
+          <List >
+            <a href={'/noservice/NoUserSettings.html'}>
+              <ListItem>
+                <Avatar>
+                  <ComputerIcon />
+                </Avatar>
+                <ListItemText primary="User settings" secondary="Modify your user settings." />
+              </ListItem>
+            </a>
+          </List>
+
           </ExpansionPanelDetails>
         </CustomExpansionPanel>
 

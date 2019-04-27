@@ -10,16 +10,17 @@ function Flux(setState) {
   let _noservice_client;
   let Services = {};
 
+  this.Dispatcher = Dispatcher.generateDispatcher(setState);
+
   this.importNoServiceClientModule = (NoServiceClient)=> {
-    _noservice_client = new NoServiceClient(Constants.settings.noservice.host, 'WebSocket');
+    _noservice_client = new NoServiceClient(Constants.settings.noservice.host);
+    this.NoService = _noservice_client;
+    this.Service = new Service(_noservice_client, this.Dispatcher);
+    this.Service.enqueueSnackbar = this.enqueueSnackbar;
+    this.Actions = this.Service.Actions;
   };
 
-  this.Dispatcher = Dispatcher.generateDispatcher(setState);
-  this.Service = new Service(_noservice_client, this.Dispatcher);
-  this.Actions = this.Service.Actions;
-
   this.start = (next)=> {
-    this.Service.enqueueSnackbar = this.enqueueSnackbar;
     this.Service.start(next);
   };
 };

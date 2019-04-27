@@ -32,7 +32,9 @@
     "chat_room": "chat room",
     "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github"
+    "settings_complie_site_from_git": "update and compile new site from github",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   },
   "zh": {
     "lang2string": "中文",
@@ -67,8 +69,9 @@
     "chat_room": "聊天室",
     "settings_chat_room_description": "像是修改聊天室ID",
     "settings_timetable_description": "修改你的節目表",
-    "settings_complie_site_from_git": "從github編譯並且更新網站"
-
+    "settings_complie_site_from_git": "從github編譯並且更新網站",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   },
   "jp": {
     "lang2string": "日本語",
@@ -103,8 +106,9 @@
     "chat_room": "chat room",
     "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github"
-
+    "settings_complie_site_from_git": "update and compile new site from github",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -139,8 +143,9 @@
     "chat_room": "chat room",
     "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github"
-
+    "settings_complie_site_from_git": "update and compile new site from github",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   },
   "ru": {
     "lang2string": "русский",
@@ -175,8 +180,9 @@
     "chat_room": "chat room",
     "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github"
-
+    "settings_complie_site_from_git": "update and compile new site from github",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   },
   "de": {
     "lang2string": "Deutsche",
@@ -211,7 +217,8 @@
     "chat_room": "chat room",
     "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github"
-
+    "settings_complie_site_from_git": "update and compile new site from github",
+    "push_notification": "push notification",
+    "settings_push_notification_description": "Push notification to gotoandplay all clients."
   }
 }

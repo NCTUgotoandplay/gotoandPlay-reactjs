@@ -45,14 +45,22 @@ class Header extends Component {
       <div className="header">
         <div className="tools">
 
-
-          <div className="log_select">
+          {!this.props.username?<div className="log_select">
             <a href={process.env.PUBLIC_URL+"/noservice/login.html?conn_method=WebSocketSecure&remote_ip=gotoandplay.nctu.edu.tw&port=43581&redirect=/"}>
               <Button  color="primary">
                 {this.props.log?this.props.localize.logout:this.props.localize.login}
               </Button>
             </a>
+          </div>:
+          <div className="log_select">
+            <Button color="primary" onClick={()=> {
+              this.props.actions.logout();
+            }}>
+              {'Logout '+this.props.username}
+            </Button>
           </div>
+        }
+
           {this.props.show_admin?
             <div className="log_select">
               <Link to="/admin">

@@ -1,4 +1,4 @@
-let _NSc = new NSc();
+let _NSc = new NSc('gotoandplay.nctu.edu.tw');
 function getQueryVariable(variable)
 {
        var query = window.location.search.substring(1);
@@ -46,7 +46,8 @@ $(function () {
             }
           }
 
-          implement_module.sendRouterData(connprofile, 'AU', 'rs', _data);
+          implement_module.sendRouterData(connprofile, 'AU', 'rs', Buf.encode(JSON.stringify(_data)));
+
           setTimeout(()=>{window.close();}, 500);
         });
       });
