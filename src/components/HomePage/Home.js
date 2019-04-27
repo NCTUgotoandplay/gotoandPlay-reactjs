@@ -93,6 +93,7 @@ class Home extends React.Component {
               <p>
                 <ul>
                   {this.props.more_info.map((text)=> <li>{text}</li>)}
+                  <li onClick={()=>{this.props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我哈哈哈"}</li>
                 </ul>
               </p>
             </div>

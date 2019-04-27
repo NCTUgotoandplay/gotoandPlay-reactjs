@@ -93,6 +93,7 @@ class App extends Component {
         <Route exact path="/" render={props=> {
           return(
             <HomePage
+            actions={this.actions}
             online_count={this.state.online_count}
             more_info={this.state.more_info}
             news={this.state.news}
