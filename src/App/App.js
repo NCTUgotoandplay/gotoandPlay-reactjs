@@ -106,6 +106,7 @@ class App extends Component {
         <Route path="/Admin" render={props=> {
           return(
             <AdminPage
+              talksy_link={Constants.settings.talksy_link}
               push_notification_cache = {this.state.push_notification_cache}
               actions={this.actions}
               app_state={this.state}

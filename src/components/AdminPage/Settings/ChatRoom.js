@@ -28,7 +28,15 @@ export default class Settings extends React.Component {
         <Typography className="description">{this.props.localize.settings_chat_room_description}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
+
       </ExpansionPanelDetails>
+      <ExpansionPanelActions>
+        <a href={this.props.talksy_link}>
+          <Button color="primary" size="small">
+          {'open Talksy'}
+          </Button>
+        </a>
+      </ExpansionPanelActions>
       </CustomExpansionPanel>
     )
   }

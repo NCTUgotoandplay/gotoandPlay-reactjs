@@ -6,6 +6,7 @@
     ""
   ],
   "settings": {
+    "talksy_link": "https://gotoandplay.nctu.edu.tw/talksy/",
     "default_lang": "ru",
     "audio_source": "http://140.113.52.126:8000/;",
     "noservice": {
