@@ -31,7 +31,7 @@ const getCookie = (cname)=> {
 function Service(NoService, Dispatcher) {
   let Services = {
     NoTalk: null,
-    gotoandplay: null
+    gotoandPlay: null
   };
 
   let lang = getCookie('lang');
@@ -39,8 +39,8 @@ function Service(NoService, Dispatcher) {
     lang = Constants.settings.default_lang;
     setCookie('lang', lang, 360);
   }
-  let gotoandplay_audio = new Audio(audio_source);
-  let gotoandplay_audio_playing = false;
+  let gotoandPlay_audio = new Audio(audio_source);
+  let gotoandPlay_audio_playing = false;
 
   this.Actions = {
     logout: ()=> {
@@ -85,30 +85,38 @@ function Service(NoService, Dispatcher) {
       Dispatcher.dispatch({type: 'updateLang', data: lang});
     },
     switchMainStream: ()=> {
-      if(gotoandplay_audio_playing) {
-        gotoandplay_audio_playing = false;
-        gotoandplay_audio.pause();
+      if(gotoandPlay_audio_playing) {
+        gotoandPlay_audio_playing = false;
+        gotoandPlay_audio.pause();
         this.enqueueSnackbar(Localizes[lang].pause_playing);
       }
       else {
-        gotoandplay_audio_playing = true;
-        gotoandplay_audio.play();
+        gotoandPlay_audio_playing = true;
+        gotoandPlay_audio.play();
         this.enqueueSnackbar(Localizes[lang].continue_playing);
       }
-      Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandplay_audio_playing});
+      Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandPlay_audio_playing});
+    },
+    pushNotification: (data)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('pushNotification', data, (err, data)=> {
+          this.enqueueSnackbar('Notification pushed.', {variant: 'succeess'});
+        });
     }
   };
 
   this.setupDispatchers = ()=> {
-    if(Service.NoTalk) {
+    if(Services.NoTalk) {
       Services.NoTalk.onEvent('whatever', ()=> {
         Dispatcher.dispatch({data_type: 'albums', data: {
 
         }});
       });
     }
-    if(Service.gotoandplay) {
-      Services.gotoandplay.onEvent();
+    if(Services.gotoandPlay) {
+      Services.gotoandPlay.onEvent('Notification', (err, data)=> {
+        this.enqueueSnackbar(data.content, {variant: data.variant});
+      });
     }
   };
 
@@ -119,9 +127,18 @@ function Service(NoService, Dispatcher) {
       }
       else {
         Services.NoTalk = NoTalk;
+        NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
+          if(err) {
+            console.log(err);
+          }
+          else {
+            Services.gotoandPlay = gotoandPlay;
+            this.setupDispatchers();
+          }
+        });
       }
     });
-    this.setupDispatchers();
+
     this.Actions.initLang(lang);
     this.Actions.updatePrograms(require('./data/programs.json'));
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));

@@ -34,7 +34,11 @@
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
     "settings_complie_site_from_git": "update and compile new site from github",
     "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
+    "error": "error",
+    "warning": "warning",
+    "info": "info",
+    "success": "success"
   },
   "zh": {
     "lang2string": "中文",
@@ -70,8 +74,12 @@
     "settings_chat_room_description": "像是修改聊天室ID",
     "settings_timetable_description": "修改你的節目表",
     "settings_complie_site_from_git": "從github編譯並且更新網站",
-    "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "push_notification": "推送消息",
+    "settings_push_notification_description": "推送消息給所有正在使用goto&Play的使用者",
+    "error": "錯誤",
+    "warning": "警告",
+    "info": "消息",
+    "success": "成功"
   },
   "jp": {
     "lang2string": "日本語",
@@ -108,7 +116,11 @@
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
     "settings_complie_site_from_git": "update and compile new site from github",
     "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
+    "error": "error",
+    "warning": "warning",
+    "info": "info",
+    "success": "success"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -145,7 +157,11 @@
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
     "settings_complie_site_from_git": "update and compile new site from github",
     "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
+    "error": "error",
+    "warning": "warning",
+    "info": "info",
+    "success": "success"
   },
   "ru": {
     "lang2string": "русский",
@@ -182,7 +198,11 @@
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
     "settings_complie_site_from_git": "update and compile new site from github",
     "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
+    "error": "error",
+    "warning": "warning",
+    "info": "info",
+    "success": "success"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -219,6 +239,10 @@
     "settings_timetable_description": "Change your time table to fit your programs's time segment.",
     "settings_complie_site_from_git": "update and compile new site from github",
     "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients."
+    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
+    "error": "error",
+    "warning": "warning",
+    "info": "info",
+    "success": "success"
   }
 }

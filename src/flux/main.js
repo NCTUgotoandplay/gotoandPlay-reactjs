@@ -13,7 +13,7 @@ function Flux(setState) {
   this.Dispatcher = Dispatcher.generateDispatcher(setState);
 
   this.importNoServiceClientModule = (NoServiceClient)=> {
-    _noservice_client = new NoServiceClient(Constants.settings.noservice.host);
+    _noservice_client = new NoServiceClient(Constants.settings.noservice.host, Constants.settings.noservice.conn);
     this.NoService = _noservice_client;
     this.Service = new Service(_noservice_client, this.Dispatcher);
     this.Service.enqueueSnackbar = this.enqueueSnackbar;

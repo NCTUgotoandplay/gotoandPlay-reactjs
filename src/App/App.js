@@ -100,6 +100,7 @@ class App extends Component {
         <Route path="/Admin" render={props=> {
           return(
             <AdminPage
+              actions={this.actions}
               app_state={this.state}
               localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
             />
