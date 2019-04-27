@@ -44,7 +44,7 @@ const CustomTableCell = withStyles(theme => ({
     fontSize: 14,
     whiteSpace: 'normal',
     wordWrap: "break-word",
-    padding: '12px 12px 12px 12px'
+    padding: '12px 18px 12px 18px'
   },
 }))(TableCell);
 
@@ -58,6 +58,27 @@ export default class Settings extends React.Component {
     }
   }
 
+  renderCache() {
+    let rows = [];
+    for(let i in this.props.push_notification_cache) {
+      let cache = this.props.push_notification_cache[i];
+      rows.push(
+        <TableRow>
+          <CustomTableCell>{cache.content}</CustomTableCell>
+          <CustomTableCell>{this.props.localize[cache.variant]?this.props.localize[cache.variant]:cache.variant}</CustomTableCell>
+          <CustomTableCell><Button color="primary" size="small" onClick={(event)=> {
+            this.props.actions.pushNotification({
+              content: cache.content,
+              variant: cache.variant
+            });
+          }}>{this.props.localize.push}</Button></CustomTableCell>
+          <CustomTableCell><Button color="primary" size="small">{this.props.localize.delete}</Button></CustomTableCell>
+        </TableRow>
+      );
+    }
+    return rows;
+  }
+
   render() {
     return(
       <CustomExpansionPanel expanded={this.props.expanded} onChange={this.props.onChange}>
@@ -66,35 +87,29 @@ export default class Settings extends React.Component {
           <Typography className="description">{this.props.localize.settings_push_notification_description}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{display: 'inline-block', width: '100%'}}>
-        <Paper  style={{width: '100%'}}>
+        <Paper style={{width: '100%'}}>
           <Table fixedHeader={false}  style={{width: '100%'}}>
             <TableHead>
               <TableRow>
-                <CustomTableCell>{'content'}</CustomTableCell>
-                <CustomTableCell>{'variant'}</CustomTableCell>
-                <CustomTableCell>{'push'}</CustomTableCell>
-                <CustomTableCell>{'delete'}</CustomTableCell>
-
+                <CustomTableCell>{this.props.localize.content}</CustomTableCell>
+                <CustomTableCell>{this.props.localize.variant}</CustomTableCell>
+                <CustomTableCell>{''}</CustomTableCell>
+                <CustomTableCell>{''}</CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              <TableRow>
-                <CustomTableCell>{'this is a long content to be pushed'}</CustomTableCell>
-                <CustomTableCell>{'variant'}</CustomTableCell>
-                <CustomTableCell><Button color="primary" size="small">{'push'}</Button></CustomTableCell>
-                <CustomTableCell><Button color="primary" size="small">{'delete'}</Button></CustomTableCell>
-              </TableRow>
+              {this.renderCache()}
             </TableBody>
           </Table>
         </Paper>
         </ExpansionPanelDetails>
         <ExpansionPanelActions>
           <Button color="primary" size="small">
-          {'add row'}
+          {this.props.localize.add_item}
           </Button>
 
           <Dialog open={this.state.show_push_now} onClose={()=>{this.setState({show_push_now: false})}} aria-labelledby="form-dialog-title">
-            <DialogTitle id="form-dialog-title">{'Push a notification now.'}</DialogTitle>
+            <DialogTitle id="form-dialog-title">{this.props.localize.push_now}</DialogTitle>
             <DialogContent>
               <DialogContentText>
                 {this.props.localize.settings_push_notification_description}
@@ -103,7 +118,7 @@ export default class Settings extends React.Component {
                   autoFocus
                   margin="dense"
                   id="content"
-                  label="Content"
+                  label={this.props.localize.content}
                   type="text"
                   fullWidth
                   onChange={evt => {
@@ -119,9 +134,9 @@ export default class Settings extends React.Component {
                     }
                   }}
                 />
-              <FormControl>
-                <InputLabel htmlFor="variant">Age</InputLabel>
-                <Select id="variant" value={this.state.push_now_variant} onChange={evt => {
+              <FormControl style={{width: '100%'}}>
+                <InputLabel htmlFor="variant">{this.props.localize.variant}</InputLabel>
+                <Select style={{width: '100%'}} id="variant" value={this.state.push_now_variant} onChange={evt => {
                   this.setState({push_now_variant: evt.target.value});
                 }}>
                   <MenuItem value={'error'}>{this.props.localize.error}</MenuItem>
@@ -133,7 +148,7 @@ export default class Settings extends React.Component {
             </DialogContent>
             <DialogActions>
               <Button onClick={()=>{this.setState({show_push_now: false})}} color="primary">
-                Cancel
+                {this.props.localize.cancel}
               </Button>
               <Button onClick={()=>{
                 this.props.actions.pushNotification({
@@ -142,12 +157,12 @@ export default class Settings extends React.Component {
                 });
                 this.setState({show_push_now: false})
               }} color="primary">
-                push
+                {this.props.localize.push}
               </Button>
             </DialogActions>
           </Dialog>
           <Button color="primary" size="small" onClick={()=>{this.setState({show_push_now: true})}}>
-          {'push now'}
+          {this.props.localize.push_now}
           </Button>
         </ExpansionPanelActions>
       </CustomExpansionPanel>

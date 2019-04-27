@@ -66,6 +66,11 @@ function generateDispatcher(setState) {
         return({ more_info: payload.data });
       })
     }
+    else if (payload.type === 'updateOnlineCount') {
+      setState(prevstate=>{
+        return({ online_count: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

@@ -102,6 +102,12 @@ function Service(NoService, Dispatcher) {
         Services.gotoandPlay.call('pushNotification', data, (err, data)=> {
           this.enqueueSnackbar('Notification pushed.', {variant: 'succeess'});
         });
+    },
+    updateOnlineCount: ()=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('getOnlineCount', null, (err, data)=> {
+          Dispatcher.dispatch({type: 'updateOnlineCount', data: data});
+        });
     }
   };
 
@@ -117,34 +123,51 @@ function Service(NoService, Dispatcher) {
       Services.gotoandPlay.onEvent('Notification', (err, data)=> {
         this.enqueueSnackbar(data.content, {variant: data.variant});
       });
+      Services.gotoandPlay.onEvent('OnlineCountChanged', (err, data)=> {
+        Dispatcher.dispatch({type: 'updateOnlineCount', data: data});
+      });
     }
   };
 
   this.start = (next)=> {
-    NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
-      if(err) {
-        console.log(err);
-      }
-      else {
-        Services.NoTalk = NoTalk;
-        NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
-          if(err) {
-            console.log(err);
-          }
-          else {
-            Services.gotoandPlay = gotoandPlay;
-            this.setupDispatchers();
-          }
-        });
-      }
-    });
+    let setupOnline = ()=> {
+      NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
+        if(err) {
+          console.log(err);
+          setTimeout(setupOnline, 5*1000);
+        }
+        else {
+          Services.NoTalk = NoTalk;
+          NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
+            if(err) {
+              console.log(err);
+              setTimeout(setupOnline, 5*1000);
+            }
+            else {
+              Services.gotoandPlay = gotoandPlay;
+              this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
+              Services.gotoandPlay.on('close', ()=> {
+                this.enqueueSnackbar('Connection closed!', {variant: 'error'});
+                Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
+                Services.NoTalk = Services.gotoandPlay = null;
+                setTimeout(setupOnline, 5*1000);
+              });
+              this.setupDispatchers();
+              this.Actions.updateOnlineCount();
+            }
+          });
+        }
+      });
+    };
+    setupOnline();
 
-    this.Actions.initLang(lang);
     this.Actions.updatePrograms(require('./data/programs.json'));
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
     this.Actions.updateInfos(require('./data/more_info.json'));
+
+    this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);
 
     if(lang === 'zh') {
@@ -154,7 +177,6 @@ function Service(NoService, Dispatcher) {
       this.enqueueSnackbar('We are still constructing the site!', {variant: 'error'});
     }
 
-    this.enqueueSnackbar('Initialized.', {variant: 'succeess'});
     next();
   };
 }

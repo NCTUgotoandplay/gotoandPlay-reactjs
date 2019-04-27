@@ -47,7 +47,7 @@ class App extends Component {
       lang : Constants.settings.default_lang,
       lang2string : {},
       isadmin: true,
-      online_count: 999,
+      online_count: 0,
       playing: false,
       log: false,
       programs: null,
@@ -56,7 +56,12 @@ class App extends Component {
       news: [],
       more_info: [],
       album_cards: [],
-      album_decks: []
+      album_decks: [],
+      push_notification_cache: [
+        {id:'123', content: '節目開始', variant:'info'},
+        {id:'13', content: '準備抽獎', variant:'warning'},
+        {id:'s13', content: '節目結束', variant:'error'}
+      ]
     };
   }
 
@@ -100,6 +105,7 @@ class App extends Component {
         <Route path="/Admin" render={props=> {
           return(
             <AdminPage
+              push_notification_cache = {this.state.push_notification_cache}
               actions={this.actions}
               app_state={this.state}
               localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}

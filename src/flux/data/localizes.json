@@ -38,7 +38,14 @@
     "error": "error",
     "warning": "warning",
     "info": "info",
-    "success": "success"
+    "success": "success",
+    "push": "push",
+    "variant": "variant",
+    "content": "content",
+    "add_item": "add item",
+    "push_now": "push now",
+    "delete": "delete",
+    "cancel": "cancel"
   },
   "zh": {
     "lang2string": "中文",
@@ -79,7 +86,14 @@
     "error": "錯誤",
     "warning": "警告",
     "info": "消息",
-    "success": "成功"
+    "success": "成功",
+    "push": "推送",
+    "variant": "變種",
+    "content": "內容",
+    "add_item": "增加項目",
+    "push_now": "馬上推送",
+    "delete": "刪除",
+    "cancel": "取消"
   },
   "jp": {
     "lang2string": "日本語",
@@ -106,21 +120,28 @@
     "news": "ニュース",
     "more_info": "その他",
     "n_people_listening": "人はラジオを聞きます",
-    "admin_page": "Admin page",
-    "settings": "settings",
-    "timetable": "timetable",
-    "site_status": "site status",
-    "site_status_description": "monitor your site's current status",
-    "chat_room": "chat room",
-    "settings_chat_room_description": "Manage your chat room setting. Such as adjusting channel id.",
-    "settings_timetable_description": "Change your time table to fit your programs's time segment.",
-    "settings_complie_site_from_git": "update and compile new site from github",
-    "push_notification": "push notification",
-    "settings_push_notification_description": "Push notification to gotoandplay all clients.",
-    "error": "error",
-    "warning": "warning",
-    "info": "info",
-    "success": "success"
+    "admin_page": "管理者ページ",
+    "settings": "設定",
+    "timetable": "タイムテーブル",
+    "site_status": "サイトの状態",
+    "site_status_description": "あなたのサイトの現在の状態を監視する",
+    "chat_room": "チャットルーム",
+    "settings_chat_room_description": "チャットルームの設定を管理します。チャンネルIDの調整など。",
+    "settings_timetable_description": "あなたのプログラムの時間セグメントに合うようにあなたのタイムテーブルを変更してください。",
+    "settings_complie_site_from_git": "githubから新しいサイトを更新しコンパイルする",
+    "push_notification": "プッシュ通知",
+    "settings_push_notification_description": "すべてのgoto&Playクライアントに通知を推送",
+    "error": "エラー",
+    "warning": "警告",
+    "info": "情報",
+    "success": "成功",
+    "push": "プッシュ",
+    "variant": "バリアント",
+    "content": "コンテンツ",
+    "add_item": "アイテムの追加",
+    "push_now": "今すぐプッシュ",
+    "delete": "削除",
+    "cancel": "キャンセル"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -161,7 +182,14 @@
     "error": "error",
     "warning": "warning",
     "info": "info",
-    "success": "success"
+    "success": "success",
+    "push": "push",
+    "variant": "variant",
+    "content": "content",
+    "add_item": "add item",
+    "push_now": "push now",
+    "delete": "delete",
+    "cancel": "cancel"
   },
   "ru": {
     "lang2string": "русский",
@@ -202,7 +230,14 @@
     "error": "error",
     "warning": "warning",
     "info": "info",
-    "success": "success"
+    "success": "success",
+    "push": "push",
+    "variant": "variant",
+    "content": "content",
+    "add_item": "add item",
+    "push_now": "push now",
+    "delete": "delete",
+    "cancel": "cancel"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -243,6 +278,13 @@
     "error": "error",
     "warning": "warning",
     "info": "info",
-    "success": "success"
+    "success": "success",
+    "push": "push",
+    "variant": "variant",
+    "content": "content",
+    "add_item": "add item",
+    "push_now": "push now",
+    "delete": "delete",
+    "cancel": "cancel"
   }
 }
