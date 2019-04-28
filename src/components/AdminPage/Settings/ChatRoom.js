@@ -21,7 +21,8 @@ export default class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      saved: true
+      saved: true,
+      new_chat_room_id: null
     }
   }
 
@@ -39,7 +40,10 @@ export default class Settings extends React.Component {
           label={this.props.localize.chat_room+' ID'}
           type="text"
           fullWidth
-          onChange={evt => {}}
+          defaultValue={this.props.app_state.chat_room_id}
+          onChange={evt => {
+            this.setState({new_chat_room_id: evt.target.value});
+          }}
         />
       </ExpansionPanelDetails>
       <ExpansionPanelActions>
@@ -48,8 +52,9 @@ export default class Settings extends React.Component {
           {this.props.localize.open+' Talksy'}
           </Button>
         </a>
-        <Button disabled={this.state.saved} color="primary" size="small" onClick={()=> {
-
+        <Button disabled={!this.state.new_chat_room_id} color="primary" size="small" onClick={()=> {
+          this.props.actions.updateChatroomId(this.state.new_chat_room_id);
+          this.setState({new_chat_room_id: null});
         }}>
           {this.props.localize.save}
         </Button>

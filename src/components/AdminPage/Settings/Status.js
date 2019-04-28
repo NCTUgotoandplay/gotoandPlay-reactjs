@@ -48,7 +48,7 @@ export default class Settings extends React.Component {
           <Typography variant="p" component="p">{this.props.app_state.online_count}</Typography>
           <Divider/>
           <Typography variant="h6" component="h2">{this.props.localize.chat_room+' ID'}</Typography>
-          <Typography variant="p" component="p">12sdfs121</Typography>
+          <Typography variant="p" component="p">{this.props.app_state.chat_room_id}</Typography>
           <Divider/>
           <Typography variant="h6" component="h2">{this.props.localize.version}</Typography>
           <Typography variant="p" component="p">{this.state.update_status?Constants.version+' '+this.renderUpdateStatus():Constants.version}</Typography>

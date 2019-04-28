@@ -6,6 +6,7 @@
 // React
 import React, { Component } from "react"
 import { BrowserRouter, Route } from "react-router-dom"
+import {Launcher} from 'react-chat-window'
 
 import Constants from '../flux/constants.json';
 
@@ -46,6 +47,12 @@ class App extends Component {
     this.state = {
       lang : Constants.settings.default_lang,
       lang2string : {},
+      open_chat_room: 0,
+      messages: [],
+      messages_latest_readline: 0,
+      messages_latest_line: 0,
+      chat_room_id: '123',
+      chat_room_meta: {},
       isadmin: true,
       online_count: 0,
       playing: false,
@@ -138,6 +145,20 @@ class App extends Component {
           }} />
         <Footer localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}} version={Constants.version}/>
         <TalkRoom />
+        <div style={{zIndex: 999}}>
+          <Launcher
+            agentProfile={{
+              teamName: (this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}).chat_room+': '+this.state.chat_room_meta.n,
+              imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+            }}
+            isOpen={this.state.open_chat_room}
+            handleClick={this.actions.readLine}
+            onMessageWasSent={this.actions.sendMessage}
+            messageList={this.state.messages}
+            newMessagesCount={this.state.messages_latest_line - this.state.messages_latest_readline}
+            showEmoji
+          />
+        </div>
       </BrowserRouter>
       </MuiThemeProvider>
     );

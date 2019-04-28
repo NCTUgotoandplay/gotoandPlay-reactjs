@@ -28,6 +28,19 @@ const getCookie = (cname)=> {
     return "";
 };
 
+const NoTalkToChatWindow = (msg)=> {
+  return { type: 'text', data:{text: msg[2]}};
+};
+
+const ChatWindowToNoTalk = (msg)=> {
+  if(msg.data.text) {
+    return [0, msg.data.text, null];
+  }
+  else if(msg.data.code) {
+    return [0, msg.data.code, null];
+  }
+};
+
 function Service(NoService, Dispatcher) {
   let Services = {
     NoTalk: null,
@@ -41,8 +54,21 @@ function Service(NoService, Dispatcher) {
   }
   let gotoandPlay_audio = new Audio(audio_source);
   let gotoandPlay_audio_playing = false;
+  let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
 
   this.Actions = {
+    sendMessage: (msg, callback)=> {
+      if(Services.NoTalk&&notalk_channel_id)
+        Services.NoTalk.call('sendMsg', {i: notalk_channel_id, c: ChatWindowToNoTalk(msg)}, (err, json)=> {
+          if(callback)
+            callback(err);
+        });
+    },
+    readLine: ()=> {
+      Dispatcher.dispatch({type: 'readLatestLine'});
+      Dispatcher.dispatch({type: 'toggleChatRoom'});
+    }
+    ,
     logout: ()=> {
       NoService.logout();
     },
@@ -73,6 +99,16 @@ function Service(NoService, Dispatcher) {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('updatePrograms', data, (err, data)=> {
           // Dispatcher.dispatch({type: 'updatePrograms', data: data});
+          callback(false);
+        });
+      // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
+    },
+    updateChatroomId: (data, callback)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updateChatroomId', data, (err)=> {
+          // Dispatcher.dispatch({type: 'updatePrograms', data: data});
+          Dispatcher.dispatch({type: 'updateChatroomId', data: data});
+
           callback(false);
         });
       // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
@@ -132,10 +168,9 @@ function Service(NoService, Dispatcher) {
 
   this.setupDispatchers = ()=> {
     if(Services.NoTalk) {
-      Services.NoTalk.onEvent('whatever', ()=> {
-        Dispatcher.dispatch({data_type: 'albums', data: {
-
-        }});
+      Services.NoTalk.onEvent('Message', (err, json)=> {
+        Dispatcher.dispatch({type: 'appendMessage', data: NoTalkToChatWindow(json.r)});
+        Dispatcher.dispatch({type: 'addLatestLine'});
       });
     }
     if(Services.gotoandPlay) {
@@ -178,6 +213,34 @@ function Service(NoService, Dispatcher) {
               this.setupDispatchers();
               this.Actions.loadOnlineCount();
               this.Actions.loadPrograms();
+
+              // chat
+              Services.gotoandPlay.call('getChatroomId', null, (err, data)=> {
+                Dispatcher.dispatch({type: 'updateChatroomId', data: data});
+                notalk_channel_id = data;
+                Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
+                  Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
+                    if(err) {
+                      console.log(err);
+                    }
+                    console.log(meta);
+                    Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
+                    Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 32}, (err, json)=> {
+                      if(err) {
+                        console.log(err);
+                      }
+                      let new_messeges = [];
+                      for(let i in json.r) {
+                        new_messeges.push(NoTalkToChatWindow(json.r[i]));
+                      };
+                      Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
+                      Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
+                      Dispatcher.dispatch({type: 'readLatestLine'});
+
+                    });
+                  });
+                });
+              });
             }
           });
         }

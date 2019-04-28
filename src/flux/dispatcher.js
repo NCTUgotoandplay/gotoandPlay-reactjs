@@ -76,6 +76,59 @@ function generateDispatcher(setState) {
         return({ programs: payload.data });
       })
     }
+    else if (payload.type === 'updateMessages') {
+      setState(prevstate=>{
+        return({ messages: payload.data });
+      })
+    }
+    else if (payload.type === 'appendMessage') {
+      setState(prevstate=>{
+        prevstate.messages.push(payload.data);
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'updateLatestReadline') {
+      setState(prevstate=>{
+        prevstate.messages_latest_readline = payload.data;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'updateLatestLine') {
+      setState(prevstate=>{
+        prevstate.messages_latest_line = payload.data;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'readLatestLine') {
+      setState(prevstate=>{
+        prevstate.messages_latest_line = prevstate.messages_latest_readline;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'addLatestLine') {
+      setState(prevstate=>{
+        prevstate.messages_latest_line = prevstate.messages_latest_line+1;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'toggleChatRoom') {
+      setState(prevstate=>{
+        prevstate.open_chat_room = (prevstate.open_chat_room+1)%2;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'updateChatroomId') {
+      setState(prevstate=>{
+        prevstate.chat_room_id = payload.data;
+        return prevstate;
+      })
+    }
+    else if (payload.type === 'updateChatroomMeta') {
+      setState(prevstate=>{
+        prevstate.chat_room_meta = payload.data;
+        return prevstate;
+      })
+    }
   });
 
   return _dispatcher;
