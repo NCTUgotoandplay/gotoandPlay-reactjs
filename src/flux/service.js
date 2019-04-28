@@ -171,6 +171,7 @@ function Service(NoService, Dispatcher) {
       Services.NoTalk.onEvent('Message', (err, json)=> {
         Dispatcher.dispatch({type: 'appendMessage', data: NoTalkToChatWindow(json.r)});
         Dispatcher.dispatch({type: 'addLatestLine'});
+        this.enqueueSnackbar(Localizes[lang].chat_room+': '+json.r[2], {variant: 'info'});
       });
     }
     if(Services.gotoandPlay) {
