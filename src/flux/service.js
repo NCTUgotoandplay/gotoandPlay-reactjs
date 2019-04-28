@@ -36,8 +36,8 @@ const ChatWindowToNoTalk = (msg)=> {
   if(msg.data.text) {
     return [0, msg.data.text, null];
   }
-  else if(msg.data.code) {
-    return [0, msg.data.code, null];
+  else if(msg.data.emoji) {
+    return [0, msg.data.emoji, null];
   }
 };
 
