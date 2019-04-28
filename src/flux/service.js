@@ -197,14 +197,14 @@ function Service(NoService, Dispatcher) {
         NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
           if(err) {
             console.log(err);
-            setTimeout(setupOnline, 5*1000);
+            setTimeout(setupOnline, 15*1000);
           }
           else {
             Services.NoTalk = NoTalk;
             NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
               if(err) {
                 console.log(err);
-                setTimeout(setupOnline, 5*1000);
+                setTimeout(setupOnline, 15*1000);
               }
               else {
                 Services.gotoandPlay = gotoandPlay;
@@ -213,7 +213,7 @@ function Service(NoService, Dispatcher) {
                   this.enqueueSnackbar('Connection closed!', {variant: 'error'});
                   Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
                   Services.NoTalk = Services.gotoandPlay = null;
-                  setTimeout(setupOnline, 5*1000);
+                  setTimeout(setupOnline, 15*1000);
                 });
 
                 this.setupDispatchers();
@@ -253,7 +253,7 @@ function Service(NoService, Dispatcher) {
         });
       }
       catch (e) {
-        setTimeout(setupOnline, 5*1000);
+        setTimeout(setupOnline, 15*1000);
       }
     };
     setupOnline();
