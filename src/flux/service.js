@@ -61,6 +61,14 @@ function Service(NoService, Dispatcher) {
     updateAlbumDecks: (data)=> {
       Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
     },
+    updateBackendReact: (callback)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updateReact', null, (err, data)=> {
+          // Dispatcher.dispatch({type: 'updatePrograms', data: data});
+          callback(data);
+        });
+      // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
+    },
     updatePrograms: (data, callback)=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('updatePrograms', data, (err, data)=> {

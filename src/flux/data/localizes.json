@@ -64,7 +64,11 @@
     "new": "new",
     "old": "old",
     "open": "open",
-    "description": "description"
+    "description": "description",
+    "online_count": "online count",
+    "version": "version",
+    "compile": "compile",
+    "compiling": "compiling"
   },
   "zh": {
     "lang2string": "中文",
@@ -130,7 +134,12 @@
     "segment": "時段",
     "new": "新的",
     "old": "舊的",
-    "description": "關於"
+    "open": "打開",
+    "description": "關於",
+    "online_count": "線上人數",
+    "version": "版本",
+    "compile": "編譯",
+    "compiling": "編譯中"
   },
   "jp": {
     "lang2string": "日本語",
@@ -188,7 +197,12 @@
     "segment": "segment",
     "new": "new",
     "old": "old",
-    "description": "description"
+    "open": "open",
+    "description": "description",
+    "online_count": "online count",
+    "version": "version",
+    "compile": "compile",
+    "compiling": "compiling"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -246,7 +260,12 @@
     "segment": "segment",
     "new": "new",
     "old": "old",
-    "description": "description"
+    "open": "open",
+    "description": "description",
+    "online_count": "online count",
+    "version": "version",
+    "compile": "compile",
+    "compiling": "compiling"
   },
   "ru": {
     "lang2string": "русский",
@@ -304,7 +323,12 @@
     "segment": "segment",
     "new": "new",
     "old": "old",
-    "description": "description"
+    "open": "open",
+    "description": "description",
+    "online_count": "online count",
+    "version": "version",
+    "compile": "compile",
+    "compiling": "compiling"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -362,6 +386,11 @@
     "segment": "segment",
     "new": "new",
     "old": "old",
-    "description": "description"
+    "open": "open",
+    "description": "description",
+    "online_count": "online count",
+    "version": "version",
+    "compile": "compile",
+    "compiling": "compiling"
   }
 }

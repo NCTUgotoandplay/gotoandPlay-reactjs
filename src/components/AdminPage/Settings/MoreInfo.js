@@ -25,7 +25,7 @@ export default class Settings extends React.Component {
       <CustomExpansionPanel expanded={this.props.expanded} onChange={this.props.onChange}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="heading">{this.props.localize.more_info+' '+this.props.localize.settings}</Typography>
-        <Typography className="description">description</Typography>
+        <Typography className="description">{this.props.localize.description}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
       </ExpansionPanelDetails>

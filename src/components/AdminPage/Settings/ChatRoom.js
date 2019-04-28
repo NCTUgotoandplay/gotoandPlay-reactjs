@@ -45,7 +45,7 @@ export default class Settings extends React.Component {
       <ExpansionPanelActions>
         <a href={this.props.talksy_link} target="_blank">
           <Button color="primary" size="small">
-          {'open Talksy'}
+          {this.props.localize.open+' Talksy'}
           </Button>
         </a>
         <Button disabled={this.state.saved} color="primary" size="small" onClick={()=> {
