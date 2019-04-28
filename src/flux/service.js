@@ -52,9 +52,75 @@ function Service(NoService, Dispatcher) {
     lang = Constants.settings.default_lang;
     setCookie('lang', lang, 360);
   }
+
   let gotoandPlay_audio = new Audio(audio_source);
   let gotoandPlay_audio_playing = false;
   let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
+
+  let setupOnline = ()=> {
+    try {
+      NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
+        if(err) {
+          console.log(err);
+          setTimeout(setupOnline, 15*1000);
+        }
+        else {
+          Services.NoTalk = NoTalk;
+          NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
+            if(err) {
+              console.log(err);
+              setTimeout(setupOnline, 15*1000);
+            }
+            else {
+              Services.gotoandPlay = gotoandPlay;
+              this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
+              Services.gotoandPlay.on('close', ()=> {
+                this.enqueueSnackbar('Connection closed!', {variant: 'error'});
+                Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
+                Services.NoTalk = Services.gotoandPlay = null;
+                setTimeout(setupOnline, 15*1000);
+              });
+
+              this.setupDispatchers();
+              this.Actions.loadOnlineCount();
+              this.Actions.loadPrograms();
+
+              // chat
+              Services.gotoandPlay.call('getChatroomId', null, (err, data)=> {
+                Dispatcher.dispatch({type: 'updateChatroomId', data: data});
+                notalk_channel_id = data;
+                Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
+                  Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
+                    if(err) {
+                      console.log(err);
+                    }
+                    meta.Displayname = meta.n;
+                    Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
+                    Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 32}, (err, json)=> {
+                      if(err) {
+                        console.log(err);
+                      }
+                      let new_messeges = [];
+                      for(let i in json.r) {
+                        new_messeges.push(NoTalkToChatWindow(json.r[i]));
+                      };
+                      Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
+                      Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
+                      Dispatcher.dispatch({type: 'readLatestLine'});
+
+                    });
+                  });
+                });
+              });
+            }
+          });
+        }
+      });
+    }
+    catch (e) {
+      setTimeout(setupOnline, 15*1000);
+    }
+  };
 
   this.Actions = {
     sendMessage: (msg, callback)=> {
@@ -67,8 +133,20 @@ function Service(NoService, Dispatcher) {
     readLine: ()=> {
       Dispatcher.dispatch({type: 'readLatestLine'});
       Dispatcher.dispatch({type: 'toggleChatRoom'});
-    }
-    ,
+    },
+    relaunchNoService: ()=> {
+      NoService.createActivitySocket('NoShell', (err, NoShell)=>{
+        if(err) {
+          console.log(err);
+        }
+        else {
+          NoShell.call('sendC', {c: 'daemon relaunch'}, (err, json)=>{
+            this.enqueueSnackbar(Localizes[lang].relaunch+': '+json.r);
+            setTimeout(setupOnline, 5*1000);
+          });
+        }
+      });
+    },
     logout: ()=> {
       NoService.logout();
     },
@@ -192,70 +270,6 @@ function Service(NoService, Dispatcher) {
   };
 
   this.start = (next)=> {
-    let setupOnline = ()=> {
-      try {
-        NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
-          if(err) {
-            console.log(err);
-            setTimeout(setupOnline, 15*1000);
-          }
-          else {
-            Services.NoTalk = NoTalk;
-            NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
-              if(err) {
-                console.log(err);
-                setTimeout(setupOnline, 15*1000);
-              }
-              else {
-                Services.gotoandPlay = gotoandPlay;
-                this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
-                Services.gotoandPlay.on('close', ()=> {
-                  this.enqueueSnackbar('Connection closed!', {variant: 'error'});
-                  Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
-                  Services.NoTalk = Services.gotoandPlay = null;
-                  setTimeout(setupOnline, 15*1000);
-                });
-
-                this.setupDispatchers();
-                this.Actions.loadOnlineCount();
-                this.Actions.loadPrograms();
-
-                // chat
-                Services.gotoandPlay.call('getChatroomId', null, (err, data)=> {
-                  Dispatcher.dispatch({type: 'updateChatroomId', data: data});
-                  notalk_channel_id = data;
-                  Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
-                    Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
-                      if(err) {
-                        console.log(err);
-                      }
-                      meta.Displayname = meta.n;
-                      Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
-                      Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 32}, (err, json)=> {
-                        if(err) {
-                          console.log(err);
-                        }
-                        let new_messeges = [];
-                        for(let i in json.r) {
-                          new_messeges.push(NoTalkToChatWindow(json.r[i]));
-                        };
-                        Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
-                        Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
-                        Dispatcher.dispatch({type: 'readLatestLine'});
-
-                      });
-                    });
-                  });
-                });
-              }
-            });
-          }
-        });
-      }
-      catch (e) {
-        setTimeout(setupOnline, 15*1000);
-      }
-    };
     setupOnline();
 
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));

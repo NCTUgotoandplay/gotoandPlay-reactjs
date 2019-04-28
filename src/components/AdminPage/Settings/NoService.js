@@ -67,6 +67,13 @@ export default class Settings extends React.Component {
       </List>
 
       </ExpansionPanelDetails>
+      <ExpansionPanelActions>
+        <Button color="primary" size="small" onClick={() => {
+          this.props.actions.relaunchNoService();
+        }}>
+        {this.props.localize.relaunch+' NoService'}
+        </Button>
+      </ExpansionPanelActions>
       </CustomExpansionPanel>
     )
   }

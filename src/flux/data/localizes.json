@@ -67,7 +67,8 @@
     "online_count": "online count",
     "version": "version",
     "compile": "compile",
-    "compiling": "compiling"
+    "compiling": "compiling",
+    "relaunch": "relaunch"
   },
   "zh": {
     "lang2string": "中文",
@@ -137,7 +138,8 @@
     "online_count": "線上人數",
     "version": "版本",
     "compile": "編譯",
-    "compiling": "編譯中"
+    "compiling": "編譯中",
+    "relaunch": "重啟"
   },
   "jp": {
     "lang2string": "日本語",
@@ -207,7 +209,8 @@
     "online_count": "online count",
     "version": "version",
     "compile": "compile",
-    "compiling": "compiling"
+    "compiling": "compiling",
+    "relaunch": "relaunch"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -277,7 +280,8 @@
     "online_count": "online count",
     "version": "version",
     "compile": "compile",
-    "compiling": "compiling"
+    "compiling": "compiling",
+    "relaunch": "relaunch"
   },
   "ru": {
     "lang2string": "русский",
@@ -347,7 +351,8 @@
     "online_count": "online count",
     "version": "version",
     "compile": "compile",
-    "compiling": "compiling"
+    "compiling": "compiling",
+    "relaunch": "relaunch"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -417,6 +422,7 @@
     "online_count": "online count",
     "version": "version",
     "compile": "compile",
-    "compiling": "compiling"
+    "compiling": "compiling",
+    "relaunch": "relaunch"
   }
 }

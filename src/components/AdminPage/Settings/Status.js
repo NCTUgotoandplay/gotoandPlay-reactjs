@@ -54,6 +54,11 @@ export default class Settings extends React.Component {
           <Typography variant="p" component="p">{this.state.update_status?Constants.version+' '+this.renderUpdateStatus():Constants.version}</Typography>
         </ExpansionPanelDetails>
         <ExpansionPanelActions>
+          <Button color="primary" size="small" onClick={() => {
+            this.props.actions.relaunchNoService();
+          }}>
+          {this.props.localize.relaunch+' NoService'}
+          </Button>
           <Button disabled={this.state.update_status&&this.state.update_status!=='success'} color="primary" size="small" onClick={() => {
             this.setState({update_status: 'compiling'}, ()=> {
               this.props.actions.updateBackendReact((err)=> {
