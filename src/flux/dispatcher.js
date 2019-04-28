@@ -71,6 +71,11 @@ function generateDispatcher(setState) {
         return({ online_count: payload.data });
       })
     }
+    else if (payload.type === 'updatePrograms') {
+      setState(prevstate=>{
+        return({ programs: payload.data });
+      })
+    }
   });
 
   return _dispatcher;

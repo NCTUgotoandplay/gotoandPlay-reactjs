@@ -46,7 +46,21 @@
     "push_now": "push now",
     "delete": "delete",
     "cancel": "cancel",
-    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"],
+    "no_program": "no program",
+    "add_segment": "add segment",
+    "upward": "upward",
+    "downward": "downward",
+    "operation": "operation",
+    "segment": "segment",
+    "save": "save",
+    "export": "export",
+    "import": "import",
+    "new": "new",
+    "old": "old",
+    "ok": "ok",
+    "title": "title",
+    "link": "link"
   },
   "zh": {
     "lang2string": "中文",
@@ -95,7 +109,21 @@
     "push_now": "馬上推送",
     "delete": "刪除",
     "cancel": "取消",
-    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+    "days": ["星期一", "星期二", "星期三", "星期四", "星期五", "星期六", "星期日"],
+    "no_program": "沒有節目",
+    "add_segment": "增加時段",
+    "upward": "往上",
+    "downward": "往下",
+    "operation": "操作",
+    "segment": "時段",
+    "save": "儲存",
+    "export": "匯出",
+    "import": "匯入",
+    "new": "新的",
+    "old": "舊的",
+    "ok": "確定",
+    "title": "標題",
+    "link": "連結"
   },
   "jp": {
     "lang2string": "日本語",
@@ -144,7 +172,8 @@
     "push_now": "今すぐプッシュ",
     "delete": "削除",
     "cancel": "キャンセル",
-    "days": ["月", "火", "水", "木", "金", "土", "日"]
+    "days": ["月", "火", "水", "木", "金", "土", "日"],
+    "no_program": "no program"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -193,7 +222,8 @@
     "push_now": "push now",
     "delete": "delete",
     "cancel": "cancel",
-    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"],
+    "no_program": "no program"
   },
   "ru": {
     "lang2string": "русский",
@@ -242,7 +272,8 @@
     "push_now": "push now",
     "delete": "delete",
     "cancel": "cancel",
-    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"],
+    "no_program": "no program"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -291,6 +322,7 @@
     "push_now": "push now",
     "delete": "delete",
     "cancel": "cancel",
-    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"],
+    "no_program": "no program"
   }
 }

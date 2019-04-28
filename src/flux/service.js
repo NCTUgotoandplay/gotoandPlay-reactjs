@@ -61,8 +61,13 @@ function Service(NoService, Dispatcher) {
     updateAlbumDecks: (data)=> {
       Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
     },
-    updatePrograms: (data)=> {
-      Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
+    updatePrograms: (data, callback)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updatePrograms', data, (err, data)=> {
+          // Dispatcher.dispatch({type: 'updatePrograms', data: data});
+          callback(false);
+        });
+      // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
     },
     emitSignin: ()=> {
       Dispatcher.dispatch({});
@@ -103,10 +108,16 @@ function Service(NoService, Dispatcher) {
           this.enqueueSnackbar('Notification pushed.', {variant: 'succeess'});
         });
     },
-    updateOnlineCount: ()=> {
+    loadOnlineCount: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getOnlineCount', null, (err, data)=> {
           Dispatcher.dispatch({type: 'updateOnlineCount', data: data});
+        });
+    },
+    loadPrograms: ()=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('getPrograms', null, (err, data)=> {
+          Dispatcher.dispatch({type: 'updatePrograms', data: data});
         });
     }
   };
@@ -125,6 +136,9 @@ function Service(NoService, Dispatcher) {
       });
       Services.gotoandPlay.onEvent('OnlineCountChanged', (err, data)=> {
         Dispatcher.dispatch({type: 'updateOnlineCount', data: data});
+      });
+      Services.gotoandPlay.onEvent('ProgramsChanged', (err, data)=> {
+        Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
       });
     }
   };
@@ -152,8 +166,10 @@ function Service(NoService, Dispatcher) {
                 Services.NoTalk = Services.gotoandPlay = null;
                 setTimeout(setupOnline, 5*1000);
               });
+
               this.setupDispatchers();
-              this.Actions.updateOnlineCount();
+              this.Actions.loadOnlineCount();
+              this.Actions.loadPrograms();
             }
           });
         }
@@ -161,7 +177,6 @@ function Service(NoService, Dispatcher) {
     };
     setupOnline();
 
-    this.Actions.updatePrograms(require('./data/programs.json'));
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
