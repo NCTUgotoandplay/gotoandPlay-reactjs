@@ -173,6 +173,9 @@ function Service(NoService, Dispatcher) {
         Dispatcher.dispatch({type: 'addLatestLine'});
         this.enqueueSnackbar(Localizes[lang].chat_room+': '+json.r[2], {variant: 'info'});
       });
+      Services.NoTalk.onEvent('ChannelUpdated', (err, json)=> {
+        Dispatcher.dispatch({type: 'updateChatroomMeta', data: json.r});
+      });
     }
     if(Services.gotoandPlay) {
       Services.gotoandPlay.onEvent('Notification', (err, data)=> {
