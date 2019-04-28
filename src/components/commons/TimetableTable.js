@@ -19,6 +19,8 @@ import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import Tooltip from '@material-ui/core/Tooltip';
+
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
@@ -70,11 +72,15 @@ export class TimetableTable extends Component{
       if(show_days[i]) {
         if(segment[i]) {
           rows.push(
-            <CustomTableCell>
-              <a href={segment[i].url} target="_blank">
-                {segment[i].title}
-              </a>
-            </CustomTableCell>
+
+              <CustomTableCell>
+                <Tooltip title={segment[i].description?segment[i].description:segment[i].url}>
+                  <a href={segment[i].url} target="_blank">
+                    {segment[i].title}
+                  </a>
+                </Tooltip>
+              </CustomTableCell>
+
           );
         }
         else {
@@ -143,30 +149,41 @@ export class EditableTimetableTable extends Component{
     let index = this.props.timetable.show_segments.indexOf(segment_name);
     let rows = [
       <CustomTableCell>
-        <Button onClick={()=>{this.setState({edit_segment_name:{old: segment_name, new: segment_name}});}}>{segment_name}</Button>
+        <Tooltip title={this.props.localize.edit}>
+          <Button onClick={()=>{this.setState({edit_segment_name:{old: segment_name, new: segment_name}});}}>{segment_name}</Button>
+        </Tooltip>
       </CustomTableCell>,
       <CustomTableCell style={{display: 'inline-flex'}}>
-        <IconButton color="primary" size="small" disabled={index===0} onClick={()=> {
-          let newShowSegments = this.props.timetable.show_segments;
-          if(index>0) {
-            let hold = newShowSegments[index];
-            newShowSegments[index] = newShowSegments[index-1];
-            newShowSegments[index-1] = hold;
-            this.props.onShowSegmentsChange(newShowSegments);
-          }
-        }}><ArrowUpwardIcon/></IconButton>
-        <IconButton color="primary" size="small" disabled={index===this.props.timetable.show_segments.length-1}  onClick={()=> {
-          let newShowSegments = this.props.timetable.show_segments;
-          if(index<newShowSegments.length-1) {
-            let hold = newShowSegments[index];
-            newShowSegments[index] = newShowSegments[index+1];
-            newShowSegments[index+1] = hold;
-            this.props.onShowSegmentsChange(newShowSegments);
-          }
-        }}><ArrowDownwardIcon/></IconButton>
-        <IconButton color="primary" size="small" onClick={()=> {
-          this.props.onSegmentDeleted(segment_name);
-        }}><DeleteIcon/></IconButton>
+
+        <Tooltip title={this.props.localize.upward}>
+          <IconButton color="primary" size="small" disabled={index===0} onClick={()=> {
+            let newShowSegments = this.props.timetable.show_segments;
+            if(index>0) {
+              let hold = newShowSegments[index];
+              newShowSegments[index] = newShowSegments[index-1];
+              newShowSegments[index-1] = hold;
+              this.props.onShowSegmentsChange(newShowSegments);
+            }
+          }}><ArrowUpwardIcon/></IconButton>
+        </Tooltip>
+
+        <Tooltip title={this.props.localize.downward}>
+          <IconButton color="primary" size="small" disabled={index===this.props.timetable.show_segments.length-1}  onClick={()=> {
+            let newShowSegments = this.props.timetable.show_segments;
+            if(index<newShowSegments.length-1) {
+              let hold = newShowSegments[index];
+              newShowSegments[index] = newShowSegments[index+1];
+              newShowSegments[index+1] = hold;
+              this.props.onShowSegmentsChange(newShowSegments);
+            }
+          }}><ArrowDownwardIcon/></IconButton>
+        </Tooltip>
+
+        <Tooltip title={this.props.localize.delete}>
+          <IconButton color="primary" size="small" onClick={()=> {
+            this.props.onSegmentDeleted(segment_name);
+          }}><DeleteIcon/></IconButton>
+        </Tooltip>
       </CustomTableCell>
     ];
     let show_days = this.props.timetable.show_days;
@@ -175,22 +192,26 @@ export class EditableTimetableTable extends Component{
       if(segment[i]) {
         rows.push(
           <EditableTableCell>
-            <Button target="_blank" onClick={()=> {
-              this.setState({edit_segment_item: {segment: segment_name, day: i, title: segment[i].title, url: segment[i].url}});
-            }}>
-              {segment[i].title}
-            </Button>
+            <Tooltip title={this.props.localize.edit}>
+              <Button target="_blank" onClick={()=> {
+                this.setState({edit_segment_item: {segment: segment_name, day: i, title: segment[i].title, url: segment[i].url}});
+              }}>
+                {segment[i].title}
+              </Button>
+            </Tooltip>
           </EditableTableCell>
         );
       }
       else {
         rows.push(
           <EditableTableCell>
-            <Button target="_blank" onClick={()=> {
-              this.setState({edit_segment_item:{segment: segment_name, day: i, title: '', url: ''}});
-            }}>
-              {this.props.localize.no_program}
-            </Button>
+            <Tooltip title={this.props.localize.add_item}>
+              <Button target="_blank" onClick={()=> {
+                this.setState({edit_segment_item:{segment: segment_name, day: i, title: '', url: ''}});
+              }}>
+                {this.props.localize.no_program}
+              </Button>
+            </Tooltip>
           </EditableTableCell>
         );
       }
@@ -289,7 +310,6 @@ export class EditableTimetableTable extends Component{
               }}
             />
             <TextField
-              autoFocus
               margin="normal"
               id="link"
               label={this.props.localize.link}

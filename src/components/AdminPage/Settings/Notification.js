@@ -1,6 +1,8 @@
 import React from 'react';
 
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+
 
 import CustomExpansionPanel from '../CustomExpansionPanel';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
@@ -13,6 +15,8 @@ import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import SendIcon from '@material-ui/icons/Send';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -34,6 +38,8 @@ import FormControl from '@material-ui/core/FormControl';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
+
+import Tooltip from '@material-ui/core/Tooltip';
 
 const CustomTableCell = withStyles(theme => ({
   head: {
@@ -66,13 +72,23 @@ export default class Settings extends React.Component {
         <TableRow>
           <CustomTableCell>{cache.content}</CustomTableCell>
           <CustomTableCell>{this.props.localize[cache.variant]?this.props.localize[cache.variant]:cache.variant}</CustomTableCell>
-          <CustomTableCell><Button color="primary" size="small" onClick={(event)=> {
-            this.props.actions.pushNotification({
-              content: cache.content,
-              variant: cache.variant
-            });
-          }}>{this.props.localize.push}</Button></CustomTableCell>
-          <CustomTableCell><Button color="primary" size="small">{this.props.localize.delete}</Button></CustomTableCell>
+          <CustomTableCell>
+          <Tooltip title={this.props.localize.push}>
+            <IconButton color="primary" size="small" onClick={(event)=> {
+              this.props.actions.pushNotification({
+                content: cache.content,
+                variant: cache.variant
+              });
+            }}>
+              <SendIcon/>
+            </IconButton>
+          </Tooltip>
+          <Tooltip title={this.props.localize.delete}>
+            <IconButton color="primary" size="small" onClick={(event)=> {}}>
+              <DeleteIcon/>
+            </IconButton>
+          </Tooltip>
+          </CustomTableCell>
         </TableRow>
       );
     }
@@ -93,8 +109,7 @@ export default class Settings extends React.Component {
               <TableRow>
                 <CustomTableCell>{this.props.localize.content}</CustomTableCell>
                 <CustomTableCell>{this.props.localize.variant}</CustomTableCell>
-                <CustomTableCell>{''}</CustomTableCell>
-                <CustomTableCell>{''}</CustomTableCell>
+                <CustomTableCell>{this.props.localize.operation}</CustomTableCell>
               </TableRow>
             </TableHead>
             <TableBody>
