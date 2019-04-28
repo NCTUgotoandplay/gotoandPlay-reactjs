@@ -74,7 +74,7 @@ export class TimetableTable extends Component{
           rows.push(
 
               <CustomTableCell>
-                <Tooltip title={segment[i].description?segment[i].description:segment[i].url}>
+                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
                   <a href={segment[i].url} target="_blank">
                     {segment[i].title}
                   </a>
@@ -194,7 +194,7 @@ export class EditableTimetableTable extends Component{
           <EditableTableCell>
             <Tooltip title={this.props.localize.edit}>
               <Button target="_blank" onClick={()=> {
-                this.setState({edit_segment_item: {segment: segment_name, day: i, title: segment[i].title, url: segment[i].url}});
+                this.setState({edit_segment_item: {segment: segment_name, day: i, title: segment[i].title, url: segment[i].url, description: segment[i].description}});
               }}>
                 {segment[i].title}
               </Button>
@@ -217,6 +217,16 @@ export class EditableTimetableTable extends Component{
       }
     }
     return rows;
+  }
+  emitOnSegmentsChange() {
+    let newSegments = this.props.timetable.segments;
+    newSegments[this.state.edit_segment_item.segment][this.state.edit_segment_item.day] = {
+      title: this.state.edit_segment_item.title,
+      url: this.state.edit_segment_item.url,
+      description: this.state.edit_segment_item.description,
+    };
+    this.props.onSegmentsChange(newSegments);
+    this.setState({edit_segment_item: null});
   }
   render() {
     if(this.props.timetable) {
@@ -299,13 +309,26 @@ export class EditableTimetableTable extends Component{
               }}
               onKeyPress={(event)=> {
                 if(event.key == 'Enter'){
-                  let newSegments = this.props.timetable.segments;
-                  newSegments[this.state.edit_segment_item.segment][this.state.edit_segment_item.day] = {
-                    title: this.state.edit_segment_item.title,
-                    url: this.state.edit_segment_item.url,
-                  };
-                  this.props.onSegmentsChange(newSegments);
-                  this.setState({edit_segment_item: null});
+                  this.emitOnSegmentsChange();
+                }
+              }}
+            />
+            <TextField
+              autoFocus
+              margin="normal"
+              id="description"
+              label={this.props.localize.description}
+              type="text"
+              fullWidth
+              value={this.state.edit_segment_item?this.state.edit_segment_item.description:null}
+              onChange={evt => {
+                let new_edit_segment_item = this.state.edit_segment_item;
+                new_edit_segment_item.description = evt.target.value;
+                this.setState({edit_segment_item: new_edit_segment_item});
+              }}
+              onKeyPress={(event)=> {
+                if(event.key == 'Enter'){
+                  this.emitOnSegmentsChange();
                 }
               }}
             />
@@ -323,13 +346,7 @@ export class EditableTimetableTable extends Component{
               }}
               onKeyPress={(event)=> {
                 if(event.key == 'Enter'){
-                  let newSegments = this.props.timetable.segments;
-                  newSegments[this.state.edit_segment_item.segment][this.state.edit_segment_item.day] = {
-                    title: this.state.edit_segment_item.title,
-                    url: this.state.edit_segment_item.url,
-                  };
-                  this.props.onSegmentsChange(newSegments);
-                  this.setState({edit_segment_item: null});
+                  this.emitOnSegmentsChange();
                 }
               }}
             />
@@ -347,13 +364,7 @@ export class EditableTimetableTable extends Component{
               {this.props.localize.delete}
             </Button>
             <Button onClick={()=>{
-              let newSegments = this.props.timetable.segments;
-              newSegments[this.state.edit_segment_item.segment][this.state.edit_segment_item.day] = {
-                title: this.state.edit_segment_item.title,
-                url: this.state.edit_segment_item.url,
-              };
-              this.props.onSegmentsChange(newSegments);
-              this.setState({edit_segment_item: null});
+              this.emitOnSegmentsChange();
             }} color="primary">
               {this.props.localize.ok}
             </Button>

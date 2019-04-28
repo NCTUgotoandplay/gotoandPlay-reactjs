@@ -62,7 +62,9 @@
     "title": "title",
     "segment": "segment",
     "new": "new",
-    "old": "old"
+    "old": "old",
+    "open": "open",
+    "description": "description"
   },
   "zh": {
     "lang2string": "中文",
@@ -127,7 +129,8 @@
     "title": "標題",
     "segment": "時段",
     "new": "新的",
-    "old": "舊的"
+    "old": "舊的",
+    "description": "關於"
   },
   "jp": {
     "lang2string": "日本語",
@@ -184,7 +187,8 @@
     "title": "title",
     "segment": "segment",
     "new": "new",
-    "old": "old"
+    "old": "old",
+    "description": "description"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -241,7 +245,8 @@
     "title": "title",
     "segment": "segment",
     "new": "new",
-    "old": "old"
+    "old": "old",
+    "description": "description"
   },
   "ru": {
     "lang2string": "русский",
@@ -298,7 +303,8 @@
     "title": "title",
     "segment": "segment",
     "new": "new",
-    "old": "old"
+    "old": "old",
+    "description": "description"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -355,6 +361,7 @@
     "title": "title",
     "segment": "segment",
     "new": "new",
-    "old": "old"
+    "old": "old",
+    "description": "description"
   }
 }
