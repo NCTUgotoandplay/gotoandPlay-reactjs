@@ -103,7 +103,7 @@ export default class Settings extends React.Component {
           <Typography className="description">{this.props.localize.settings_push_notification_description}</Typography>
         </ExpansionPanelSummary>
         <ExpansionPanelDetails style={{display: 'inline-block', width: '100%'}}>
-        <Paper style={{width: '100%'}}>
+        <Paper style={{width: '100%', overflowX: 'auto'}}>
           <Table fixedHeader={false}  style={{width: '100%'}}>
             <TableHead>
               <TableRow>

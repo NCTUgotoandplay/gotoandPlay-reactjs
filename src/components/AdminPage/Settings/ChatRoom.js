@@ -27,6 +27,9 @@ export default class Settings extends React.Component {
   }
 
   render() {
+    if (!this.state.new_chat_room_id&&this.props.app_state.chat_room_id){
+      this.setState({new_chat_room_id: this.props.app_state.chat_room_id});
+    }
     return(
       <CustomExpansionPanel expanded={this.props.expanded} onChange={this.props.onChange}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
@@ -40,7 +43,7 @@ export default class Settings extends React.Component {
           label={this.props.localize.chat_room+' ID'}
           type="text"
           fullWidth
-          defaultValue={this.props.app_state.chat_room_id}
+          value={this.state.new_chat_room_id}
           onChange={evt => {
             this.setState({new_chat_room_id: evt.target.value});
           }}
