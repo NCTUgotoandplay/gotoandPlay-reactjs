@@ -272,7 +272,7 @@ function NSc(targetip, method, targetport) {
           let connprofile;
           _ws = new WebSocket('wss://'+ip+':'+port);
           _ws.binaryType = "arraybuffer";
-          connprofile = new ConnectionProfile(null, 'Server', 'WebSocket', ip, port, 'localhost', this);
+          connprofile = new ConnectionProfile(null, 'Server', 'WebSocketSecure', ip, port, 'localhost', this);
           _ws.onopen = ()=> {
             callback(false, connprofile);
             // ws.send('something');
@@ -424,9 +424,7 @@ function NSc(targetip, method, targetport) {
         else {
         }
       };
-
       let _prev_client = _clients[conn_method+remoteip+port];
-
       if(_prev_client) {
         callback(false, _prev_client);
       }
