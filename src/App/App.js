@@ -148,7 +148,7 @@ class App extends Component {
         <div style={{zIndex: 999}}>
           <Launcher
             agentProfile={{
-              teamName: (this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}).chat_room+': '+this.state.chat_room_meta.n,
+              teamName: (this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}).chat_room+': '+this.state.chat_room_meta.Displayname,
               imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
             }}
             isOpen={this.state.open_chat_room}

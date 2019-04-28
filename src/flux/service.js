@@ -174,6 +174,7 @@ function Service(NoService, Dispatcher) {
         this.enqueueSnackbar(Localizes[lang].chat_room+': '+json.r[2], {variant: 'info'});
       });
       Services.NoTalk.onEvent('ChannelUpdated', (err, json)=> {
+        console.log(json);
         Dispatcher.dispatch({type: 'updateChatroomMeta', data: json.r});
       });
     }
@@ -227,7 +228,7 @@ function Service(NoService, Dispatcher) {
                     if(err) {
                       console.log(err);
                     }
-                    console.log(meta);
+                    meta.Displayname = meta.n;
                     Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
                     Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 32}, (err, json)=> {
                       if(err) {
