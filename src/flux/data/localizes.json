@@ -45,7 +45,8 @@
     "add_item": "add item",
     "push_now": "push now",
     "delete": "delete",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
   },
   "zh": {
     "lang2string": "中文",
@@ -93,7 +94,8 @@
     "add_item": "增加項目",
     "push_now": "馬上推送",
     "delete": "刪除",
-    "cancel": "取消"
+    "cancel": "取消",
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
   },
   "jp": {
     "lang2string": "日本語",
@@ -141,7 +143,8 @@
     "add_item": "アイテムの追加",
     "push_now": "今すぐプッシュ",
     "delete": "削除",
-    "cancel": "キャンセル"
+    "cancel": "キャンセル",
+    "days": ["月", "火", "水", "木", "金", "土", "日"]
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -189,7 +192,8 @@
     "add_item": "add item",
     "push_now": "push now",
     "delete": "delete",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
   },
   "ru": {
     "lang2string": "русский",
@@ -237,7 +241,8 @@
     "add_item": "add item",
     "push_now": "push now",
     "delete": "delete",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
   },
   "de": {
     "lang2string": "Deutsche",
@@ -285,6 +290,7 @@
     "add_item": "add item",
     "push_now": "push now",
     "delete": "delete",
-    "cancel": "cancel"
+    "cancel": "cancel",
+    "days": ["Mon", "Tue", "Wen", "Thu", "Fri", "Sat", "Sun"]
   }
 }

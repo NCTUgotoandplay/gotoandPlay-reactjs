@@ -1,98 +1,91 @@
 {
-  "weekseg": ["Mon.", "Tue.", "Wed.", "Thu."],
-  "timeseg": ["", "20:00~21:00", "21:00~22:00", "22:00~22:30", "22:30~23:30", "23:30~00:30"],
-  "programs": [
-    [{"name": "Mon."}, {"name": "Tue."}, {"name": "Wed."}, {"name": "Thu."}],
-    [
+  "show_days": [0, 1, 2, 3],
+  "show_segments": ["20:00~21:00", "21:00~22:00", "22:00~22:30", "22:30~23:30", "23:30~00:30"],
+  "segments": {
+    "20:00~21:00": [
       {
-        "id": "",
-        "name": "政大之聲",
+        "title": "政大之聲",
         "url": "https://www.facebook.com/vnccu/"},
       {
-        "id": "",
-        "name": "輔大之聲",
+        "title": "輔大之聲",
         "url": "https://www.facebook.com/vfjufm885/"},
       {
-        "id": "",
-        "name": "淡江之聲",
+        "title": "淡江之聲",
         "url": "https://www.facebook.com/votkfm887/"},
       {
-        "id": "",
-        "name": "台藝之聲",
-        "url": "https://www.facebook.com/NTUAVOTA/"}
+        "title": "台藝之聲",
+        "url": "https://www.facebook.com/NTUAVOTA/"},
+      null,
+      null,
+      null
     ],
-    [
+    "21:00~22:00": [
       {
-        "id": "",
-        "name": "音樂「劇」一起",
+        "title": "音樂「劇」一起",
         "url": ""},
       {
-        "id": "",
-        "name": "爆米花電影院",
+        "title": "爆米花電影院",
         "url": "https://www.facebook.com/%E7%88%86%E7%B1%B3%E8%8A%B1%E9%9B%BB%E5%BD%B1%E9%99%A2popcorn-cinema-790636924653053/"},
       {
-        "id": "",
-        "name": "豆吃\n懂吃",
+        "title": "豆吃\n懂吃",
         "url": "https://www.facebook.com/%E8%B1%86%E5%90%83%E6%87%82%E5%90%83-1336065786570255/"},
       {
-        "id": "",
-        "name": "劇樂部",
-        "url": "https://www.facebook.com/bingewatchingclub/?__tn__=%2Cd%2CP-R&eid=ARDiJifX6D9RxML3w5lbgYT9NG-C0h9Hc_tCoFO7g2atN2rT0ti8w0H97HA85D9NzWCwJ54QJrOeUC9K"}
+        "title": "劇樂部",
+        "url": "https://www.facebook.com/bingewatchingclub/?__tn__=%2Cd%2CP-R&eday=ARDiJifX6D9RxML3w5lbgYT9NG-C0h9Hc_tCoFO7g2atN2rT0ti8w0H97HA85D9NzWCwJ54QJrOeUC9K"},
+      null,
+      null,
+      null
     ],
-    [
+    "22:00~22:30": [
       {
-        "id": "",
-        "name": "樂夜樂美麗",
+        "title": "樂夜樂美麗",
         "url": "https://www.facebook.com/%E5%9C%8B%E6%B0%91%E4%B8%80%E8%B5%B7%E4%BE%86-%E6%A8%82%E5%A4%9C%E6%A8%82%E7%BE%8E%E9%BA%97-157836914809546/"},
       {
-        "id": "",
-        "name": "金雞獨立",
+        "title": "金雞獨立",
         "url": "https://www.facebook.com/%E9%87%91%E9%9B%9E%E7%8D%A8%E7%AB%8B-274759539702642/"},
       {
-        "id": "",
-        "name": "地下女女女子",
+        "title": "地下女女女子",
         "url": "https://www.facebook.com/undergroundwowowoman/"},
       {
-        "id": "",
-        "name": "You2B",
-        "url": "https://www.facebook.com/You2Bonair/"}
+        "title": "You2B",
+        "url": "https://www.facebook.com/You2Bonair/"},
+      null,
+      null,
+      null
     ],
-    [
+    "22:30~23:30": [
       {
-        "id": "",
-        "name": "婉君歐北共",
+        "title": "婉君歐北共",
         "url": ""},
       {
-        "id": "",
-        "name": "夜聊時光",
+        "title": "夜聊時光",
         "url": "https://www.facebook.com/nightchatting/"},
       {
-        "id": "",
-        "name": "班德在地下",
+        "title": "班德在地下",
         "url": "https://www.facebook.com/BandsUNDERground/"},
       {
-        "id": "",
-        "name": "噓韓\n問暖",
-        "url": "https://www.facebook.com/%E5%99%93%E9%9F%93%E5%95%8F%E6%9A%96-188734025359533/"}
+        "title": "噓韓\n問暖",
+        "url": "https://www.facebook.com/%E5%99%93%E9%9F%93%E5%95%8F%E6%9A%96-188734025359533/"},
+      null,
+      null,
+      null
     ],
-    [
+    "23:30~00:30": [
       {
-        "id": "",
-        "name": "KKBOX",
+        "title": "KKBOX",
         "url": ""},
       {
-        "id": "",
-        "name": "KKBOX",
+        "title": "KKBOX",
         "url": ""},
       {
-        "id": "",
-        "name": "KKBOX",
+        "title": "KKBOX",
         "url": ""},
       {
-        "id": "",
-        "name": "KKBOX",
-        "url": ""}
+        "title": "KKBOX",
+        "url": ""},
+      null,
+      null,
+      null
     ]
-  ]
-
+  }
 }

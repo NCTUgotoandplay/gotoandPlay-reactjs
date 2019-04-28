@@ -15,7 +15,7 @@ import Typography from '@material-ui/core/Typography';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
-import TimetableTable from '../../commons/TimetableTable';
+import {TimetableTable} from '../../commons/TimetableTable';
 
 
 export default class Settings extends React.Component {
@@ -32,7 +32,7 @@ export default class Settings extends React.Component {
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <Paper className="contain">
-          {this.props.app_state.programs?<TimetableTable weekseg={this.props.app_state.programs.weekseg} timeseg={this.props.app_state.programs.timeseg} programs={this.props.app_state.programs.programs}/>:null}
+          {this.props.app_state.programs?<TimetableTable localize={this.props.localize} timetable={this.props.app_state.programs}/>:null}
         </Paper>
       </ExpansionPanelDetails>
       </CustomExpansionPanel>

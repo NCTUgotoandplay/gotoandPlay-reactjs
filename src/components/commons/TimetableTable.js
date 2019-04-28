@@ -22,52 +22,46 @@ const CustomTableCell = withStyles(theme => ({
   },
 }))(TableCell);
 
-export default class TimetableTable extends Component{
-  render() {
-    let row = Array(this.props.programs.length).fill(null)
-    for(let i=0 ; i<this.props.programs.length ; ++i){
-      row[i] = this.props.programs[i].map((oj) =>
+export class TimetableTable extends Component{
+  renderHeader() {
+    let rows = [<CustomTableCell></CustomTableCell>];
+    let show_days = this.props.timetable.show_days;
+    for(let i in show_days) {
+      rows.push(<CustomTableCell>{this.props.localize.days[show_days[i]]}</CustomTableCell>);
+    }
+    return rows;
+  }
+  renderSegment(segment_name) {
+    let rows = [<CustomTableCell>{segment_name}</CustomTableCell>];
+    let show_days = this.props.timetable.show_days;
+    let segment = this.props.timetable.segments[segment_name];
+    for(let i in show_days) {
+      rows.push(
         <CustomTableCell>
-          <a className="pp"
-            href={oj.url}
-            target="_blank"
-            rel='noreferrer noopener'>
-            <div>
-            {oj.name}
-            </div>
+          <a href={segment[i].url} target="_blank">
+            {segment[i].title}
           </a>
         </CustomTableCell>
-      )
+      );
     }
+    return rows;
+  }
+  render() {
     return(
       <Table fixedHeader={false} >
         <TableHead>
           <TableRow>
-            <CustomTableCell>{this.props.timeseg[0]}</CustomTableCell>
-            {row[0]}
+            {this.renderHeader()}
           </TableRow>
         </TableHead>
         <TableBody>
-          <TableRow>
-            <CustomTableCell>{this.props.timeseg[1]}</CustomTableCell>
-            {row[1]}
-          </TableRow>
-          <TableRow>
-            <CustomTableCell>{this.props.timeseg[2]}</CustomTableCell>
-            {row[2]}
-          </TableRow>
-          <TableRow>
-            <CustomTableCell>{this.props.timeseg[3]}</CustomTableCell>
-            {row[3]}
-          </TableRow>
-          <TableRow>
-            <CustomTableCell>{this.props.timeseg[4]}</CustomTableCell>
-            {row[4]}
-          </TableRow>
-          <TableRow>
-            <CustomTableCell>{this.props.timeseg[5]}</CustomTableCell>
-            {row[5]}
-          </TableRow>
+          {this.props.timetable.show_segments.map((segment_name)=> {
+            return(
+              <TableRow>
+                {this.renderSegment(segment_name)}
+              </TableRow>
+            )
+          })}
         </TableBody>
       </Table>
     );
