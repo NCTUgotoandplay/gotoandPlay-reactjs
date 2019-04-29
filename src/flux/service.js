@@ -124,7 +124,31 @@ function Service(NoService, Dispatcher) {
 
   this.Actions = {
     sendMessage: (msg, callback)=> {
-      if(Services.NoTalk&&notalk_channel_id)
+      // command support
+      if(msg.data.text[0]==='/') {
+        Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell Client] '+msg.data.text.slice(1)}}});
+        let op = ()=> {
+          Services.NoShell.call('sendC', {c: msg.data.text.slice(1)}, (err, json)=>{
+            console.log(json);
+            Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell] '+json.r}}});
+          });
+        };
+        if(!Services.NoShell) {
+          NoService.createActivitySocket('NoShell', (err, NoShell)=>{
+            if(err) {
+              console.log(err);
+            }
+            else {
+              Services.NoShell=NoShell;
+              op();
+            }
+          });
+        }
+        else {
+          op();
+        }
+      }
+      else if(Services.NoTalk&&notalk_channel_id)
         Services.NoTalk.call('sendMsg', {i: notalk_channel_id, c: ChatWindowToNoTalk(msg)}, (err, json)=> {
           if(callback)
             callback(err);
@@ -135,17 +159,26 @@ function Service(NoService, Dispatcher) {
       Dispatcher.dispatch({type: 'toggleChatRoom'});
     },
     relaunchNoService: ()=> {
-      NoService.createActivitySocket('NoShell', (err, NoShell)=>{
-        if(err) {
-          console.log(err);
-        }
-        else {
-          NoShell.call('sendC', {c: 'daemon relaunch'}, (err, json)=>{
-            this.enqueueSnackbar(Localizes[lang].relaunch+': '+json.r);
-            setTimeout(setupOnline, 5*1000);
-          });
-        }
-      });
+      let op = ()=> {
+        Services.NoShell.call('sendC', {c: 'daemon relaunch'}, (err, json)=>{
+          this.enqueueSnackbar(Localizes[lang].relaunch+': '+json.r);
+          setTimeout(setupOnline, 5*1000);
+        });
+      };
+      if(!Services.NoShell) {
+        NoService.createActivitySocket('NoShell', (err, NoShell)=>{
+          if(err) {
+            console.log(err);
+          }
+          else {
+            Services.NoShell=NoShell;
+            op();
+          }
+        });
+      }
+      else {
+        op();
+      }
     },
     logout: ()=> {
       NoService.logout();
