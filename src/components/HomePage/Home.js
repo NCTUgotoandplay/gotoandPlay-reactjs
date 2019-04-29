@@ -178,13 +178,13 @@ class Home extends React.Component {
 
         <div className="cards">
         <h1>{this.props.localize.suggestion}</h1>
-        <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
+        <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
           {this.renderSuggestedCards()}
         </Grid>
         </div>
         <div className="cards">
         <h1>{this.props.localize.more_info}</h1>
-        <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
+        <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
           {this.renderCards()}
         </Grid>
         </div>
