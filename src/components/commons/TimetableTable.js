@@ -314,7 +314,6 @@ export class EditableTimetableTable extends Component{
               }}
             />
             <TextField
-              autoFocus
               margin="normal"
               id="description"
               label={this.props.localize.description}
