@@ -69,7 +69,9 @@
     "compile": "compile",
     "compiling": "compiling",
     "relaunch": "relaunch",
-    "welcome_message": "welcome message"
+    "welcome_message": "welcome message",
+    "guest": "guest",
+    "user": "user"
   },
   "zh": {
     "lang2string": "中文",
@@ -141,7 +143,9 @@
     "compile": "編譯",
     "compiling": "編譯中",
     "relaunch": "重啟",
-    "welcome_message": "歡迎訊息"
+    "welcome_message": "歡迎訊息",
+    "guest": "匿名",
+    "user": "使用者"
   },
   "jp": {
     "lang2string": "日本語",
@@ -191,29 +195,31 @@
     "delete": "削除",
     "cancel": "キャンセル",
     "days": ["月", "火", "水", "木", "金", "土", "日"],
-    "no_program": "no program",
-    "add_segment": "add segment",
-    "upward": "upward",
-    "downward": "downward",
-    "operation": "operation",
-    "save": "save",
-    "export": "export",
-    "import": "import",
-    "edit": "edit",
-    "ok": "ok",
-    "link": "link",
-    "title": "title",
-    "segment": "segment",
-    "new": "new",
-    "old": "old",
-    "open": "open",
-    "description": "description",
-    "online_count": "online count",
-    "version": "version",
-    "compile": "compile",
-    "compiling": "compiling",
-    "relaunch": "relaunch",
-    "welcome_message": "welcome message"
+    "no_program": "プログラムなし",
+    "add_segment": "セグメントを追加",
+    "upward": "上向き",
+    "downward": "下向き",
+    "operation": "操作",
+    "save": "保存",
+    "export": "エクスポート",
+    "import": "インポート",
+    "edit": "編集",
+    "ok": "わかった",
+    "link": "リンク",
+    "title": "タイトル",
+    "segment": "セグメント",
+    "new": "新しい",
+    "old": "古い",
+    "open": "オープン",
+    "description": "説明",
+    "online_count": "オンライン件数",
+    "version": "バージョン",
+    "compile": "コンパイル",
+    "compiling": "コンパイル",
+    "relaunch": "再起動",
+    "welcome_message": "ウェルカムメッセージ",
+    "guest": "ゲスト",
+    "user": "ユーザー"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -285,7 +291,9 @@
     "compile": "compile",
     "compiling": "compiling",
     "relaunch": "relaunch",
-    "welcome_message": "welcome message"
+    "welcome_message": "welcome message",
+    "guest": "guest",
+    "user": "user"
   },
   "ru": {
     "lang2string": "русский",
@@ -357,7 +365,9 @@
     "compile": "compile",
     "compiling": "compiling",
     "relaunch": "relaunch",
-    "welcome_message": "welcome message"
+    "welcome_message": "welcome message",
+    "guest": "guest",
+    "user": "user"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -429,6 +439,8 @@
     "compile": "compile",
     "compiling": "compiling",
     "relaunch": "relaunch",
-    "welcome_message": "welcome message"
+    "welcome_message": "welcome message",
+    "guest": "guest",
+    "user": "user"
   }
 }

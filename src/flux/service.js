@@ -28,18 +28,7 @@ const getCookie = (cname)=> {
     return "";
 };
 
-const NoTalkToChatWindow = (msg)=> {
-  return { type: 'text', data:{text: (msg[0]?'user('+msg[0].slice(0, 8)+'): ':'guest: ')+'\n'+msg[2]}};
-};
 
-const ChatWindowToNoTalk = (msg)=> {
-  if(msg.data.text) {
-    return [0, msg.data.text, null];
-  }
-  else if(msg.data.emoji) {
-    return [0, msg.data.emoji, null];
-  }
-};
 
 function Service(NoService, Dispatcher) {
   let Services = {
@@ -56,6 +45,19 @@ function Service(NoService, Dispatcher) {
   let gotoandPlay_audio = new Audio(audio_source);
   let gotoandPlay_audio_playing = false;
   let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
+
+  const NoTalkToChatWindow = (msg)=> {
+    return { type: 'text', data:{text: (msg[0]?Localizes[lang].user+'('+msg[0].slice(0, 8)+'): ':''+Localizes[lang].guest+': ')+'\n'+msg[2]}};
+  };
+
+  const ChatWindowToNoTalk = (msg)=> {
+    if(msg.data.text) {
+      return [0, msg.data.text, null];
+    }
+    else if(msg.data.emoji) {
+      return [0, msg.data.emoji, null];
+    }
+  };
 
   let setupOnline = ()=> {
     try {
