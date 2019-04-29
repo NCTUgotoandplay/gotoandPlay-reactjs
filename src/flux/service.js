@@ -153,7 +153,7 @@ function Service(NoService, Dispatcher) {
     },
     sendMessage: (msg, callback)=> {
       // command support
-      if(msg.data.text[0]==='/') {
+      if(msg.data.text&&msg.data.text[0]==='/') {
         Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell Client] \n'+msg.data.text.slice(1)}}});
         let op = ()=> {
           Services.NoShell.call('sendC', {c: msg.data.text.slice(1)}, (err, json)=>{
