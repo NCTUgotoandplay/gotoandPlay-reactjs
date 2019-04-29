@@ -342,8 +342,6 @@ function Service(NoService, Dispatcher) {
 
     this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);
-    this.Actions.switchMainStream();
-    gotoandPlay_audio.play();
     if(lang === 'zh') {
       this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
     }
