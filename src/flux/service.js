@@ -86,9 +86,9 @@ function Service(NoService, Dispatcher) {
               this.Actions.loadPrograms();
 
               // chat
-              Services.gotoandPlay.call('getChatroomId', null, (err, data)=> {
-                Dispatcher.dispatch({type: 'updateChatroomId', data: data});
-                notalk_channel_id = data;
+              Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
+                Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
+                notalk_channel_id = chat_room_settings.channel_id;
                 Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
                   Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
                     if(err) {
@@ -107,7 +107,7 @@ function Service(NoService, Dispatcher) {
                       Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
                       Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
                       Dispatcher.dispatch({type: 'readLatestLine'});
-
+                      Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] '+chat_room_settings.welcome_message}}});
                     });
                   });
                 });
@@ -214,12 +214,11 @@ function Service(NoService, Dispatcher) {
         });
       // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
     },
-    updateChatroomId: (data, callback)=> {
+    updateChatroomSettings: (data, callback)=> {
       if(Services.gotoandPlay)
-        Services.gotoandPlay.call('updateChatroomId', data, (err)=> {
+        Services.gotoandPlay.call('updateChatroomSettings', data, (err)=> {
           // Dispatcher.dispatch({type: 'updatePrograms', data: data});
-          Dispatcher.dispatch({type: 'updateChatroomId', data: data});
-
+          Dispatcher.dispatch({type: 'updateChatroomSettings', data: data});
           callback(false);
         });
       // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});

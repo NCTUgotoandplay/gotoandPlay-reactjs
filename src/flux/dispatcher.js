@@ -117,9 +117,9 @@ function generateDispatcher(setState) {
         return prevstate;
       })
     }
-    else if (payload.type === 'updateChatroomId') {
+    else if (payload.type === 'updateChatroomSettings') {
       setState(prevstate=>{
-        prevstate.chat_room_id = payload.data;
+        prevstate.chat_room = payload.data;
         return prevstate;
       })
     }

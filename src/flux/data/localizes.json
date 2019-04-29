@@ -68,7 +68,8 @@
     "version": "version",
     "compile": "compile",
     "compiling": "compiling",
-    "relaunch": "relaunch"
+    "relaunch": "relaunch",
+    "welcome_message": "welcome message"
   },
   "zh": {
     "lang2string": "中文",
@@ -139,7 +140,8 @@
     "version": "版本",
     "compile": "編譯",
     "compiling": "編譯中",
-    "relaunch": "重啟"
+    "relaunch": "重啟",
+    "welcome_message": "歡迎訊息"
   },
   "jp": {
     "lang2string": "日本語",
@@ -210,7 +212,8 @@
     "version": "version",
     "compile": "compile",
     "compiling": "compiling",
-    "relaunch": "relaunch"
+    "relaunch": "relaunch",
+    "welcome_message": "welcome message"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -281,7 +284,8 @@
     "version": "version",
     "compile": "compile",
     "compiling": "compiling",
-    "relaunch": "relaunch"
+    "relaunch": "relaunch",
+    "welcome_message": "welcome message"
   },
   "ru": {
     "lang2string": "русский",
@@ -352,7 +356,8 @@
     "version": "version",
     "compile": "compile",
     "compiling": "compiling",
-    "relaunch": "relaunch"
+    "relaunch": "relaunch",
+    "welcome_message": "welcome message"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -423,6 +428,7 @@
     "version": "version",
     "compile": "compile",
     "compiling": "compiling",
-    "relaunch": "relaunch"
+    "relaunch": "relaunch",
+    "welcome_message": "welcome message"
   }
 }

@@ -51,7 +51,10 @@ class App extends Component {
       messages: [],
       messages_latest_readline: 0,
       messages_latest_line: 0,
-      chat_room_id: '',
+      chat_room: {
+        channel_id: null,
+        welcome_message: null
+      },
       chat_room_meta: {},
       isadmin: true,
       online_count: 0,
