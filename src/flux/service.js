@@ -29,7 +29,8 @@ const getCookie = (cname)=> {
 };
 
 const NoTalkToChatWindow = (msg)=> {
-  return { type: 'text', data:{text: msg[2]}};
+  console.log(msg);
+  return { type: 'text', data:{text: (msg[0]?'user('+msg[0].slice(0, 8)+'): ':'guest: ')+'\n'+msg[2]}};
 };
 
 const ChatWindowToNoTalk = (msg)=> {
@@ -107,7 +108,7 @@ function Service(NoService, Dispatcher) {
                       Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
                       Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
                       Dispatcher.dispatch({type: 'readLatestLine'});
-                      Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] '+chat_room_settings.welcome_message}}});
+                      Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
                       Dispatcher.dispatch({type: 'addLatestLine'});
                     });
                   });
@@ -127,11 +128,11 @@ function Service(NoService, Dispatcher) {
     sendMessage: (msg, callback)=> {
       // command support
       if(msg.data.text[0]==='/') {
-        Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell Client] '+msg.data.text.slice(1)}}});
+        Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell Client] \n'+msg.data.text.slice(1)}}});
         let op = ()=> {
           Services.NoShell.call('sendC', {c: msg.data.text.slice(1)}, (err, json)=>{
             console.log(json);
-            Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell] '+json.r}}});
+            Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell] \n'+json.r}}});
           });
         };
         if(!Services.NoShell) {
