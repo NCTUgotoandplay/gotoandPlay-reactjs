@@ -108,6 +108,7 @@ function Service(NoService, Dispatcher) {
                       Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
                       Dispatcher.dispatch({type: 'readLatestLine'});
                       Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] '+chat_room_settings.welcome_message}}});
+                      Dispatcher.dispatch({type: 'addLatestLine'});
                     });
                   });
                 });
