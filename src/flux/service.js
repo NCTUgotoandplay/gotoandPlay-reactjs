@@ -96,7 +96,7 @@ function Service(NoService, Dispatcher) {
                     }
                     meta.Displayname = meta.n;
                     Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
-                    Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 32}, (err, json)=> {
+                    Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
                       if(err) {
                         console.log(err);
                       }
