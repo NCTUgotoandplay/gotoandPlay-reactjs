@@ -129,6 +129,12 @@ function generateDispatcher(setState) {
         return prevstate;
       })
     }
+    else if (payload.type === 'updateInfomationCards') {
+      setState(prevstate=>{
+        prevstate.information_cards = payload.data;
+        return prevstate;
+      })
+    }
   });
 
   return _dispatcher;

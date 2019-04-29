@@ -3,6 +3,8 @@ import React,
 
 import {TimetableTable} from '../commons/TimetableTable';
 
+import { Link } from "react-router-dom"
+
 import Paper from '@material-ui/core/Paper';
 
 import Card from '@material-ui/core/Card';
@@ -15,6 +17,10 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import IconButton from '@material-ui/core/IconButton';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+
+import Tooltip from '@material-ui/core/Tooltip';
 
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ShareIcon from '@material-ui/icons/Share';
@@ -44,35 +50,104 @@ class Timetable extends Component {
   }
 }
 
+class InfoCard extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      expanded: false
+    }
+  }
+
+  renderExpandButton() {
+    if(!this.props.card.expanded) {
+      return(
+        <Tooltip title={this.props.localize.more_info}>
+          <IconButton
+            onClick={()=> {this.setState({expanded: (this.state.expanded+1)%2})}}
+            aria-expanded={this.state.expanded}
+            aria-label="Show more"
+          >
+            <ExpandMoreIcon />
+          </IconButton>
+        </Tooltip>
+      )
+    }
+  }
+
+  render() {
+    return(
+      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Card>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            wide
+            image={this.props.card.img}
+          />
+          <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {this.props.card.title}
+          </Typography>
+          <Typography component="p">
+
+            {this.props.card.expanded?this.props.card.description:this.props.card.description.slice(0, 50)+'...'}
+          </Typography>
+          </CardContent>
+        </CardActionArea>
+        <CardActions>
+        {this.renderExpandButton()}
+        <Tooltip title={this.props.localize.share}>
+          <IconButton aria-label="Share" onClick={()=> {
+            this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.url);
+          }}>
+            <ShareIcon />
+          </IconButton>
+        </Tooltip>
+        <a target="_blank" href={this.props.card.url}>
+          <Button color="primary" size="small" aria-label="Share">
+            {this.props.localize.go+' '+this.props.localize.link}
+          </Button>
+        </a>
+
+      </CardActions>
+      <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
+        <CardContent>
+          <Typography component="p">
+            {this.props.card.description}
+          </Typography>
+        </CardContent>
+      </Collapse>
+      </Card>
+    </Grid>)
+  }
+}
 class Home extends React.Component {
   constructor(props) {
     super(props);
   }
 
+  renderSuggestedCards () {
+    let rows = [];
+    for(let i in this.props.suggested_cards) {
+      let card = this.props.cards[this.props.suggested_cards[i]];
+      if(card)
+        rows.push(
+          <InfoCard {...this.props} card={card}/>
+        );
+      }
+    return rows;
+  }
+
   renderCards () {
-    return(this.props.cards.map((oj) =>
-      <Grid item xs={12} sm={4} md={3} lg={2} xl={2}>
-        <Card>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              wide
-              image={oj["img"]}
-            />
-            <CardContent>
-            <Typography component="p">
-              {oj["p"]}
-            </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-          <IconButton aria-label="Share">
-            <ShareIcon />
-          </IconButton>
-        </CardActions>
-        </Card>
-      </Grid>
-      ))
+    let rows = [];
+    for(let i in this.props.cards) {
+      let card = this.props.cards[i];
+      if(card)
+        rows.push(
+          <InfoCard {...this.props} card={card}/>
+        );
+      }
+    return rows;
   }
 
   render () {
@@ -103,6 +178,12 @@ class Home extends React.Component {
 
         <div className="cards">
         <h1>{this.props.localize.suggestion}</h1>
+        <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
+          {this.renderSuggestedCards()}
+        </Grid>
+        </div>
+        <div className="cards">
+        <h1>{this.props.localize.more_info}</h1>
         <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
           {this.renderCards()}
         </Grid>

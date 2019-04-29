@@ -67,6 +67,8 @@ class App extends Component {
       more_info: [],
       album_cards: [],
       album_decks: [],
+      suggested_information_cards: ['go', 'id1', 'id2'],
+      information_cards: {},
       push_notification_cache: [
         {id:'123', content: '節目開始', variant:'info'},
         {id:'13', content: '準備抽獎', variant:'warning'},
@@ -107,7 +109,8 @@ class App extends Component {
             online_count={this.state.online_count}
             more_info={this.state.more_info}
             news={this.state.news}
-            cards={this.state.album_cards}
+            suggested_cards={this.state.suggested_information_cards}
+            cards={this.state.information_cards}
             programs = {this.state.programs}
             localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
             />

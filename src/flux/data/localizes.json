@@ -71,7 +71,11 @@
     "relaunch": "relaunch",
     "welcome_message": "welcome message",
     "guest": "guest",
-    "user": "user"
+    "user": "user",
+    "info_cards": "information cards",
+    "go": "go",
+    "share": "share",
+    "copied_to_clipboard": "copyed to clipboard"
   },
   "zh": {
     "lang2string": "中文",
@@ -145,7 +149,11 @@
     "relaunch": "重啟",
     "welcome_message": "歡迎訊息",
     "guest": "匿名",
-    "user": "使用者"
+    "user": "使用者",
+    "info_cards": "資訊卡",
+    "go": "前往",
+    "share": "分享",
+    "copied_to_clipboard": "複製到剪貼簿了"
   },
   "jp": {
     "lang2string": "日本語",
@@ -219,7 +227,8 @@
     "relaunch": "再起動",
     "welcome_message": "ウェルカムメッセージ",
     "guest": "ゲスト",
-    "user": "ユーザー"
+    "user": "ユーザー",
+    "info_cards": "information cards"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -293,7 +302,8 @@
     "relaunch": "relaunch",
     "welcome_message": "welcome message",
     "guest": "guest",
-    "user": "user"
+    "user": "user",
+    "info_cards": "information cards"
   },
   "ru": {
     "lang2string": "русский",
@@ -367,7 +377,8 @@
     "relaunch": "relaunch",
     "welcome_message": "welcome message",
     "guest": "guest",
-    "user": "user"
+    "user": "user",
+    "info_cards": "information cards"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -441,6 +452,7 @@
     "relaunch": "relaunch",
     "welcome_message": "welcome message",
     "guest": "guest",
-    "user": "user"
+    "user": "user",
+    "info_cards": "information cards"
   }
 }
