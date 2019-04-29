@@ -14,7 +14,7 @@ a {
     width: 320px !important;
   }
 }
-button {
+input, button {
   -webkit-appearance: none;
 }
 label {
@@ -28,6 +28,9 @@ hr {
   border-right-width: 0px;
   border-left-width: 0px;
   border-color: #ECEFF1;
+}
+input:focus, textarea:focus {
+  outline: none;
 }
 .img-in-text {
   vertical-align:middle;
