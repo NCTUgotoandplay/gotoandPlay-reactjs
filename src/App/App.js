@@ -5,7 +5,7 @@
 
 // React
 import React, { Component } from "react"
-import { BrowserRouter, Route } from "react-router-dom"
+import { BrowserRouter, Route, Switch } from "react-router-dom"
 import {Launcher} from 'react-chat-window'
 
 import Constants from '../flux/constants.json';
@@ -26,6 +26,8 @@ import AdminPage from "../components/AdminPage"
 import Button from '@material-ui/core/Button';
 // Css
 import "../All.min.css"
+
+import Tooltip from '@material-ui/core/Tooltip';
 
 //
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
@@ -55,6 +57,7 @@ class App extends Component {
         channel_id: null,
         welcome_message: null
       },
+      slogan: 'We play, we work, we create.',
       chat_room_meta: {},
       isadmin: true,
       online_count: 0,
@@ -88,12 +91,12 @@ class App extends Component {
   }
 
   render() {
-
+    let localize = this.state.localizes[this.state.lang];
     return (
       <MuiThemeProvider theme={Theme}>
       <BrowserRouter>
         <Header
-          localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
+          localize={localize?localize:{}}
           lang={this.state.lang}
           lang2string = {this.state.lang2string}
           username = {this.controller.NoService.returnUsername()}
@@ -102,69 +105,88 @@ class App extends Component {
           login_link={Constants.settings.noservice.host}
           show_admin={this.state.isadmin}
         />
-        <Route exact path="/" render={props=> {
-          return(
-            <HomePage
-            actions={this.actions}
-            online_count={this.state.online_count}
-            more_info={this.state.more_info}
-            news={this.state.news}
-            suggested_cards={this.state.suggested_information_cards}
-            cards={this.state.information_cards}
-            programs = {this.state.programs}
-            localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
-            />
-          );
-        }} />
-        <Route path="/Admin" render={props=> {
-          return(
-            <AdminPage
-              talksy_link={Constants.settings.talksy_link}
-              push_notification_cache = {this.state.push_notification_cache}
-              actions={this.actions}
-              app_state={this.state}
-              localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
-            />
-          );
-        }} />
-        <Route path="/Albums" render={
-          props => {
-            if(ab_not_finished) {
-              this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
-              ab_not_finished=0;
-            }
-
+        <Switch>
+          <Route exact path="/" render={props=> {
             return(
-              <AlbumsPage
-              localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}}
-              cards={this.state.album_cards}
-              decks={this.state.album_decks} />
-            )
+              <HomePage
+              slogan={this.state.slogan}
+              actions={this.actions}
+              online_count={this.state.online_count}
+              more_info={this.state.more_info}
+              news={this.state.news}
+              suggested_cards={this.state.suggested_information_cards}
+              cards={this.state.information_cards}
+              programs = {this.state.programs}
+              localize={localize?localize:{}}
+              />
+            );
           }} />
-        <Route path="/AboutUs" render={
-          props => {
-            if(au_not_finished) {
-              this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
-              au_not_finished = 0;
-            }
-            return(<AboutUsPage localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}} />);
+
+          <Route path="/Admin" render={props=> {
+            return(
+              <AdminPage
+                talksy_link={Constants.settings.talksy_link}
+                push_notification_cache = {this.state.push_notification_cache}
+                actions={this.actions}
+                app_state={this.state}
+                localize={localize?localize:{}}
+              />
+            );
           }} />
-        <Footer localize={this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}} version={Constants.version}/>
-        <TalkRoom />
+
+          <Route path="/Albums" render={
+            props => {
+              if(ab_not_finished) {
+                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
+                ab_not_finished=0;
+              }
+
+              return(
+                <AlbumsPage
+                localize={localize?localize:{}}
+                cards={this.state.album_cards}
+                decks={this.state.album_decks} />
+              )
+            }} />
+
+          <Route path="/AboutUs" render={
+            props => {
+              if(au_not_finished) {
+                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
+                au_not_finished = 0;
+              }
+              return(<AboutUsPage localize={localize?localize:{}} />);
+            }} />
+            <Route path=':badurl(.*)' render={(props)=>{
+              return(
+                <div className="aboutpage" style={{color: 'white', padding: '150px 0'}}>
+                    <h3>{'The requested URL "'+props.match.params.badurl+'" does not exist.'}</h3>
+                    <p>Please check your link is a valid link.</p>
+                </div>
+              );
+            }}/>
+        </Switch>
+
+
+        <Footer localize={localize?localize:{}} version={Constants.version}/>
+
         <div style={{zIndex: 999}}>
-          <Launcher
-            agentProfile={{
-              teamName: (this.state.localizes[this.state.lang]?this.state.localizes[this.state.lang]:{}).chat_room+': '+this.state.chat_room_meta.Displayname,
-              imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
-            }}
-            isOpen={this.state.open_chat_room}
-            handleClick={this.actions.readLine}
-            onMessageWasSent={this.actions.sendMessage}
-            messageList={this.state.messages}
-            newMessagesCount={this.state.messages_latest_line - this.state.messages_latest_readline}
-            showEmoji
-          />
+          <Tooltip title={localize?localize.chat_room:'chat room'}>
+            <Launcher
+              agentProfile={{
+                teamName: (localize?localize:{}).chat_room+': '+this.state.chat_room_meta.Displayname,
+                imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+              }}
+              isOpen={this.state.open_chat_room}
+              handleClick={this.actions.readLine}
+              onMessageWasSent={this.actions.sendMessage}
+              messageList={this.state.messages}
+              newMessagesCount={this.state.messages_latest_line - this.state.messages_latest_readline}
+              showEmoji
+            />
+          </Tooltip>
         </div>
+
       </BrowserRouter>
       </MuiThemeProvider>
     );

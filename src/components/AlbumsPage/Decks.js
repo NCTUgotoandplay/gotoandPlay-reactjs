@@ -15,7 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 
 function Decks(props) {
   const listItems = props.decks.map((oj) =>
-    <Grid item xs={12} sm={5} md={3} lg={2.2} xl={2}>
+    <Grid item xs={12} sm={8} md={7} lg={4} xl={3}>
       <Card>
         <CardActionArea>
           <CardMedia

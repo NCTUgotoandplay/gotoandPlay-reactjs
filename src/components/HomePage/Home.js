@@ -24,6 +24,9 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ShareIcon from '@material-ui/icons/Share';
+import LinkIcon from '@material-ui/icons/Link';
+import LaunchIcon from '@material-ui/icons/Launch';
+
 
 import abu_tri from "../../imgs/icons/us_triggered.png"
 
@@ -100,15 +103,16 @@ class InfoCard extends Component {
           <IconButton aria-label="Share" onClick={()=> {
             this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.url);
           }}>
-            <ShareIcon />
+            <LinkIcon />
           </IconButton>
         </Tooltip>
-        <a target="_blank" href={this.props.card.url}>
-          <Button color="primary" size="small" aria-label="Share">
-            {this.props.localize.go+' '+this.props.localize.link}
-          </Button>
-        </a>
-
+        <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
+          <a target="_blank" href={this.props.card.url}>
+            <IconButton color="primary" size="small" aria-label="Share">
+              <LaunchIcon />
+            </IconButton>
+          </a>
+        </Tooltip>
       </CardActions>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>
@@ -155,6 +159,7 @@ class Home extends React.Component {
       <div className="homepage">
         <div className="timetable-container">
           <div className="intro_container">
+            <h1 className="slogan">{this.props.slogan}</h1>
             <div className="intro">
               <h1>{this.props.localize.news}</h1>
               <p>

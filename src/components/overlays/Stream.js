@@ -3,16 +3,31 @@ import PlayCircleFilledIcon from '@material-ui/icons/PlayArrow';
 import PauseCircleFilledIcon from '@material-ui/icons/Pause';
 import Fab from '@material-ui/core/Fab';
 
+import Tooltip from '@material-ui/core/Tooltip';
+
 import IconButton from '@material-ui/core/IconButton';
 
 class Stream extends Component {
+  constructor(props) {
+    super(props);
+  }
   render () {
     return (
       <div className="stream">
         <div className="bar">收聽串流</div>
-        <Fab size="large" color="white" onClick={this.props.onClick}>
-          {this.props.playing?<PauseCircleFilledIcon />:<PlayCircleFilledIcon />}
-        </Fab>
+        {this.props.playing?
+          <Tooltip title={this.props.localize.continue_playing}>
+            <Fab size="large" color="white" onClick={this.props.onClick}>
+              <PauseCircleFilledIcon />
+            </Fab>
+          </Tooltip>
+          :
+          <Tooltip title={this.props.localize.pause_playing}>
+            <Fab size="large" color="white" onClick={this.props.onClick}>
+              <PlayCircleFilledIcon />
+            </Fab>
+          </Tooltip>
+          }
       </div>
     );
   }

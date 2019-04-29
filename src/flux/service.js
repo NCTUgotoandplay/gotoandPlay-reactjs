@@ -315,7 +315,6 @@ function Service(NoService, Dispatcher) {
         this.enqueueSnackbar(Localizes[lang].chat_room+': '+json.r[2], {variant: 'info'});
       });
       Services.NoTalk.onEvent('ChannelUpdated', (err, json)=> {
-        console.log(json);
         Dispatcher.dispatch({type: 'updateChatroomMeta', data: json.r});
       });
     }

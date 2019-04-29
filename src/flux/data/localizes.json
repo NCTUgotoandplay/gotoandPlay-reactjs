@@ -228,7 +228,10 @@
     "welcome_message": "ウェルカムメッセージ",
     "guest": "ゲスト",
     "user": "ユーザー",
-    "info_cards": "information cards"
+    "info_cards": "information cards",
+    "go": "go",
+    "share": "share",
+    "copied_to_clipboard": "copyed to clipboard"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -303,7 +306,10 @@
     "welcome_message": "welcome message",
     "guest": "guest",
     "user": "user",
-    "info_cards": "information cards"
+    "info_cards": "information cards",
+    "go": "go",
+    "share": "share",
+    "copied_to_clipboard": "copyed to clipboard"
   },
   "ru": {
     "lang2string": "русский",
@@ -378,7 +384,10 @@
     "welcome_message": "welcome message",
     "guest": "guest",
     "user": "user",
-    "info_cards": "information cards"
+    "info_cards": "information cards",
+    "go": "go",
+    "share": "share",
+    "copied_to_clipboard": "copyed to clipboard"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -453,6 +462,9 @@
     "welcome_message": "welcome message",
     "guest": "guest",
     "user": "user",
-    "info_cards": "information cards"
+    "info_cards": "information cards",
+    "go": "go",
+    "share": "share",
+    "copied_to_clipboard": "copyed to clipboard"
   }
 }

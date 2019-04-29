@@ -3,6 +3,8 @@ import { Link } from "react-router-dom"
 
 import Stream from "./Stream"
 import Button from '@material-ui/core/Button';
+import IconButton from '@material-ui/core/IconButton';
+
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -26,13 +28,17 @@ class NavPic extends Component {
     };
   }
   render() {
-    return(<>
-      <img className="navicon" src={this.props.src[this.state.hover]}
-      onMouseOver={()=> {this.setState({hover:1})}}
-      onMouseOut={()=>{this.setState({hover:0})}}
-      alt="" />
-      <p>{this.props.text}</p>
-    </>)
+    return(
+      <>
+        <IconButton>
+          <img className="navicon" src={this.props.src[this.state.hover]}
+          onMouseOver={()=> {this.setState({hover:1})}}
+          onMouseOut={()=>{this.setState({hover:0})}}
+          alt="" />
+        </IconButton>
+        <p>{this.props.text}</p>
+      </>
+    )
   }
 }
 
@@ -106,7 +112,9 @@ class Header extends Component {
             </Link>
           </div>
         </div>
-        <Stream playing={this.props.playing}
+        <Stream
+          localize={this.props.localize}
+          playing={this.props.playing}
           activeBar={1}
           onClick={(e) => this.props.actions.switchMainStream(e)} />
       </div>
