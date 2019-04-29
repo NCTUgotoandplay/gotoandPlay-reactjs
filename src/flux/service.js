@@ -29,7 +29,6 @@ const getCookie = (cname)=> {
 };
 
 const NoTalkToChatWindow = (msg)=> {
-  console.log(msg);
   return { type: 'text', data:{text: (msg[0]?'user('+msg[0].slice(0, 8)+'): ':'guest: ')+'\n'+msg[2]}};
 };
 
