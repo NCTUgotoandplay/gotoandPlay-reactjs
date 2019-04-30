@@ -135,6 +135,34 @@ function generateDispatcher(setState) {
         return prevstate;
       })
     }
+    else if (payload.type === 'updateInformationCard') {
+      setState(prevstate=>{
+        prevstate.information_cards[payload.data.card_id] = payload.data;
+        return prevstate;
+      }, payload.callback)
+    }
+    else if (payload.type === 'updateSuggestedInformationCards') {
+      setState(prevstate=>{
+        prevstate.suggested_information_cards = payload.data;
+        return prevstate;
+      }, payload.callback)
+    }
+    else if (payload.type === 'addSuggestedInformationCards') {
+      setState(prevstate=>{
+        if(!prevstate.suggested_information_cards.includes(payload.data)&&Object.keys(prevstate.information_cards).includes(payload.data))
+          prevstate.suggested_information_cards.push(payload.data);
+        return prevstate;
+      }, payload.callback)
+    }
+    else if (payload.type === 'deleteSuggestedInformationCards') {
+      setState(prevstate=>{
+        let index = prevstate.suggested_information_cards.indexOf(payload.data);
+        if (index > -1) {
+          prevstate.suggested_information_cards.splice(index, 1);
+        }
+        return prevstate;
+      }, payload.callback)
+    }
   });
 
   return _dispatcher;

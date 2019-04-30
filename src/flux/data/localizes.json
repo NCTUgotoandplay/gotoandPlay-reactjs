@@ -75,7 +75,9 @@
     "info_cards": "information cards",
     "go": "go",
     "share": "share",
-    "copied_to_clipboard": "copyed to clipboard"
+    "copied_to_clipboard": "copyed to clipboard",
+    "null": "not exists",
+    "image": "image"
   },
   "zh": {
     "lang2string": "中文",
@@ -153,7 +155,9 @@
     "info_cards": "資訊卡",
     "go": "前往",
     "share": "分享",
-    "copied_to_clipboard": "複製到剪貼簿了"
+    "copied_to_clipboard": "複製到剪貼簿了",
+    "null": "不存在",
+    "image": "圖片"
   },
   "jp": {
     "lang2string": "日本語",
@@ -231,7 +235,9 @@
     "info_cards": "information cards",
     "go": "go",
     "share": "share",
-    "copied_to_clipboard": "copyed to clipboard"
+    "copied_to_clipboard": "copyed to clipboard",
+    "null": "なし",
+    "image": "image"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -309,7 +315,9 @@
     "info_cards": "information cards",
     "go": "go",
     "share": "share",
-    "copied_to_clipboard": "copyed to clipboard"
+    "copied_to_clipboard": "copyed to clipboard",
+    "null": "not exists",
+    "image": "image"
   },
   "ru": {
     "lang2string": "русский",
@@ -387,7 +395,9 @@
     "info_cards": "information cards",
     "go": "go",
     "share": "share",
-    "copied_to_clipboard": "copyed to clipboard"
+    "copied_to_clipboard": "copyed to clipboard",
+    "null": "not exists",
+    "image": "image"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -465,6 +475,8 @@
     "info_cards": "information cards",
     "go": "go",
     "share": "share",
-    "copied_to_clipboard": "copyed to clipboard"
+    "copied_to_clipboard": "copyed to clipboard",
+    "null": "not exists",
+    "image": "image"
   }
 }

@@ -229,6 +229,19 @@ function Service(NoService, Dispatcher) {
     updateAlbumDecks: (data)=> {
       Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
     },
+    updateInformationCard: (data, callback)=> {
+      Dispatcher.dispatch({type: 'updateInformationCard', data: data, callback: callback});
+    },
+    updateSuggestedInformationCards: (data)=> {
+      Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: data});
+    },
+    addSuggestedInformationCards: (data)=> {
+      console.log(data);
+      Dispatcher.dispatch({type: 'addSuggestedInformationCards', data: data});
+    },
+    deleteSuggestedInformationCards: (data)=> {
+      Dispatcher.dispatch({type: 'deleteSuggestedInformationCards', data: data});
+    },
     updateBackendReact: (callback)=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('updateReact', null, (err, data)=> {
