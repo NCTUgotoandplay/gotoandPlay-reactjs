@@ -110,12 +110,23 @@
         width: calc(100% - 20px)
         overflow-x: auto
   .cards
-    padding: 50px 20px
+    padding: 50px 0
     width: 100%
-    padding: 50px 20px
     position: relative
     text-align: left
     border-top: solid 1px $color_grey
+    .container
+      display: inline-block
+      width: 100%
+      padding: 0 120px
+      @media(max-width: 900px)
+        left: 50px
+        width: 250px
+        margin: 100px 0 0 0
+      h1
+        margin-bottom: 25px
+        color: white
+        text-align: left
 .overlay-card
   top: -50px
   font-size: 20px
