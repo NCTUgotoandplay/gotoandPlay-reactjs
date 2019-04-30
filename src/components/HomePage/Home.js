@@ -19,6 +19,7 @@ import Grid from "@material-ui/core/Grid";
 import IconButton from '@material-ui/core/IconButton';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
+import ReactMarkdown from 'react-markdown';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
@@ -92,8 +93,7 @@ class InfoCard extends Component {
             {this.props.card.title}
           </Typography>
           <Typography component="p">
-
-            {this.props.card.expanded?this.props.card.description:this.props.card.description.slice(0, 50)+'...'}
+            {this.props.card.expanded?<ReactMarkdown source={this.props.card.description} />:this.props.card.description.slice(0, 50)+'...'}
           </Typography>
           </CardContent>
         </CardActionArea>
@@ -116,8 +116,9 @@ class InfoCard extends Component {
       </CardActions>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>
+
           <Typography component="p">
-            {this.props.card.description}
+            <ReactMarkdown source={this.props.card.description} />
           </Typography>
         </CardContent>
       </Collapse>
