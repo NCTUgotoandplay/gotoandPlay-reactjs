@@ -77,7 +77,9 @@
     "share": "share",
     "copied_to_clipboard": "copied to clipboard",
     "null": "not exists",
-    "image": "image"
+    "image": "image",
+    "pinned": "pinned",
+    "information": "information"
   },
   "zh": {
     "lang2string": "中文",
@@ -157,7 +159,9 @@
     "share": "分享",
     "copied_to_clipboard": "複製到剪貼簿了",
     "null": "不存在",
-    "image": "圖片"
+    "image": "圖片",
+    "pinned": "置頂",
+    "information": "消息"
   },
   "jp": {
     "lang2string": "日本語",
@@ -237,7 +241,9 @@
     "share": "share",
     "copied_to_clipboard": "copied to clipboard",
     "null": "なし",
-    "image": "image"
+    "image": "image",
+    "pinned": "pinned",
+    "information": "information"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -317,7 +323,9 @@
     "share": "share",
     "copied_to_clipboard": "copied to clipboard",
     "null": "not exists",
-    "image": "image"
+    "image": "image",
+    "pinned": "pinned",
+    "information": "information"
   },
   "ru": {
     "lang2string": "русский",
@@ -397,7 +405,9 @@
     "share": "share",
     "copied_to_clipboard": "copied to clipboard",
     "null": "not exists",
-    "image": "image"
+    "image": "image",
+    "pinned": "pinned",
+    "information": "information"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -477,6 +487,8 @@
     "share": "share",
     "copied_to_clipboard": "copied to clipboard",
     "null": "not exists",
-    "image": "image"
+    "image": "image",
+    "pinned": "pinned",
+    "information": "information"
   }
 }

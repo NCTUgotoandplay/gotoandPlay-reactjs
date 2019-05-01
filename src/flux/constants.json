@@ -1,5 +1,5 @@
 {
-  "version": "0.0.10",
+  "version": "0.0.11",
   "authors": [
     "BW Hu",
     "noowyee",
@@ -8,7 +8,7 @@
   "settings": {
     "talksy_link": "https://gotoandplay.nctu.edu.tw/talksy/",
     "base_url": "https://gotoandplay.nctu.edu.tw",
-    "default_lang": "ru",
+    "default_lang": "en",
     "audio_source": "http://140.113.52.126:8000/;",
     "noservice": {
       "host": "gotoandplay.nctu.edu.tw",

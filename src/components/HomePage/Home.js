@@ -102,15 +102,24 @@ class Home extends React.Component {
               <h1>{this.props.localize.news}</h1>
               <p>
                 <ul>
-                  {this.props.news.map((text)=> <li>{text}</li>)}
+                  {this.props.news.map((text)=> <a href={text[1]} target="_blank"><li>{text[0]}</li></a>)}
                 </ul>
               </p>
             </div>
             <div className="intro">
-              <h1>{this.props.localize.more_info}</h1>
+              <h1>{this.props.localize.pinned+' '+this.props.localize.information}</h1>
               <p>
                 <ul>
-                  {this.props.more_info.map((text)=> <li>{text}</li>)}
+                  {this.props.pinned_info.map((text)=> {
+                    if(text)
+                      return(
+                        <a href={text[1]} target="_blank">
+                        <Tooltip title={this.props.localize.more_info}>
+                        <li>{text[0]}</li>
+                        </Tooltip>
+                        </a>
+                      );
+                  })}
                   <li onClick={()=>{this.props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我哈哈哈"}</li>
                 </ul>
               </p>
@@ -127,14 +136,6 @@ class Home extends React.Component {
             </Grid>
             </div>
           </div>
-        <div className="cards">
-          <div className="container">
-            <h1>{this.props.localize.more_info}</h1>
-            <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
-              {this.renderCards()}
-            </Grid>
-          </div>
-        </div>
       </div>
     );
   }

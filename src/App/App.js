@@ -69,7 +69,6 @@ class App extends Component {
       audio_display: "交大網路電台",
       localizes: {},
       news: [],
-      more_info: [],
       album_cards: [],
       album_decks: [],
       suggested_information_cards: ['go', 'id1', 'id2'],
@@ -111,20 +110,24 @@ class App extends Component {
           <Route exact path="/" render={props=> {
             return(
               <HomePage
-              slogan={this.state.slogan}
-              actions={this.actions}
-              online_count={this.state.online_count}
-              more_info={this.state.more_info}
-              news={this.state.news}
-              suggested_cards={this.state.suggested_information_cards}
-              cards={this.state.information_cards}
-              programs = {this.state.programs}
-              localize={localize?localize:{}}
+                slogan={this.state.slogan}
+                actions={this.actions}
+                online_count={this.state.online_count}
+                pinned_info={this.state.suggested_information_cards.map(card_id=> {
+                  let card = this.state.information_cards[card_id];
+                  if(card)
+                    return([card.title, '/InformationCards/'+card_id]);
+                })}
+                news={this.state.news}
+                suggested_cards={this.state.suggested_information_cards}
+                cards={this.state.information_cards}
+                programs = {this.state.programs}
+                localize={localize?localize:{}}
               />
             );
           }} />
 
-          <Route path="/InformationCard/:card_id" render={props=> {
+          <Route path="/InformationCards/:card_id" render={props=> {
             let card = this.state.information_cards[props.match.params.card_id];
             if(card) {
               return(

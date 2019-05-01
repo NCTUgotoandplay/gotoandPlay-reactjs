@@ -29,6 +29,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+
+import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TextField from '@material-ui/core/TextField';
@@ -88,7 +90,9 @@ export default class Settings extends React.Component {
             title: card.title,
             description: card.description,
             img: card.img,
-            url: card.url
+            url: card.url,
+            expanded: card.expanded,
+            expandable: card.expandable,
           }})}}>
             <EditIcon/>
           </IconButton>
@@ -175,6 +179,26 @@ export default class Settings extends React.Component {
                 this.setState(prevState=>{prevState.edited_information_card.title = value;return prevState;});
               }}
             />
+            <FormControlLabel control={
+              <Checkbox
+                checked={this.state.edited_information_card?this.state.edited_information_card.expandable:null}
+                onChange={(evt)=> {
+                  let value = evt.target.checked;
+                  this.setState(prevState=>{prevState.edited_information_card.expandable = value;return prevState;});
+                }}
+              />
+            } label={'expandable'}/>
+
+            <FormControlLabel control={
+              <Checkbox
+              checked={this.state.edited_information_card?this.state.edited_information_card.expanded:null}
+              onChange={(evt)=> {
+                let value = evt.target.checked;
+                this.setState(prevState=>{prevState.edited_information_card.expanded = value;return prevState;});
+              }}
+              />
+            } label={'expanded'}/>
+            
             <TextField
               margin="dense"
               id="link"

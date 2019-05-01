@@ -40,7 +40,7 @@ export default class InformationCardPage extends Component {
           <div><p>{this.props.card.published_date}</p></div>
           <Tooltip title={this.props.localize.share}>
             <IconButton style={{color: 'white'}} size="small" aria-label="Share" onClick={()=> {
-              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCard/'+this.props.card.card_id);
+              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.card_id);
             }}>
               <ShareIcon />
             </IconButton>
@@ -97,7 +97,7 @@ export class InformationCard extends Component {
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card>
         <Tooltip title={this.props.localize.more_info}>
-          <Link to={'/InformationCard/'+this.props.card.card_id}>
+          <Link to={'/InformationCards/'+this.props.card.card_id}>
             <CardActionArea>
               <CardMedia
                 component="img"
@@ -125,7 +125,7 @@ export class InformationCard extends Component {
           {this.renderExpandButton()}
           <Tooltip title={this.props.localize.share}>
               <IconButton size="small" aria-label="Share" onClick={()=> {
-                this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCard/'+this.props.card.card_id);
+                this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.card_id);
               }}>
                 <ShareIcon />
             </IconButton>
