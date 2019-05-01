@@ -18,10 +18,12 @@ import {Footer, Header} from "../components/overlays"
 import TalkRoom from "../components/TalkRoom"
 
 // Pages
-import HomePage from "../components/HomePage"
-import AlbumsPage from "../components/AlbumsPage"
-import AboutUsPage from "../components/AboutusPage"
-import AdminPage from "../components/AdminPage"
+import HomePage from "../components/HomePage";
+import AlbumsPage from "../components/AlbumsPage";
+import AboutUsPage from "../components/AboutusPage";
+import AdminPage from "../components/AdminPage";
+import InformationCardPage from "../components/InformationCardPage";
+
 
 import Button from '@material-ui/core/Button';
 // Css
@@ -120,6 +122,20 @@ class App extends Component {
               localize={localize?localize:{}}
               />
             );
+          }} />
+
+          <Route path="/InformationCard/:card_id" render={props=> {
+            let card = this.state.information_cards[props.match.params.card_id];
+            if(card) {
+              return(
+                <InformationCardPage
+                  actions={this.actions}
+                  localize={localize?localize:{}}
+                  card={card}
+                />
+              );
+            }
+
           }} />
 
           <Route path="/Admin" render={props=> {

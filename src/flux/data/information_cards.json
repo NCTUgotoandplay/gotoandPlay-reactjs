@@ -3,36 +3,46 @@
     "title": "星期一　揮揮衣袖憂鬱走",
     "description": "又是藍色星期一，Monday Blue，諸事不順氣血不通！來自台北大學的好聲音－【北大不好意思電台】，率先疏通你的憂鬱。快打開【Becca's Moving Movie】，週一20~21點，中英雙語輪流播映，帶你暢遊電影以及全世界。儘管遊遍地球了，還是很悲傷嗎?那就交給21~22點的【演唱會客室】吧！戴起耳機，聽遍各大演唱會，這麼好康的事情，你怎麼能錯過呢？緊接著22~23點，【Band Band】帶給你大大小小的樂團資訊，讓你樂團資訊輕鬆一把抓。聽完樂團，想要來點不一樣的聽覺饗宴嗎?從八點檔到舞台劇，從天下父母心到歌劇魅影，23~24點，【劇舞吧】帶你認識各式各樣的戲劇演出。禮拜一最後一個節目，就是要開啟你全新的禮拜二。【T.G.I.M】與你暢聊生活大小事，陪你終結憂鬱禮拜一。",
     "img": "",
+    "published_date": "jan 2018",
     "expanded": true,
+    "expandable": false,
     "url": "https://gotoandplaynctu.wixsite.com/gotoandplay/program"
   },
   "go": {
     "title": "關於goto&Play",
+    "expandable": false,
+
+    "published_date": "jan 2018",
     "description": "        2007年，第一屆超級星光大道開播，全台掀起一股歌唱選秀節目風潮。吸引成千上萬愛唱歌、愛聽歌的人投入心血與淚水。同年9月，新竹交通大學客家學院也竄出新聲，交大網路電台Goto&Play揚起一陣不一樣的校園旋風。有別於一般對交大理工氣息的想像，交大網路電台Goto&Play是由交大傳播與科技學系的學生所創立，三名傳科系大三的同學因著對電台的熱情和夢想，就算當時只擁有99元的麥克風，仍舊透過課程和老師、助教的技術協助下，籌畫開播了當時來講非常少見的校園網路電台。縱然過程辛苦，三名同學仍舊秉持著Goto&Play的精神，自播自製了相當多元的節目內容，包含越語節目、Hip Hop流行音樂節目、日語德語歌曲節目等，還能線上Call in與聽眾有最即時的互動，更舉辦老師版的星光大道，邀請老師一同用聲音征服校園。交大網路電台Goto&Play自開播以來，就一直是系上熱門的話題組織，直到今日電台組織架構及人數持續增長茁壯，相信未來交大網路台Goto&Play將會持續為聽眾獻上最不一樣的好聲音。",
-    "img": "https://avatars3.githubusercontent.com/u/46682491?s=200&v=4",
-    "url": "https://gotoandplay.nctu.edu.tw"
+    "img": "https://avatars3.githubusercontent.com/u/46682491?s=200&v=4"
   },
   "id1": {
     "title": "舊官網",
+    "expandable": false,
+
     "description": "看看我們的舊官網吧！！！",
     "img": "https://gotoandplay.nctu.edu.tw/old/images/program.jpg",
     "url": "https://gotoandplay.nctu.edu.tw/old/"
   },
   "id2": {
     "title": "聊天室",
+    "expandable": false,
+
     "description": "你可以點擊右下角聊天，或是前往Talksy聊天！",
     "img": "https://github.com/NOOXY-research/Talksy/raw/master/imgs/NoTalkAD.png",
     "url": "/talksy/"
   },
   "id3": {
     "title": "管理頁面",
+    "expandable": false,
+
     "description": "管理你的網頁",
     "img": "",
     "url": "/admin/"
   },
   "noservice": {
     "title": "網站技術",
-    "expanded": true,
+    "expandable": true,
     "description": "NoService is a high level framework for services that provide you \"nodejs\" and \"python3\" environment and eliminate service designer to care about low level part of your project.Such as authorization, user system, database, protocol and so on. It also run multiple services integrated and we also provide a manager and shell to manipulate all of them.",
     "img": "https://raw.githubusercontent.com/NOOXY-inc/Art-Collection/master/NoService/NoService.png",
     "url": "https://github.com/NOOXY-research/NoService"

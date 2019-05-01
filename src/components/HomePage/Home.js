@@ -29,6 +29,7 @@ import ShareIcon from '@material-ui/icons/Share';
 import LinkIcon from '@material-ui/icons/Link';
 import LaunchIcon from '@material-ui/icons/Launch';
 
+import {InformationCard} from '../InformationCardPage/InformationCard';
 
 import abu_tri from "../../imgs/icons/us_triggered.png"
 
@@ -55,78 +56,7 @@ class Timetable extends Component {
   }
 }
 
-class InfoCard extends Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      expanded: false
-    }
-  }
 
-  renderExpandButton() {
-    if(!this.props.card.expanded) {
-      return(
-        <Tooltip title={this.props.localize.more_info}>
-          <IconButton
-            onClick={()=> {this.setState({expanded: (this.state.expanded+1)%2})}}
-            aria-expanded={this.state.expanded}
-            aria-label="Show more"
-          >
-            <ExpandMoreIcon />
-          </IconButton>
-        </Tooltip>
-      )
-    }
-  }
-
-  render() {
-    return(
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            wide
-            image={this.props.card.img}
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {this.props.card.title}
-          </Typography>
-          <Typography component="p">
-            {this.props.card.expanded?<ReactMarkdown source={this.props.card.description} />:this.props.card.description.slice(0, 50)+'...'}
-          </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-        {this.renderExpandButton()}
-        <Tooltip title={this.props.localize.share}>
-          <IconButton aria-label="Share" onClick={()=> {
-            this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.url);
-          }}>
-            <LinkIcon />
-          </IconButton>
-        </Tooltip>
-        <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
-          <a target="_blank" href={this.props.card.url}>
-            <IconButton color="primary" size="small" aria-label="Share">
-              <LaunchIcon />
-            </IconButton>
-          </a>
-        </Tooltip>
-      </CardActions>
-      <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-
-          <Typography component="p">
-            <ReactMarkdown source={this.props.card.description} />
-          </Typography>
-        </CardContent>
-      </Collapse>
-      </Card>
-    </Grid>)
-  }
-}
 class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -136,10 +66,14 @@ class Home extends React.Component {
     let rows = [];
     for(let i in this.props.suggested_cards) {
       let card = this.props.cards[this.props.suggested_cards[i]];
-      if(card)
+
+      if(card) {
+        card.card_id = i;
         rows.push(
-          <InfoCard {...this.props} card={card}/>
+          <InformationCard {...this.props} card={card}/>
         );
+      }
+
       }
     return rows;
   }
@@ -148,10 +82,12 @@ class Home extends React.Component {
     let rows = [];
     for(let i in this.props.cards) {
       let card = this.props.cards[i];
-      if(card)
+      if(card) {
+        card.card_id = i;
         rows.push(
-          <InfoCard {...this.props} card={card}/>
+          <InformationCard {...this.props} card={card}/>
         );
+      }
       }
     return rows;
   }
