@@ -130,6 +130,7 @@ class App extends Component {
           <Route path="/InformationCards/:card_id" render={props=> {
             let card = this.state.information_cards[props.match.params.card_id];
             if(card) {
+              card.card_id = props.match.params.card_id;
               return(
                 <InformationCardPage
                   actions={this.actions}

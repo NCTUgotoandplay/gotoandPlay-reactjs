@@ -68,26 +68,12 @@ class Home extends React.Component {
       let card = this.props.cards[this.props.suggested_cards[i]];
 
       if(card) {
-        card.card_id = i;
+        card.card_id = this.props.suggested_cards[i];
         rows.push(
           <InformationCard {...this.props} card={card}/>
         );
       }
 
-      }
-    return rows;
-  }
-
-  renderCards () {
-    let rows = [];
-    for(let i in this.props.cards) {
-      let card = this.props.cards[i];
-      if(card) {
-        card.card_id = i;
-        rows.push(
-          <InformationCard {...this.props} card={card}/>
-        );
-      }
       }
     return rows;
   }
