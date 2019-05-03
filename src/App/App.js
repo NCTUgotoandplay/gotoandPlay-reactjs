@@ -195,7 +195,7 @@ class App extends Component {
             <Launcher
               agentProfile={{
                 teamName: (localize?localize:{}).chat_room+': '+this.state.chat_room_meta.Displayname,
-                imageUrl: 'https://a.slack-edge.com/66f9/img/avatars-teams/ava_0001-34.png'
+                imageUrl: this.state.chat_room_meta.Thumbnail
               }}
               isOpen={this.state.open_chat_room}
               handleClick={this.actions.readLine}
