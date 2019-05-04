@@ -60,6 +60,7 @@ export default class InformationCardPage extends Component {
               </IconButton>
             </a>
           </Tooltip>:null}
+
         </div>
         <hr/>
         <ReactMarkdown source={this.props.card.Description} />
