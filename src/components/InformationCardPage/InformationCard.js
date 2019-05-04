@@ -63,7 +63,7 @@ export default class InformationCardPage extends Component {
 
         </div>
         <hr/>
-        <ReactMarkdown source={this.props.card.Description} />
+        <ReactMarkdown className={'ReactMarkdown'} source={this.props.card.Description} />
       </div>
     )
   }
@@ -156,7 +156,7 @@ export class InformationCard extends Component {
             </Typography>
             :null}
           <Typography component="p">
-            <ReactMarkdown source={this.props.card.Description} />
+            <ReactMarkdown className={'ReactMarkdown'} source={this.props.card.Description} />
           </Typography>
         </CardContent>
       </Collapse>

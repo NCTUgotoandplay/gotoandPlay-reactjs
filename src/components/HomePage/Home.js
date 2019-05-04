@@ -116,7 +116,7 @@ class Home extends React.Component {
 
         <div className="cards">
           <div className="container">
-            <h1>{this.props.localize.suggestion}</h1>
+            <h1 className="block-header">{this.props.localize.suggestion}</h1>
             <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
               {this.renderSuggestedCards()}
             </Grid>
