@@ -20,6 +20,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import IconButton from '@material-ui/core/IconButton';
+import LaunchIcon from '@material-ui/icons/Launch';
 
 
 import { withStyles } from '@material-ui/core/styles';
@@ -113,6 +114,13 @@ export default class Settings extends React.Component {
           <IconButton>
             <DeleteIcon/>
           </IconButton>
+        </Tooltip>
+        <Tooltip title={this.props.localize.go}>
+          <a href={'/InformationCards/'+card.CardId} target="_blank">
+            <IconButton>
+              <LaunchIcon/>
+            </IconButton>
+          </a>
         </Tooltip>
       </CustomTableCell>,
       <CustomTableCell>{card.Description?card.Description.slice(0, 20)+'...':this.props.localize.null}</CustomTableCell>,

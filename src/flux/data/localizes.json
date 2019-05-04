@@ -240,14 +240,16 @@
     "welcome_message": "ウェルカムメッセージ",
     "guest": "ゲスト",
     "user": "ユーザー",
-    "info_cards": "information cards",
-    "go": "go",
-    "share": "share",
-    "copied_to_clipboard": "copied to clipboard",
+    "info_cards": "情報カード",
+    "go": "行く",
+    "share": "シェア",
+    "copied_to_clipboard": "クリップボードにコピー",
     "null": "なし",
-    "image": "image",
-    "pinned": "pinned",
-    "information": "information"
+    "image": "映画",
+    "pinned": "ピン",
+    "information": "情報",
+    "created_date": "作成日",
+    "modified_date": "修正日"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -329,7 +331,9 @@
     "null": "not exists",
     "image": "image",
     "pinned": "pinned",
-    "information": "information"
+    "information": "information",
+    "created_date": "created date",
+    "modified_date": "modified date"
   },
   "ru": {
     "lang2string": "русский",
@@ -411,7 +415,9 @@
     "null": "not exists",
     "image": "image",
     "pinned": "pinned",
-    "information": "information"
+    "information": "information",
+    "created_date": "created date",
+    "modified_date": "modified date"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -493,6 +499,8 @@
     "null": "not exists",
     "image": "image",
     "pinned": "pinned",
-    "information": "information"
+    "information": "information",
+    "created_date": "created date",
+    "modified_date": "modified date"
   }
 }
