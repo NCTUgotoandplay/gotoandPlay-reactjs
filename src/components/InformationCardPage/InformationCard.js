@@ -116,7 +116,7 @@ export class InformationCard extends Component {
                 </Typography>
                 :null}
               <Typography component="p">
-                {this.props.card.Expanded?<ReactMarkdown source={this.props.card.Description} />:(this.props.card.Description?this.props.card.Description.slice(0, 50)+'...':null)}
+                {this.props.card.Expanded?<ReactMarkdown className={'ReactMarkdown'}  source={this.props.card.Description} />:(this.props.card.Description?this.props.card.Description.slice(0, 50)+'...':null)}
               </Typography>
               </CardContent>
             </CardActionArea>
