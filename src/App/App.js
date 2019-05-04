@@ -139,7 +139,9 @@ class App extends Component {
                 />
               );
             }
-
+            else {
+              this.actions.loadInformationCard(props.match.params.card_id);
+            }
           }} />
 
           <Route path="/Admin" render={props=> {

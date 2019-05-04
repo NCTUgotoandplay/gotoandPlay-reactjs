@@ -248,6 +248,20 @@ function Service(NoService, Dispatcher) {
       }
 
     },
+    loadInformationCard: (CardId)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('getInfoCard', CardId, (err, result)=> {
+          console.log(123);
+          if(!result) {
+            result = {};
+            result.CardId = CardId;
+            result.Title = Localizes[lang].null;
+            result.Description = Localizes[lang].info_cards+'('+CardId+') '+Localizes[lang].null;
+
+          }
+          Dispatcher.dispatch({type: 'updateInformationCard', data: result});
+        });
+    },
     loadSuggestedInformationCards: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getSuggestedInfoCards', null, (err, result)=> {
