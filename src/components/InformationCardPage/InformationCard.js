@@ -60,6 +60,7 @@ export default class InformationCardPage extends Component {
               </IconButton>
             </a>
           </Tooltip>:null}
+          <br/><p style={{'fontSize': '10px'}}>{this.props.localize.modified_date+': '+this.props.card.modifydate}</p>
 
         </div>
         <hr/>
