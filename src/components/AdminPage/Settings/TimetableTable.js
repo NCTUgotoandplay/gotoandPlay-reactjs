@@ -207,6 +207,7 @@ export default class Settings extends React.Component {
             <Button onClick={()=>{
               this.setState(prevState=> {
                 let segment = prevState.edit_add_new_segment.segment;
+                prevState.saved = false;
                 if(prevState.edited_timetable.segments[segment]) {
                   alert('Already exists.');
                   prevState.edit_add_new_segment = null;

@@ -14,20 +14,6 @@ class AboutUs extends React.Component {
         <div className="grid">
           <div className="top">
           </div>
-          <div className="mail">
-
-            <div className="block">
-              <h2>{this.props.localize.about_contact}</h2>
-              <FormControl>
-                <TextField label={this.props.localize.about_nickname} margin="dense"/>
-                <TextField label={this.props.localize.about_email} margin="dense"/>
-                <TextField label={this.props.localize.about_message} margin="dense"/>
-                <Button variant="contained"  color="primary">
-                  送出
-                </Button>
-              </FormControl>
-            </div>
-          </div>
           <div className="about">
             <h2>{this.props.localize.about_title}</h2>
             <p>{this.props.localize.about_p}</p>

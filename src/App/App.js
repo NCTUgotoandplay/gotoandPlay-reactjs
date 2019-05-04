@@ -116,7 +116,7 @@ class App extends Component {
                 pinned_info={this.state.suggested_information_cards.map(card_id=> {
                   let card = this.state.information_cards[card_id];
                   if(card)
-                    return([card.title, '/InformationCards/'+card_id]);
+                    return([card.Title, '/InformationCards/'+card_id]);
                 })}
                 news={this.state.news}
                 suggested_cards={this.state.suggested_information_cards}

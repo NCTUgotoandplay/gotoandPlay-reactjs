@@ -67,6 +67,7 @@ export default class Settings extends React.Component {
     super(props);
 
     this.state = {
+      loaded: false,
       edited_information_card: null,
       saved: true
     }
@@ -82,17 +83,17 @@ export default class Settings extends React.Component {
 
   renderCard(card_id, card) {
     let rows = [
-      <CustomTableCell>{card.title}</CustomTableCell>,
+      <CustomTableCell>{card.Title}</CustomTableCell>,
       <CustomTableCell>
         <Tooltip title={this.props.localize.edit}>
           <IconButton onClick={()=> {this.setState({edited_information_card: {
-            card_id: card_id,
-            title: card.title,
-            description: card.description,
-            img: card.img,
-            url: card.url,
-            expanded: card.expanded,
-            expandable: card.expandable,
+            CardId: card.CardId,
+            Title: card.Title,
+            Description: card.Description,
+            ImageURL: card.ImageURL,
+            Link: card.Link,
+            Expanded: card.Expanded,
+            Expandable: card.Expandable
           }})}}>
             <EditIcon/>
           </IconButton>
@@ -114,7 +115,9 @@ export default class Settings extends React.Component {
           </IconButton>
         </Tooltip>
       </CustomTableCell>,
-      <CustomTableCell>{card.description?card.description.slice(0, 20)+'...':this.props.localize.null}</CustomTableCell>
+      <CustomTableCell>{card.Description?card.Description.slice(0, 20)+'...':this.props.localize.null}</CustomTableCell>,
+      <CustomTableCell>{card.createdate}</CustomTableCell>,
+      <CustomTableCell>{card.modifydate}</CustomTableCell>
     ];
     return rows;
   }
@@ -123,12 +126,18 @@ export default class Settings extends React.Component {
     let rows = [
       <CustomTableCell>{this.props.localize.title}</CustomTableCell>,
       <CustomTableCell>{this.props.localize.operation}</CustomTableCell>,
-      <CustomTableCell>{this.props.localize.description}</CustomTableCell>
+      <CustomTableCell>{this.props.localize.description}</CustomTableCell>,
+      <CustomTableCell>{this.props.localize.created_date}</CustomTableCell>,
+      <CustomTableCell>{this.props.localize.modified_date}</CustomTableCell>
     ];
     return rows;
   }
 
   render() {
+    if(this.props.expanded&&!this.state.loaded) {
+      this.props.actions.loadAllInformationCards();
+      this.setState({loaded: true});
+    }
     return(
       [
         <CustomExpansionPanel expanded={this.props.expanded} onChange={this.props.onChange}>
@@ -173,42 +182,42 @@ export default class Settings extends React.Component {
               label={this.props.localize.title}
               type="text"
               fullWidth
-              value={this.state.edited_information_card?this.state.edited_information_card.title:null}
+              value={this.state.edited_information_card?this.state.edited_information_card.Title:null}
               onChange={(evt) => {
                 let value = evt.target.value;
-                this.setState(prevState=>{prevState.edited_information_card.title = value;return prevState;});
+                this.setState(prevState=>{prevState.edited_information_card.Title = value;return prevState;});
               }}
             />
             <FormControlLabel control={
               <Checkbox
-                checked={this.state.edited_information_card?this.state.edited_information_card.expandable:null}
+                checked={this.state.edited_information_card?this.state.edited_information_card.Expandable:null}
                 onChange={(evt)=> {
                   let value = evt.target.checked;
-                  this.setState(prevState=>{prevState.edited_information_card.expandable = value;return prevState;});
+                  this.setState(prevState=>{prevState.edited_information_card.Expandable = value;return prevState;});
                 }}
               />
             } label={'expandable'}/>
 
             <FormControlLabel control={
               <Checkbox
-              checked={this.state.edited_information_card?this.state.edited_information_card.expanded:null}
+              checked={this.state.edited_information_card?this.state.edited_information_card.Expanded:null}
               onChange={(evt)=> {
                 let value = evt.target.checked;
-                this.setState(prevState=>{prevState.edited_information_card.expanded = value;return prevState;});
+                this.setState(prevState=>{prevState.edited_information_card.Expanded = value;return prevState;});
               }}
               />
             } label={'expanded'}/>
-            
+
             <TextField
               margin="dense"
               id="link"
               label={this.props.localize.link}
               type="text"
               fullWidth
-              value={this.state.edited_information_card?this.state.edited_information_card.url:null}
+              value={this.state.edited_information_card?this.state.edited_information_card.Link:null}
               onChange={evt => {
                 let value = evt.target.value;
-                this.setState(prevState=>{prevState.edited_information_card.url = value; return prevState});
+                this.setState(prevState=>{prevState.edited_information_card.Link = value; return prevState});
               }}
             />
             <TextField
@@ -217,10 +226,10 @@ export default class Settings extends React.Component {
               label={this.props.localize.image}
               type="text"
               fullWidth
-              value={this.state.edited_information_card?this.state.edited_information_card.img:null}
+              value={this.state.edited_information_card?this.state.edited_information_card.ImageURL:null}
               onChange={evt => {
                 let value = evt.target.value;
-                this.setState(prevState=>{prevState.edited_information_card.img = value; return prevState});
+                this.setState(prevState=>{prevState.edited_information_card.ImageURL = value; return prevState});
               }}
             />
             <Typography className="heading">{this.props.localize.description}</Typography>
@@ -228,9 +237,9 @@ export default class Settings extends React.Component {
               this.state.edited_information_card?
               <ReactMde
                 onChange={value => {
-                  this.setState(prevState=>{prevState.edited_information_card.description = value; return prevState});
+                  this.setState(prevState=>{prevState.edited_information_card.Description = value; return prevState});
                 }}
-                value={this.state.edited_information_card.description}
+                value={this.state.edited_information_card.Description}
               />
               :null
             }

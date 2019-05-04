@@ -107,6 +107,7 @@ function Service(NoService, Dispatcher) {
               this.setupDispatchers();
               this.Actions.loadOnlineCount();
               this.Actions.loadPrograms();
+              this.Actions.loadSuggestedInformationCards();
 
               // chat
               Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
@@ -229,17 +230,57 @@ function Service(NoService, Dispatcher) {
       Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
     },
     updateInformationCard: (data, callback)=> {
-      Dispatcher.dispatch({type: 'updateInformationCard', data: data, callback: callback});
+      console.log(data);
+      if(data.CardId) {
+        if(Services.gotoandPlay)
+          Services.gotoandPlay.call('updateInfoCard', data, (err, result)=> {
+            Dispatcher.dispatch({type: 'updateInformationCard', data: data, callback: callback});
+            callback(err);
+          });
+      }
+      else {
+        if(Services.gotoandPlay)
+          Services.gotoandPlay.call('createInfoCard', data, (err, result)=> {
+            console.log(result);
+            Dispatcher.dispatch({type: 'updateInformationCard', data: data, callback: callback});
+            callback(err);
+          });
+      }
+
+    },
+    loadSuggestedInformationCards: ()=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('getSuggestedInfoCards', null, (err, result)=> {
+          let op =  (CardId)=> {
+            Services.gotoandPlay.call('getInfoCard', CardId, (err, result)=> {
+              console.log(result);
+              if(result)
+                Dispatcher.dispatch({type: 'updateInformationCard', data: result});
+            });
+          };
+          for(let i in result) {
+            op(result[i]);
+          };
+          Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: result});
+        });
     },
     updateSuggestedInformationCards: (data)=> {
-      Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: data});
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updateSuggestedInfoCards', data, (err, result)=> {
+          Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: result});
+        });
     },
     addSuggestedInformationCards: (data)=> {
-      console.log(data);
-      Dispatcher.dispatch({type: 'addSuggestedInformationCards', data: data});
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('addSuggestedInfoCards', data, (err, result)=> {
+          Dispatcher.dispatch({type: 'addSuggestedInformationCards', data: data});
+        });
     },
     deleteSuggestedInformationCards: (data)=> {
-      Dispatcher.dispatch({type: 'deleteSuggestedInformationCards', data: data});
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('deleteSuggestedInfoCards', data, (err, result)=> {
+          Dispatcher.dispatch({type: 'deleteSuggestedInformationCards', data: data});
+        });
     },
     updateBackendReact: (callback)=> {
       if(Services.gotoandPlay)
@@ -305,6 +346,18 @@ function Service(NoService, Dispatcher) {
           this.enqueueSnackbar('Notification pushed.', {variant: 'succeess'});
         });
     },
+    loadAllInformationCards: ()=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('getAllInfoCards', null, (err, data)=> {
+          console.log(data);
+          let dict = {};
+          for(let i in data) {
+            dict[data[i].CardId] = data[i];
+          }
+          console.log(dict);
+          this.Actions.updateInfomationCards(dict);
+        });
+    },
     loadOnlineCount: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getOnlineCount', null, (err, data)=> {
@@ -346,11 +399,10 @@ function Service(NoService, Dispatcher) {
   this.start = (next)=> {
     setupOnline();
 
-    this.Actions.updateInfomationCards(require('./data/information_cards.json'));
+
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
-    this.Actions.updateInfos(require('./data/more_info.json'));
 
     this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);

@@ -79,7 +79,9 @@
     "null": "not exists",
     "image": "image",
     "pinned": "pinned",
-    "information": "information"
+    "information": "information",
+    "created_date": "created date",
+    "modified_date": "modified date"
   },
   "zh": {
     "lang2string": "中文",
@@ -161,7 +163,9 @@
     "null": "不存在",
     "image": "圖片",
     "pinned": "置頂",
-    "information": "消息"
+    "information": "消息",
+    "created_date": "創建日期",
+    "modified_date": "上次修改"
   },
   "jp": {
     "lang2string": "日本語",

@@ -35,26 +35,26 @@ export default class InformationCardPage extends Component {
   render() {
     return(
       <div className="information_card_page">
-        <h1>{this.props.card.title}</h1>
+        <h1>{this.props.card.Title}</h1>
         <div className={'buttons'}>
-          <div><p>{this.props.card.published_date}</p></div>
+          <div><p>{this.props.card.createdate}</p></div>
           <Tooltip title={this.props.localize.share}>
             <IconButton style={{color: 'white'}} size="small" aria-label="Share" onClick={()=> {
-              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.card_id);
+              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.CardId);
             }}>
               <ShareIcon />
             </IconButton>
           </Tooltip>
-          {this.props.card.url?<Tooltip title={this.props.localize.link}>
+          {this.props.card.Link?<Tooltip title={this.props.localize.link}>
             <IconButton style={{color: 'white'}} aria-label="Link" onClick={()=> {
-              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.url);
+              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.Link);
             }}>
               <LinkIcon />
             </IconButton>
           </Tooltip>:null}
-          {this.props.card.url?
+          {this.props.card.Link?
             <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
-            <a target="_blank" href={this.props.card.url}>
+            <a target="_blank" href={this.props.card.Link}>
               <IconButton style={{color: 'white'}} size="small" aria-label="Share">
                 <LaunchIcon />
               </IconButton>
@@ -62,7 +62,7 @@ export default class InformationCardPage extends Component {
           </Tooltip>:null}
         </div>
         <hr/>
-        <ReactMarkdown source={this.props.card.description} />
+        <ReactMarkdown source={this.props.card.Description} />
       </div>
     )
   }
@@ -77,7 +77,7 @@ export class InformationCard extends Component {
   }
 
   renderExpandButton() {
-    if(!this.props.card.expanded&&this.props.card.expandable) {
+    if(!this.props.card.Expanded&&this.props.card.Expandable) {
       return(
         <Tooltip title={this.props.localize.more_info}>
           <IconButton
@@ -97,24 +97,24 @@ export class InformationCard extends Component {
       <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
       <Card>
         <Tooltip title={this.props.localize.more_info}>
-          <Link to={'/InformationCards/'+this.props.card.card_id}>
+          <Link to={'/InformationCards/'+this.props.card.CardId}>
             <CardActionArea>
               <CardMedia
                 component="img"
                 wide
-                image={this.props.card.img}
+                image={this.props.card.ImageURL}
               />
               <CardContent>
               <Typography gutterBottom variant="h5" component="h2">
-                {this.props.card.title}
+                {this.props.card.Title}
               </Typography>
-              {this.props.card.published_date?
+              {this.props.card.createdate?
                 <Typography gutterBottom variant="p" component="h5">
-                {this.props.card.published_date}
+                {this.props.card.createdate}
                 </Typography>
                 :null}
               <Typography component="p">
-                {this.props.card.expanded?<ReactMarkdown source={this.props.card.description} />:this.props.card.description.slice(0, 50)+'...'}
+                {this.props.card.Expanded?<ReactMarkdown source={this.props.card.Description} />:this.props.card.Description.slice(0, 50)+'...'}
               </Typography>
               </CardContent>
             </CardActionArea>
@@ -125,21 +125,21 @@ export class InformationCard extends Component {
           {this.renderExpandButton()}
           <Tooltip title={this.props.localize.share}>
               <IconButton size="small" aria-label="Share" onClick={()=> {
-                this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.card_id);
+                this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.CardId);
               }}>
                 <ShareIcon />
             </IconButton>
           </Tooltip>
-          {this.props.card.url?<Tooltip title={this.props.localize.link}>
+          {this.props.card.Link?<Tooltip title={this.props.localize.link}>
             <IconButton aria-label="Link" onClick={()=> {
-              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.url);
+              this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.Link);
             }}>
               <LinkIcon />
             </IconButton>
           </Tooltip>:null}
-          {this.props.card.url?
+          {this.props.card.Link?
             <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
-            <a target="_blank" href={this.props.card.url}>
+            <a target="_blank" href={this.props.card.Link}>
               <IconButton color="primary" size="small" aria-label="Share">
                 <LaunchIcon />
               </IconButton>
@@ -149,13 +149,13 @@ export class InformationCard extends Component {
         </CardActions>
       <Collapse in={this.state.expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          {this.props.card.published_date?
+          {this.props.card.createdate?
             <Typography gutterBottom variant="p" component="h5">
-            {this.props.card.published_date}
+            {this.props.card.createdate}
             </Typography>
             :null}
           <Typography component="p">
-            <ReactMarkdown source={this.props.card.description} />
+            <ReactMarkdown source={this.props.card.Description} />
           </Typography>
         </CardContent>
       </Collapse>
