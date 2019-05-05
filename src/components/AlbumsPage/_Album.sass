@@ -1,5 +1,57 @@
 @import ../commons/variable
 
+.Disco
+  user-select: none
+  cursor: pointer
+  display: inline-block
+  width: 100%
+  position: relative
+  background-size: cover
+  background-repeat: no-repeat
+  background-position: center
+  border-radius: 100%
+  border-style: solid
+  border-width: 15px
+  transition: 0.3s
+  box-shadow: 0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)
+  h2
+    position: absolute
+    width: 100%
+    transition: 0.3s
+
+  p
+    position: absolute
+    width: 80%
+    bottom: 30%
+    transition: 0.3s
+  div
+    position: absolute
+    bottom: 10%
+    transition: 0.3s
+  .content
+    position: absolute
+    top: 0
+    left: 0
+    bottom: 0
+    right: 0
+    color: #fff
+    line-height: 100%
+    height: 100%
+    text-align: center
+    display: flex
+    align-items: center
+    justify-content: center
+.Disco:before
+  content: ""
+  display: block
+  padding-top: 100%
+.Disco:hover
+  box-shadow: 0px 5px 13px 0px rgba(0,0,0,0.5), 0px 1px 5px 0px rgba(0,0,0,0.4), 0px 2px 3px -1px rgba(0,0,0,0.24)
+  h2
+    font-size: 30px
+  p
+    font-size: 15px
+  /* initial ratio of 1:1*/
 .albumpage
   width: 100%
   // max-width: $max_width

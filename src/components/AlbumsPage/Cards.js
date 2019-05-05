@@ -13,34 +13,52 @@ import IconButton from '@material-ui/core/IconButton';
 import MusicNoteIcon from '@material-ui/icons/MusicNote';
 import ShareIcon from '@material-ui/icons/Share';
 
+// <Card>
+//   <CardActionArea>
+//     <CardMedia
+//       component="img"
+//       wide
+//       image={}
+//     />
+//     <CardContent>
+//     <Typography gutterBottom variant="h5" component="h2">
+//       {oj["title"]}
+//     </Typography>
+//     <Typography component="p">
+//       {oj["p"]}
+//     </Typography>
+//     </CardContent>
+//   </CardActionArea>
+//   <CardActions>
+//   <IconButton aria-label="Share">
+//     <ShareIcon />
+//   </IconButton>
+//   <IconButton aria-label="Share">
+//     <MusicNoteIcon />
+//   </IconButton>
+// </CardActions>
+// </Card>
 let Cards = (props)=> {
   const listItems = props.cards.map((oj) =>
     <Grid item xs={12} sm={8} md={7} lg={4} xl={3}>
-      <Card>
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            wide
-            image={oj["img"]}
-          />
-          <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+      <div className="Disco" style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('+oj.img+')'}}>
+        <div className="content">
+          <h2>
             {oj["title"]}
-          </Typography>
-          <Typography component="p">
+          </h2>
+          <p>
             {oj["p"]}
-          </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-        <IconButton aria-label="Share">
-          <ShareIcon />
-        </IconButton>
-        <IconButton aria-label="Share">
-          <MusicNoteIcon />
-        </IconButton>
-      </CardActions>
-      </Card>
+          </p>
+          <div>
+            <IconButton aria-label="Share" style={{color: 'white'}}>
+              <ShareIcon />
+            </IconButton>
+            <IconButton aria-label="Music" style={{color: 'white'}}>
+              <MusicNoteIcon />
+            </IconButton>
+          </div>
+        </div>
+      </div>
     </Grid>
   )
   return (
