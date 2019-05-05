@@ -137,7 +137,6 @@ function generateDispatcher(setState) {
     }
     else if (payload.type === 'updateInformationCard') {
       setState(prevstate=>{
-        console.log(payload.data, prevstate.information_cards);
         prevstate.information_cards[payload.data.CardId] = payload.data;
         return prevstate;
       }, payload.callback)

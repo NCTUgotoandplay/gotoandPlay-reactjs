@@ -251,7 +251,6 @@ function Service(NoService, Dispatcher) {
     loadInformationCard: (CardId)=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getInfoCard', CardId, (err, result)=> {
-          console.log(123);
           if(!result) {
             result = {};
             result.CardId = CardId;
@@ -267,7 +266,6 @@ function Service(NoService, Dispatcher) {
         Services.gotoandPlay.call('getSuggestedInfoCards', null, (err, result)=> {
           let op =  (CardId)=> {
             Services.gotoandPlay.call('getInfoCard', CardId, (err, result)=> {
-              console.log(result);
               if(result)
                 Dispatcher.dispatch({type: 'updateInformationCard', data: result});
             });
