@@ -11,7 +11,6 @@
  * @preventMunge
  */
 
-'use strict';
 
 var invariant = require('invariant');
 

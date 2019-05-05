@@ -1,5 +1,5 @@
 {
-  "version": "0.0.12",
+  "version": "0.0.13",
   "authors": [
     "BW Hu",
     "noowyee",
@@ -13,6 +13,7 @@
     "noservice": {
       "host": "gotoandplay.nctu.edu.tw",
       "conn": "WebSocketSecure"
-    }
+    },
+    "ga": "UA-125861662-1"
   }
 }

@@ -7,7 +7,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import Checkbox from '@material-ui/core/Checkbox';
 
 import TextField from '@material-ui/core/TextField';
@@ -55,37 +54,35 @@ const EditableTableCell = withStyles(theme => ({
 
 export class TimetableTable extends Component{
   renderHeader() {
-    let rows = [<CustomTableCell></CustomTableCell>];
+    let rows = [<CustomTableCell key="start"></CustomTableCell>];
     let show_days = this.props.timetable.show_days;
     for(let i in show_days) {
       if(show_days[i]) {
-        rows.push(<CustomTableCell>{this.props.localize.days[i]}</CustomTableCell>);
+        rows.push(<CustomTableCell key={i}>{this.props.localize.days[i]}</CustomTableCell>);
       }
     }
     return rows;
   }
   renderSegment(segment_name) {
-    let rows = [<CustomTableCell>{segment_name}</CustomTableCell>];
+    let rows = [<CustomTableCell key="start">{segment_name}</CustomTableCell>];
     let show_days = this.props.timetable.show_days;
     let segment = this.props.timetable.segments[segment_name];
     for(let i in show_days) {
       if(show_days[i]) {
         if(segment[i]) {
           rows.push(
-
-              <CustomTableCell>
-                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
-                  <a href={segment[i].url} target="_blank">
-                    {segment[i].title}
-                  </a>
-                </Tooltip>
-              </CustomTableCell>
-
+            <CustomTableCell key={i}>
+              <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
+                <a href={segment[i].url} target="_blank">
+                  {segment[i].title}
+                </a>
+              </Tooltip>
+            </CustomTableCell>
           );
         }
         else {
           rows.push(
-            <CustomTableCell>
+            <CustomTableCell key={i}>
               {this.props.localize.no_program}
             </CustomTableCell>
           );
@@ -97,7 +94,7 @@ export class TimetableTable extends Component{
   }
   render() {
     return(
-      <Table fixedHeader={false} >
+      <Table>
         <TableHead>
           <TableRow>
             {this.renderHeader()}
@@ -106,7 +103,7 @@ export class TimetableTable extends Component{
         <TableBody>
           {this.props.timetable.show_segments.map((segment_name)=> {
             return(
-              <TableRow>
+              <TableRow key={segment_name}>
                 {this.renderSegment(segment_name)}
               </TableRow>
             )

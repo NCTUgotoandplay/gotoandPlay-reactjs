@@ -71,7 +71,7 @@ class Header extends Component {
             <div className="log_select">
               <Link to="/admin">
                 <Button color="primary">
-                {this.props.localize.admin_page}
+                  {this.props.localize.admin_page?this.props.localize.admin_page:'admin page'}
                 </Button>
               </Link>
             </div>:null

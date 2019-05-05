@@ -16,7 +16,6 @@ import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Collapse from '@material-ui/core/Collapse';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import Grid from "@material-ui/core/Grid";
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
@@ -28,10 +27,6 @@ import LaunchIcon from '@material-ui/icons/Launch';
 import Constants from '../../flux/constants.json';
 
 export default class InformationCardPage extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return(
       <div className="information_card_page">
@@ -54,7 +49,7 @@ export default class InformationCardPage extends Component {
           </Tooltip>:null}
           {this.props.card.Link?
             <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
-            <a target="_blank" href={this.props.card.Link}>
+            <a target="_blank" rel="noopener noreferrer" href={this.props.card.Link}>
               <IconButton style={{color: 'white'}} size="small" aria-label="Share">
                 <LaunchIcon />
               </IconButton>
@@ -103,7 +98,6 @@ export class InformationCard extends Component {
             <CardActionArea>
               <CardMedia
                 component="img"
-                wide
                 image={this.props.card.ImageURL}
               />
               <CardContent>
@@ -111,7 +105,7 @@ export class InformationCard extends Component {
                 {this.props.card.Title}
               </Typography>
               {this.props.card.createdate?
-                <Typography gutterBottom variant="p" component="h5">
+                <Typography gutterBottom variant="body1" component="h5">
                 {this.props.card.createdate}
                 </Typography>
                 :null}
@@ -141,7 +135,7 @@ export class InformationCard extends Component {
           </Tooltip>:null}
           {this.props.card.Link?
             <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
-            <a target="_blank" href={this.props.card.Link}>
+            <a target="_blank" rel="noopener noreferrer" href={this.props.card.Link}>
               <IconButton color="primary" size="small" aria-label="Share">
                 <LaunchIcon />
               </IconButton>

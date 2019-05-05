@@ -1,9 +1,5 @@
 import React from 'react';
 
-import Button from '@material-ui/core/Button';
-
-import { withStyles } from '@material-ui/core/styles';
-
 import StatusSettings from './Settings/Status';
 import NotificationSettings from './Settings/Notification';
 import ChatRoomSettings from './Settings/ChatRoom';

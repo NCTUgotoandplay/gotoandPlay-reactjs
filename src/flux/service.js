@@ -361,12 +361,10 @@ function Service(NoService, Dispatcher) {
     loadAllInformationCards: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getAllInfoCards', null, (err, data)=> {
-          console.log(data);
           let dict = {};
           for(let i in data) {
             dict[data[i].CardId] = data[i];
           }
-          console.log(dict);
           this.Actions.updateInfomationCards(dict);
         });
     },

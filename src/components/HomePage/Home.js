@@ -46,7 +46,7 @@ class Timetable extends Component {
         <div className="head">
           <img src={radio} alt=""/>
           <h2>PROGRAMS</h2><br/>
-          <p>{this.props.online_count+this.props.localize.n_people_listening}</p>
+          <p>{this.props.online_count+' '+this.props.localize.n_people_listening}</p>
         </div>
         <Paper className="contain">
           {this.props.programs?<TimetableTable localize={this.props.localize} timetable={this.props.programs}/>:null}
@@ -70,7 +70,7 @@ class Home extends React.Component {
       if(card) {
         card.card_id = this.props.suggested_cards[i];
         rows.push(
-          <InformationCard {...this.props} card={card}/>
+          <InformationCard {...this.props} key={i} card={card}/>
         );
       }
 
@@ -86,29 +86,25 @@ class Home extends React.Component {
             <h1 className="slogan">{this.props.slogan}</h1>
             <div className="intro">
               <h1>{this.props.localize.news}</h1>
-              <p>
-                <ul>
-                  {this.props.news.map((text)=> <a href={text[1]} target="_blank"><li>{text[0]}</li></a>)}
-                </ul>
-              </p>
+              <ul>
+                {this.props.news.map((text)=> <a key={text} href={text[1]} target="_blank"><li>{text[0]}</li></a>)}
+              </ul>
             </div>
             <div className="intro">
               <h1>{this.props.localize.pinned+' '+this.props.localize.information}</h1>
-              <p>
-                <ul>
-                  {this.props.pinned_info.map((text)=> {
-                    if(text)
-                      return(
-                        <a href={text[1]} target="_blank">
-                        <Tooltip title={this.props.localize.more_info}>
-                        <li>{text[0]}</li>
-                        </Tooltip>
-                        </a>
-                      );
-                  })}
-                  <li onClick={()=>{this.props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我哈哈哈"}</li>
-                </ul>
-              </p>
+              <ul>
+                {this.props.pinned_info.map((text)=> {
+                  if(text)
+                    return(
+                      <a key={text[0]} href={text[1]} target="_blank">
+                      <Tooltip title={this.props.localize.more_info}>
+                      <li>{text[0]}</li>
+                      </Tooltip>
+                      </a>
+                    );
+                })}
+                <li onClick={()=>{this.props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我哈哈哈"}</li>
+              </ul>
             </div>
           </div>
           <Timetable online_count={this.props.online_count} localize={this.props.localize} programs={this.props.programs}/>

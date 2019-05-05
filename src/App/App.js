@@ -51,7 +51,7 @@ class App extends Component {
     this.state = {
       lang : Constants.settings.default_lang,
       lang2string : {},
-      open_chat_room: 0,
+      open_chat_room: false,
       messages: [],
       messages_latest_readline: 0,
       messages_latest_line: 0,
@@ -95,7 +95,7 @@ class App extends Component {
     let localize = this.state.localizes[this.state.lang];
     return (
       <MuiThemeProvider theme={Theme}>
-      <BrowserRouter>
+
         <Header
           localize={localize?localize:{}}
           lang={this.state.lang}
@@ -106,98 +106,89 @@ class App extends Component {
           login_link={Constants.settings.noservice.host}
           show_admin={this.state.isadmin}
         />
-        <Route path="/" render={props=> {
-          props.history.listen((location)=> {
-            window.ga('set', 'page', location.pathname + location.search);
-            window.ga('send', 'pageview');
-          });
-          return(
-            <Switch>
-              <Route exact path="/" render={props=> {
-                return(
-                  <HomePage
-                    slogan={this.state.slogan}
-                    actions={this.actions}
-                    online_count={this.state.online_count}
-                    pinned_info={this.state.suggested_information_cards.map(card_id=> {
-                      let card = this.state.information_cards[card_id];
-                      if(card)
-                        return([card.Title, '/InformationCards/'+card_id]);
-                    })}
-                    news={this.state.news}
-                    suggested_cards={this.state.suggested_information_cards}
-                    cards={this.state.information_cards}
-                    programs = {this.state.programs}
-                    localize={localize?localize:{}}
-                  />
-                );
-              }} />
 
-              <Route path="/InformationCards/:card_id" render={props=> {
-                let card = this.state.information_cards[props.match.params.card_id];
-                if(card) {
-                  card.card_id = props.match.params.card_id;
-                  return(
-                    <InformationCardPage
-                      actions={this.actions}
-                      localize={localize?localize:{}}
-                      card={card}
-                    />
-                  );
-                }
-                else {
-                  this.actions.loadInformationCard(props.match.params.card_id);
-                }
-              }} />
+        <Switch>
+          <Route exact path="/" render={props=> {
+            return(
+              <HomePage
+                slogan={this.state.slogan}
+                actions={this.actions}
+                online_count={this.state.online_count}
+                pinned_info={this.state.suggested_information_cards.map(card_id=> {
+                  let card = this.state.information_cards[card_id];
+                  if(card)
+                    return([card.Title, '/InformationCards/'+card_id]);
+                })}
+                news={this.state.news}
+                suggested_cards={this.state.suggested_information_cards}
+                cards={this.state.information_cards}
+                programs = {this.state.programs}
+                localize={localize?localize:{}}
+              />
+            );
+          }} />
 
-              <Route path="/Admin" render={props=> {
-                return(
-                  <AdminPage
-                    talksy_link={Constants.settings.talksy_link}
-                    push_notification_cache = {this.state.push_notification_cache}
-                    actions={this.actions}
-                    app_state={this.state}
-                    localize={localize?localize:{}}
-                  />
-                );
-              }} />
+          <Route path="/InformationCards/:card_id" render={props=> {
+            let card = this.state.information_cards[props.match.params.card_id];
+            if(card) {
+              card.card_id = props.match.params.card_id;
+              return(
+                <InformationCardPage
+                  actions={this.actions}
+                  localize={localize?localize:{}}
+                  card={card}
+                />
+              );
+            }
+            else {
+              this.actions.loadInformationCard(props.match.params.card_id);
+            }
+          }} />
 
-              <Route path="/Albums" render={
-                props => {
-                  if(ab_not_finished) {
-                    this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
-                    ab_not_finished=0;
-                  }
+          <Route path="/Admin" render={props=> {
+            return(
+              <AdminPage
+                talksy_link={Constants.settings.talksy_link}
+                push_notification_cache = {this.state.push_notification_cache}
+                actions={this.actions}
+                app_state={this.state}
+                localize={localize?localize:{}}
+              />
+            );
+          }} />
 
-                  return(
-                    <AlbumsPage
-                    localize={localize?localize:{}}
-                    cards={this.state.album_cards}
-                    decks={this.state.album_decks} />
-                  )
-                }} />
+          <Route path="/Albums" render={
+            props => {
+              if(ab_not_finished) {
+                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
+                ab_not_finished=0;
+              }
 
-              <Route path="/AboutUs" render={
-                props => {
-                  if(au_not_finished) {
-                    this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
-                    au_not_finished = 0;
-                  }
-                  return(<AboutUsPage localize={localize?localize:{}} />);
-                }} />
-                <Route path=':badurl(.*)' render={(props)=>{
-                  return(
-                    <div className="aboutpage" style={{color: 'white', padding: '150px 0'}}>
-                        <h3>{'The requested URL "'+props.match.params.badurl+'" does not exist.'}</h3>
-                        <p>Please check your link is a valid link.</p>
-                    </div>
-                  );
-                }}/>
-            </Switch>
-          )
-        }}/>
+              return(
+                <AlbumsPage
+                localize={localize?localize:{}}
+                cards={this.state.album_cards}
+                decks={this.state.album_decks} />
+              )
+            }} />
 
-
+          <Route path="/AboutUs" render={
+            props => {
+              if(au_not_finished) {
+                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
+                au_not_finished = 0;
+              }
+              return(<AboutUsPage localize={localize?localize:{}} />);
+            }} />
+            <Route path=':badurl(.*)' render={(props)=>{
+              return(
+                <div className="aboutpage" style={{color: 'white', padding: '150px 0'}}>
+                    <h3>{'The requested URL "'+props.match.params.badurl+'" does not exist.'}</h3>
+                    <p>Please check your link is a valid link.</p>
+                </div>
+              );
+            }}/>
+        </Switch>
 
         <Footer localize={localize?localize:{}} version={Constants.version}/>
 
@@ -218,7 +209,7 @@ class App extends Component {
           </Tooltip>
         </div>
 
-      </BrowserRouter>
+
       </MuiThemeProvider>
     );
   }

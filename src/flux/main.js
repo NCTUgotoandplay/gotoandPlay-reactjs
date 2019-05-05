@@ -8,7 +8,6 @@ import Service from './service';
 
 function Flux(setState) {
   let _noservice_client;
-  let Services = {};
 
   this.Dispatcher = Dispatcher.generateDispatcher(setState);
 
