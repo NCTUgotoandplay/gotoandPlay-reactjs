@@ -16,13 +16,13 @@ class Stream extends Component {
       <div className="stream">
         <div className="bar">收聽串流</div>
         {this.props.playing?
-          <Tooltip title={this.props.localize.continue_playing?this.props.localize.continue_playing:'continue'}>
+          <Tooltip title={this.props.localize.pause_playing?this.props.localize.pause_playing:'continue'}>
             <Fab size="large" onClick={this.props.onClick}>
               <PauseCircleFilledIcon />
             </Fab>
           </Tooltip>
           :
-          <Tooltip title={this.props.localize.pause_playing?this.props.localize.pause_playing:'pause'}>
+          <Tooltip title={this.props.localize.continue_playing?this.props.localize.continue_playing:'pause'}>
             <Fab size="large" onClick={this.props.onClick}>
               <PlayCircleFilledIcon />
             </Fab>
