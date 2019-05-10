@@ -20,11 +20,34 @@ import fb_tri from "../../imgs/icons/fb_triggered.png"
 import abu_icon from "../../imgs/icons/us.png"
 import abu_tri from "../../imgs/icons/us_triggered.png"
 
+function judge_URL(this_URL, stand_URL){
+  if(stand_URL == 'Home'){
+    if(this_URL == 'Albums' | this_URL == 'AboutUs'){
+      return 0;
+    }
+    else{
+      return 1;
+    }
+  }
+  else if(this_URL == stand_URL){
+    return 1;
+  }
+  else{
+    return 0;
+  }
+}
+
+function new_URL(){
+  var myURL = window.location.href;
+  var myURL_split = myURL.split("/");
+  var myURL_least = myURL_split[myURL_split.length-1];
+}
+
 class NavPic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      hover: 0
+      hover: this.props.set
     };
   }
   render() {
@@ -33,7 +56,7 @@ class NavPic extends Component {
         <IconButton>
           <img className="navicon" src={this.props.src[this.state.hover]}
           onMouseOver={()=> {this.setState({hover:1})}}
-          onMouseOut={()=>{this.setState({hover:0})}}
+          onMouseOut={()=>{this.setState({hover:this.props.set})}}
           alt="" />
         </IconButton>
         <p>{this.props.text}</p>
@@ -42,11 +65,16 @@ class NavPic extends Component {
   }
 }
 
+
 class Header extends Component {
   constructor(props) {
     super(props);
   }
+
   render() {
+    var myURL = window.location.href;
+    var myURL_split = myURL.split("/");
+    var myURL_least = myURL_split[myURL_split.length-1];
     return (
       <div className="header">
         <div className="tools">
@@ -94,21 +122,22 @@ class Header extends Component {
           </Link>
 
           <div className="navbar">
+          <script>createtable();</script>
             <Link className="btn" to="/">
-              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header_Home}/>
+              <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header_Home} set={[judge_URL(myURL_least, 'Home')]}/>
             </Link>
             <Link className="btn" to="/Albums">
-              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header_Albums}/>
+              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header_Albums} set={[judge_URL(myURL_least, 'Albums')]}/>
             </Link>
             <a className="btn"
               href="https://www.facebook.com/gotoandplay.nctu/"
               target="_blank"
               rel="noreferrer noopener"
             >
-              <NavPic src={[fb_icon, fb_tri]} text={this.props.localize.header_Community}/>
+              <NavPic src={[fb_icon, fb_tri]} text={this.props.localize.header_Community} set={[judge_URL(1, 0)]}/>
             </a>
             <Link className="btn" to="/AboutUs">
-              <NavPic src={[abu_icon, abu_tri]} text={this.props.localize.header_AboutUs}/>
+              <NavPic src={[abu_icon, abu_tri]} text={this.props.localize.header_AboutUs} set={[judge_URL(myURL_least, 'AboutUs')]}/>
             </Link>
           </div>
         </div>
