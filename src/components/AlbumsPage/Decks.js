@@ -15,7 +15,7 @@ import ShareIcon from '@material-ui/icons/Share';
 
 function Decks(props) {
   const listItems = props.decks.map((oj) =>
-    <Grid item xs={12} sm={8} md={7} lg={4} xl={3}>
+    <Grid item xs={12} sm={8} md={7} lg={4} xl={3} key={oj["id"]}>
       <div className="Disco" style={{backgroundImage: 'linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url('+oj.img+')'}}>
         <div className="content">
           <h2>

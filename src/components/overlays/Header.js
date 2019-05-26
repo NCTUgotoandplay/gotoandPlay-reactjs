@@ -21,15 +21,15 @@ import abu_icon from "../../imgs/icons/us.png"
 import abu_tri from "../../imgs/icons/us_triggered.png"
 
 function judge_URL(this_URL, stand_URL){
-  if(stand_URL == 'Home'){
-    if(this_URL == 'Albums' | this_URL == 'AboutUs'){
+  if(stand_URL === 'Home'){
+    if(this_URL === 'Albums' | this_URL === 'AboutUs'){
       return 0;
     }
     else{
       return 1;
     }
   }
-  else if(this_URL == stand_URL){
+  else if(this_URL === stand_URL){
     return 1;
   }
   else{

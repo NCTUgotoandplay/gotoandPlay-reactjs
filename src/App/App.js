@@ -43,6 +43,9 @@ let au_not_finished = 1;
 
 class App extends Component {
   constructor(props){
+    // let url = window.location.href;
+    // url = url + "?id=13734151";
+    // document.write()
     super(props);
     this.controller = new Flux(this.setState.bind(this));
     this.controller.enqueueSnackbar = this.props.enqueueSnackbar;
