@@ -5,7 +5,13 @@
     "title": "噓韓問暖",
     "img": "https://scontent.ftpe8-3.fna.fbcdn.net/v/t1.0-9/54430364_282023362697265_4573382752757350400_n.jpg?_nc_cat=107&_nc_ht=scontent.ftpe8-3.fna&oh=e6ba38c67e66c2e73bdda24da220a8f4&oe=5D0D9076",
     "p": "噓, 你也在這裡嗎...?",
-    "tracks": ["track1", "track2"],
+    "tracks": [{
+        "Title": "VARCHAR(255)",
+        "Description": "VARCHAR(320)",
+        "AudioBase64": "TEXT",
+        "Idx": 0,
+        "Tags": ["Korean", "Blablabla"]
+      }, "track2"],
     "link": ""
   },
   {
