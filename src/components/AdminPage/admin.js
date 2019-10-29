@@ -3,6 +3,7 @@ import React from 'react';
 import StatusSettings from './Settings/Status';
 import NotificationSettings from './Settings/Notification';
 import ChatRoomSettings from './Settings/ChatRoom';
+import AboutUsSettings from './Settings/AboutUs';
 import InfoCards from './Settings/InfoCards';
 import TimetableTableSettings from './Settings/TimetableTable';
 import AlbumsSettings from './Settings/Albums';
@@ -26,6 +27,8 @@ class AdminPage extends React.Component {
 
         <ChatRoomSettings {...this.props} expanded={this.state.expanded === 'chatroom'} onChange={()=>{this.setState({expanded: this.state.expanded==='chatroom'?null:'chatroom'})}}/>
 
+        <AboutUsSettings {...this.props} expanded={this.state.expanded === 'aboutus'} onChange={()=>{this.setState({expanded: this.state.expanded==='aboutus'?null:'aboutus'})}}/>
+        
         <InfoCards {...this.props} expanded={this.state.expanded === 'cards'} onChange={()=>{this.setState({expanded: this.state.expanded==='cards'?null:'cards'})}}/>
 
         <TimetableTableSettings {...this.props} expanded={this.state.expanded === 'TimetableTable'} onChange={()=>{this.setState({expanded: this.state.expanded==='TimetableTable'?null:'TimetableTable'})}}/>

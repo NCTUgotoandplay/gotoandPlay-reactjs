@@ -42,6 +42,11 @@ function generateDispatcher(setState) {
         return({ album_decks: payload.data });
       })
     }
+    else if (payload.type === 'updateAboutUsInformationCardId') {
+      setState(prevstate=>{
+        return({ about_us_info_card_id: payload.data });
+      })
+    }
     else if (payload.type === 'updateLocalizes') {
       setState(prevstate=>{
         let lang2string = {};

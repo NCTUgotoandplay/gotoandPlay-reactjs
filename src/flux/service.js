@@ -110,28 +110,31 @@ function Service(NoService, Dispatcher) {
               this.Actions.loadSuggestedInformationCards();
 
               // chat
-              Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
-                Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
-                notalk_channel_id = chat_room_settings.channel_id;
-                Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
-                  Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
-                    if(err) {
-                      console.log(err);
-                    }
-                    Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
-                    Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+              Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
+                Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
+                Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
+                  Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
+                  notalk_channel_id = chat_room_settings.channel_id;
+                  Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
+                    Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
                       if(err) {
                         console.log(err);
                       }
-                      let new_messeges = [];
-                      for(let i in json.r) {
-                        new_messeges.push(NoTalkToChatWindow(json.r[i]));
-                      };
-                      Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
-                      Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
-                      Dispatcher.dispatch({type: 'readLatestLine'});
-                      Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
-                      Dispatcher.dispatch({type: 'addLatestLine'});
+                      Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
+                      Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+                        if(err) {
+                          console.log(err);
+                        }
+                        let new_messeges = [];
+                        for(let i in json.r) {
+                          new_messeges.push(NoTalkToChatWindow(json.r[i]));
+                        };
+                        Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
+                        Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
+                        Dispatcher.dispatch({type: 'readLatestLine'});
+                        Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
+                        Dispatcher.dispatch({type: 'addLatestLine'});
+                      });
                     });
                   });
                 });
@@ -280,6 +283,12 @@ function Service(NoService, Dispatcher) {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('updateSuggestedInfoCards', data, (err, result)=> {
           Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: result});
+        });
+    },
+    updateAboutUsInfoCardId: (data)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updateAboutUsInfoCardId', data, (err, result)=> {
+          Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: result});
         });
     },
     addSuggestedInformationCards: (data)=> {

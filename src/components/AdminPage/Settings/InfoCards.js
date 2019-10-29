@@ -196,6 +196,14 @@ export default class Settings extends React.Component {
                 this.setState(prevState=>{prevState.edited_information_card.Title = value;return prevState;});
               }}
             />
+            <TextField
+              margin="dense"
+              disabled
+              label={'ID'}
+              type="text"
+              fullWidth
+              value={this.state.edited_information_card?this.state.edited_information_card.CardId:null}
+            />
             <FormControlLabel control={
               <Checkbox
                 checked={this.state.edited_information_card?this.state.edited_information_card.Expandable:null}

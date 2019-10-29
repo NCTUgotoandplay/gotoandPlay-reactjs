@@ -177,11 +177,22 @@ class App extends Component {
 
           <Route path="/AboutUs" render={
             props => {
-              if(au_not_finished) {
-                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
-                au_not_finished = 0;
+              let card = this.state.information_cards[this.state.about_us_info_card_id];
+              if(card) {
+                card.card_id = this.state.about_us_info_card_id;
+                return(
+                  <InformationCardPage
+                    actions={this.actions}
+                    localize={localize?localize:{}}
+                    card={card}
+                  />
+                );
               }
-              return(<AboutUsPage localize={localize?localize:{}} />);
+              else {
+                this.actions.loadInformationCard(this.state.about_us_info_card_id);
+
+                return(<AboutUsPage localize={localize?localize:{}} />);
+              }
             }} />
             <Route path=':badurl(.*)' render={(props)=>{
               return(
