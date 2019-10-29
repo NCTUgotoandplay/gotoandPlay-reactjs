@@ -102,13 +102,14 @@ $cc: #333
     border: solid 2px $color_black
   .bar
     +size(180px, 40px)
-    border-radius: 0 20px 20px 0
+    border-radius: 20px 20px 20px 20px
     position: absolute
-    left: calc(100% - 20%)
-    bottom: 8%
+    left: calc(100% - 20% + 25px)
+    bottom: 12%
     background-color: rgba($color_white, 1)
-    border: solid 2px $color_black
+    // border: solid 2px $color_black
     padding: 0px 20px
+    box-shadow: 0px 3px 5px -1px rgba(0,0,0,0.2), 0px 6px 10px 0px rgba(0,0,0,0.14), 0px 1px 18px 0px rgba(0,0,0,0.12)
     line-height: 40px
     text-align: left
 .footer
