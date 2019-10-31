@@ -60,6 +60,8 @@ function Service(NoService, Dispatcher) {
   };
 
   let lang = getCookie('lang');
+  let dark_theme = getCookie('dark_theme');
+
   if(!lang) {
     lang = Constants.settings.default_lang;
     setCookie('lang', lang, 360);
@@ -274,6 +276,7 @@ function Service(NoService, Dispatcher) {
       setTimeout(()=>{Dispatcher.dispatch({type: 'updateLoadingStatus', data: data});}, 0);
     },
     toggleTheme: (data)=> {
+      setCookie('dark_theme', dark_theme?false:true, 360);
       setTimeout(()=>{Dispatcher.dispatch({type: 'toggleTheme'});}, 0);
     },
     loadSuggestedInformationCards: ()=> {
@@ -430,6 +433,13 @@ function Service(NoService, Dispatcher) {
   this.start = (next)=> {
     setupOnline();
 
+    console.log(dark_theme);
+    if(typeof(dark_theme) === 'undefined') {
+      dark_theme = true;
+      setCookie('dark_theme', dark_theme, 360);
+    }
+
+    Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
 
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));

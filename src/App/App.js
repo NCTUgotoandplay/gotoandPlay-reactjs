@@ -111,8 +111,9 @@ class App extends Component {
 
   render() {
     let localize = this.state.localizes[this.state.lang];
+    let theme = this.state.dark_theme===true?DarkTheme:Theme;
     return (
-      <MuiThemeProvider theme={this.state.dark_theme?DarkTheme:Theme}>
+      <MuiThemeProvider theme={theme}>
         {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.determinate}/>: <LinearProgress />):null}
         <Header
           localize={localize?localize:{}}

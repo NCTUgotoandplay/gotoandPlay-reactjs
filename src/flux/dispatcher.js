@@ -34,6 +34,12 @@ function generateDispatcher(setState) {
         }
       })
     }
+    else if (payload.type === 'updateDarktheme') {
+      console.log(payload);
+      setState(prevstate=>{
+        return({ dark_theme: payload.data });
+      })
+    }
     else if (payload.type === 'reverseStreamStaus') {
       setState(prevstate=>{
         return({ playing: !prevstate.playing });
