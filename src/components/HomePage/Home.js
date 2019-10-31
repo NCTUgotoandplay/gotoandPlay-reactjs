@@ -80,7 +80,7 @@ class Home extends React.Component {
 
   render () {
     return (
-      <div className="homepage" style={this.props.dark_theme?{'color': 'white', 'background': 'repeating-linear-gradient(45deg, rgba(35, 47, 52, 0.8), rgba(35, 47, 52, 0.8) 10px, rgba(47, 55, 58, 0.8) 10px, rgba(47, 55, 58, 0.8) 20px)'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78) 10px, rgba(235, 248, 253, 0.78) 10px, rgba(235, 249, 255, 0.78) 20px)'}}>
+      <div className="homepage" style={this.props.dark_theme?{'color': 'white', 'background': 'repeating-linear-gradient(45deg, rgba(35, 47, 52, 0.8), rgba(35, 47, 52, 0.8) 10px, rgba(47, 55, 58, 0.8) 10px, rgba(47, 55, 58, 0.8) 20px)'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6) 10px, rgba(235, 248, 253, 0.69) 10px, rgba(235, 249, 255, 0.69) 20px)'}}>
         <div className="timetable-container">
           <div className="intro_container">
             <h1 className="slogan">{this.props.slogan}</h1>
