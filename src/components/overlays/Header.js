@@ -5,6 +5,7 @@ import Stream from "./Stream"
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
+import InvertColorsIcon from '@material-ui/icons/InvertColors'
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -104,10 +105,19 @@ class Header extends Component {
               </Link>
             </div>:null
           }
+          <div className="log_select">
+            <Button dense="true" color="primary" onClick={()=>{
+              this.props.actions.toggleTheme();
+            }}>
+              <InvertColorsIcon/>
+            </Button>
+          </div>
           <div className="lan_select">
-            <Select value={this.props.lang} onChange={evt => {
-                this.props.actions.updateLang(evt.target.value);
-              }}>
+            <Select
+              color="primary"
+              value={this.props.lang} onChange={evt => {
+              this.props.actions.updateLang(evt.target.value);
+            }}>
               {Object.keys(this.props.lang2string).map(key=><MenuItem key={key} value={key}>{this.props.lang2string[key]}</MenuItem>)}
             </Select>
           </div>

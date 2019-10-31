@@ -52,6 +52,8 @@ const getCookie = (cname)=> {
 
 
 function Service(NoService, Dispatcher) {
+  Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:25}});
+
   let Services = {
     NoTalk: null,
     gotoandPlay: null
@@ -83,6 +85,7 @@ function Service(NoService, Dispatcher) {
   let setupOnline = ()=> {
     try {
       NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
+        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:50}});
         if(err) {
           console.log(err);
           setTimeout(setupOnline, 15*1000);
@@ -90,16 +93,19 @@ function Service(NoService, Dispatcher) {
         else {
           Services.NoTalk = NoTalk;
           NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
+            Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
             if(err) {
               console.log(err);
               setTimeout(setupOnline, 15*1000);
             }
             else {
               Services.gotoandPlay = gotoandPlay;
-              this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
+              // this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
+              Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: false, show: false}});
               Services.gotoandPlay.on('close', ()=> {
                 this.enqueueSnackbar('Connection closed!', {variant: 'error'});
                 Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
+                Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: false, show: true}});
                 Services.NoTalk = Services.gotoandPlay = null;
                 setTimeout(setupOnline, 15*1000);
               });
@@ -264,6 +270,12 @@ function Service(NoService, Dispatcher) {
           Dispatcher.dispatch({type: 'updateInformationCard', data: result});
         });
     },
+    updateLoadingStatus: (data)=> {
+      setTimeout(()=>{Dispatcher.dispatch({type: 'updateLoadingStatus', data: data});}, 0);
+    },
+    toggleTheme: (data)=> {
+      setTimeout(()=>{Dispatcher.dispatch({type: 'toggleTheme'});}, 0);
+    },
     loadSuggestedInformationCards: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getSuggestedInfoCards', null, (err, result)=> {
@@ -425,12 +437,12 @@ function Service(NoService, Dispatcher) {
 
     this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);
-    if(lang === 'zh') {
-      this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
-    }
-    else {
-      this.enqueueSnackbar('We are still constructing the site!', {variant: 'error'});
-    }
+    // if(lang === 'zh') {
+    //   this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
+    // }
+    // else {
+    //   this.enqueueSnackbar('We are still constructing the site!', {variant: 'error'});
+    // }
 
     next();
   };
