@@ -87,7 +87,7 @@ class App extends Component {
       information_cards: {},
       dark_theme: true,
       loading_status: {
-        determinate: false,
+        determinate: true,
         show: true,
         progress_percent: 0,
       },
@@ -114,7 +114,7 @@ class App extends Component {
     let theme = this.state.dark_theme===true?DarkTheme:Theme;
     return (
       <MuiThemeProvider theme={theme}>
-        {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.determinate}/>: <LinearProgress />):null}
+        {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.progress_percent}/>: <LinearProgress />):null}
         <Header
           localize={localize?localize:{}}
           lang={this.state.lang}
@@ -124,6 +124,7 @@ class App extends Component {
           playing={this.state.playing}
           login_link={Constants.settings.noservice.host}
           show_admin={this.state.isadmin}
+          dark_theme={this.state.dark_theme}
         />
 
         <Switch>

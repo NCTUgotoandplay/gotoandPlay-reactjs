@@ -52,7 +52,8 @@ const getCookie = (cname)=> {
 
 
 function Service(NoService, Dispatcher) {
-  Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:25}});
+  // [Loading Stage Forward]
+  Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:10}});
 
   let Services = {
     NoTalk: null,
@@ -61,7 +62,10 @@ function Service(NoService, Dispatcher) {
 
   let lang = getCookie('lang');
   let dark_theme = getCookie('dark_theme');
-
+  if(dark_theme==='true')
+    dark_theme = true
+  if(dark_theme==='false')
+    dark_theme = false
   if(!lang) {
     lang = Constants.settings.default_lang;
     setCookie('lang', lang, 360);
@@ -87,7 +91,9 @@ function Service(NoService, Dispatcher) {
   let setupOnline = ()=> {
     try {
       NoService.createActivitySocket('NoTalk', (err, NoTalk)=> {
-        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:50}});
+        // [Loading Stage Forward]
+
+        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:20}});
         if(err) {
           console.log(err);
           setTimeout(setupOnline, 15*1000);
@@ -95,7 +101,9 @@ function Service(NoService, Dispatcher) {
         else {
           Services.NoTalk = NoTalk;
           NoService.createActivitySocket('gotoandPlay', (err, gotoandPlay)=> {
-            Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
+            // [Loading Stage Forward]
+
+            Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:30}});
             if(err) {
               console.log(err);
               setTimeout(setupOnline, 15*1000);
@@ -103,7 +111,9 @@ function Service(NoService, Dispatcher) {
             else {
               Services.gotoandPlay = gotoandPlay;
               // this.enqueueSnackbar('Connected to noservice.', {variant: 'success'});
-              Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: false, show: false}});
+              // [Loading Stage Forward]
+              Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:40}});
+              // Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: false, show: false}});
               Services.gotoandPlay.on('close', ()=> {
                 this.enqueueSnackbar('Connection closed!', {variant: 'error'});
                 Dispatcher.dispatch({type: 'updateConnectionFail', data: true});
@@ -121,6 +131,8 @@ function Service(NoService, Dispatcher) {
               Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
                 Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
                 Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
+                  // [Loading Stage Forward]
+                  Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
                   Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
                   notalk_channel_id = chat_room_settings.channel_id;
                   Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
@@ -128,11 +140,15 @@ function Service(NoService, Dispatcher) {
                       if(err) {
                         console.log(err);
                       }
+                      // [Loading Stage Forward]
+                      Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:90}});
                       Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
                       Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
                         if(err) {
                           console.log(err);
                         }
+                        // [Loading Stage Forward]
+                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:95}});
                         let new_messeges = [];
                         for(let i in json.r) {
                           new_messeges.push(NoTalkToChatWindow(json.r[i]));
@@ -142,6 +158,8 @@ function Service(NoService, Dispatcher) {
                         Dispatcher.dispatch({type: 'readLatestLine'});
                         Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
                         Dispatcher.dispatch({type: 'addLatestLine'});
+                        // [Loading Stage Forward]
+                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: false, progress_percent:100}});
                       });
                     });
                   });
@@ -276,7 +294,7 @@ function Service(NoService, Dispatcher) {
       setTimeout(()=>{Dispatcher.dispatch({type: 'updateLoadingStatus', data: data});}, 0);
     },
     toggleTheme: (data)=> {
-      setCookie('dark_theme', dark_theme?false:true, 360);
+      setCookie('dark_theme', (dark_theme===true?false:true), 360);
       setTimeout(()=>{Dispatcher.dispatch({type: 'toggleTheme'});}, 0);
     },
     loadSuggestedInformationCards: ()=> {
@@ -433,20 +451,14 @@ function Service(NoService, Dispatcher) {
   this.start = (next)=> {
     setupOnline();
 
-    console.log(dark_theme);
-    if(typeof(dark_theme) === 'undefined') {
-      dark_theme = true;
-      setCookie('dark_theme', dark_theme, 360);
-    }
-
-    Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
-
     this.Actions.updateAlbumCards(require('./data/albumcards.json'));
     this.Actions.updateAlbumDecks(require('./data/albumdecks.json'));
     this.Actions.updateNews(require('./data/news.json'));
 
     this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);
+    Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
+
     // if(lang === 'zh') {
     //   this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
     // }

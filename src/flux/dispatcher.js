@@ -18,13 +18,14 @@ function generateDispatcher(setState) {
       });
     }
     else if (payload.type === 'updateLoadingStatus') {
+      console.log(payload);
       setState(prevstate=>{
         return({ loading_status: payload.data });
       })
     }
     else if (payload.type === 'toggleTheme') {
       setState(prevstate=>{
-        if(prevstate.dark_theme) {
+        if(prevstate.dark_theme===true) {
           return({ dark_theme: false });
 
         }

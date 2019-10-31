@@ -5,7 +5,9 @@ import Stream from "./Stream"
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
-import InvertColorsIcon from '@material-ui/icons/InvertColors'
+import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
+import WbSunnyIcon from '@material-ui/icons/WbSunny'
+
 
 import MenuItem from '@material-ui/core/MenuItem';
 import Select from '@material-ui/core/Select';
@@ -105,12 +107,12 @@ class Header extends Component {
               </Link>
             </div>:null
           }
-          <div className="log_select">
-            <Button dense="true" color="primary" onClick={()=>{
+          <div className="lan_select">
+            <IconButton style={{padding: 6}} color="primary" onClick={()=>{
               this.props.actions.toggleTheme();
             }}>
-              <InvertColorsIcon/>
-            </Button>
+              {this.props.dark_theme?<WbSunnyIcon/>:<WbSunnyOutlinedIcon/>}
+            </IconButton>
           </div>
           <div className="lan_select">
             <Select
