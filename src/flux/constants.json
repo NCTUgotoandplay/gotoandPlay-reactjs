@@ -11,7 +11,7 @@
     "default_lang": "en",
     "audio_source": "http://140.113.52.126:8000/;",
     "noservice": {
-      "host": "0.0.0.0",
+      "host": "gotoandplay.nctu.edu.tw",
       "conn": "WebSocket"
     },
     "ga": "UA-125861662-1"

@@ -17,6 +17,23 @@ function generateDispatcher(setState) {
         return ({ lang: lan })
       });
     }
+    else if (payload.type === 'updateLoadingStatus') {
+      setState(prevstate=>{
+        return({ loading_status: payload.data });
+      })
+    }
+    else if (payload.type === 'toggleTheme') {
+      setState(prevstate=>{
+        if(prevstate.dark_theme) {
+          return({ dark_theme: false });
+
+        }
+        else {
+          return({ dark_theme: true });
+
+        }
+      })
+    }
     else if (payload.type === 'reverseStreamStaus') {
       setState(prevstate=>{
         return({ playing: !prevstate.playing });

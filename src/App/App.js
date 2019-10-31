@@ -28,14 +28,23 @@ import InformationCardPage from "../components/InformationCardPage";
 import Button from '@material-ui/core/Button';
 // Css
 import "../All.min.css"
+// color
+import blue from '@material-ui/core/colors/blue';
 
 import Tooltip from '@material-ui/core/Tooltip';
 
 //
 import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import LinearProgress from '@material-ui/core/LinearProgress';
 
-const Theme = createMuiTheme();
+const Theme = createMuiTheme({
+});
+const DarkTheme = createMuiTheme({
+  palette: {
+    type: 'dark'
+  },
+});
 
 //dirty code
 let ab_not_finished = 1;
@@ -64,7 +73,7 @@ class App extends Component {
       },
       slogan: 'We play, we work, we create.',
       chat_room_meta: {},
-      isadmin: true,
+      isadmin: false,
       online_count: 0,
       playing: false,
       log: false,
@@ -76,6 +85,12 @@ class App extends Component {
       album_decks: [],
       suggested_information_cards: ['go', 'id1', 'id2'],
       information_cards: {},
+      dark_theme: true,
+      loading_status: {
+        determinate: false,
+        show: true,
+        progress_percent: 0,
+      },
       push_notification_cache: [
         {id:'123', content: '節目開始', variant:'info'},
         {id:'13', content: '準備抽獎', variant:'warning'},
@@ -97,8 +112,8 @@ class App extends Component {
   render() {
     let localize = this.state.localizes[this.state.lang];
     return (
-      <MuiThemeProvider theme={Theme}>
-
+      <MuiThemeProvider theme={this.state.dark_theme?DarkTheme:Theme}>
+        {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.determinate}/>: <LinearProgress />):null}
         <Header
           localize={localize?localize:{}}
           lang={this.state.lang}
@@ -134,6 +149,8 @@ class App extends Component {
           <Route path="/InformationCards/:card_id" render={props=> {
             let card = this.state.information_cards[props.match.params.card_id];
             if(card) {
+              if(this.state.loading_status.show)
+                this.actions.updateLoadingStatus({type: 'updateLoadingStatus', data: {determinate: false, show: false}});
               card.card_id = props.match.params.card_id;
               return(
                 <InformationCardPage
@@ -144,6 +161,8 @@ class App extends Component {
               );
             }
             else {
+              if(!this.state.loading_status.show)
+                this.actions.updateLoadingStatus({type: 'updateLoadingStatus', data: {determinate: false, show: true}});
               this.actions.loadInformationCard(props.match.params.card_id);
             }
           }} />
@@ -178,6 +197,8 @@ class App extends Component {
           <Route path="/AboutUs" render={
             props => {
               let card = this.state.information_cards[this.state.about_us_info_card_id];
+              if(!this.state.loading_status.show)
+                // this.actions.updateLoadingStatus({type: 'updateLoadingStatus', data: {determinate: false, show: true}});
               if(card) {
                 card.card_id = this.state.about_us_info_card_id;
                 return(
@@ -190,7 +211,6 @@ class App extends Component {
               }
               else {
                 this.actions.loadInformationCard(this.state.about_us_info_card_id);
-
                 return(<AboutUsPage localize={localize?localize:{}} />);
               }
             }} />
