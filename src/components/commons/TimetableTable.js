@@ -14,6 +14,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 import ArrowDownwardIcon from '@material-ui/icons/ArrowDownward';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -58,13 +60,13 @@ export class TimetableTable extends Component{
     let show_days = this.props.timetable.show_days;
     for(let i in show_days) {
       if(show_days[i]) {
-        rows.push(<CustomTableCell key={i}>{this.props.localize.days[i]}</CustomTableCell>);
+        rows.push(<CustomTableCell key={i}>{this.props.localize.days?this.props.localize.days[i]:i}</CustomTableCell>);
       }
     }
     return rows;
   }
   renderSegment(segment_name) {
-    let rows = [<CustomTableCell key="start">{segment_name}</CustomTableCell>];
+    let rows = [<CustomTableCell key="start">{segment_name==='Loading...'?<CircularProgress color="primary" size={30}/>:segment_name}</CustomTableCell>];
     let show_days = this.props.timetable.show_days;
     let segment = this.props.timetable.segments[segment_name];
     for(let i in show_days) {
@@ -83,7 +85,7 @@ export class TimetableTable extends Component{
         else {
           rows.push(
             <CustomTableCell key={i}>
-              {this.props.localize.no_program}
+              {segment_name==='Loading...'?null:this.props.localize.no_program}
             </CustomTableCell>
           );
         }

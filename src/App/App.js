@@ -77,13 +77,37 @@ class App extends Component {
       online_count: 0,
       playing: false,
       log: false,
-      programs: null,
+      programs: {
+        "show_days": [
+          true,
+          true,
+          true
+        ],
+        "show_segments": [
+          "Loading..."
+        ],
+        "segments": {
+          "Loading...": [
+            {
+              "title": "Fetching data from NoService...",
+              "url": "https://nooxy.org",
+              "description": "Fetching"
+            },
+            null,
+            null,
+            null,
+            null,
+            null,
+            null
+          ]
+        }
+      },
       audio_display: "交大網路電台",
       localizes: {},
       news: [],
       album_cards: [],
       album_decks: [],
-      suggested_information_cards: ['go', 'id1', 'id2'],
+      suggested_information_cards: [],
       information_cards: {},
       dark_theme: true,
       loading_status: {
