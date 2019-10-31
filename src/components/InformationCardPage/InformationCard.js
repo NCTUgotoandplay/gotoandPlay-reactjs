@@ -29,19 +29,19 @@ import Constants from '../../flux/constants.json';
 export default class InformationCardPage extends Component {
   render() {
     return(
-      <div className="information_card_page">
+      <div className="information_card_page" style={this.props.dark_theme?{'color': 'white'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78) 10px, rgba(235, 248, 253, 0.78) 10px, rgba(235, 249, 255, 0.78) 20px)'}}>
         <h1>{this.props.card.Title}</h1>
         <div className={'buttons'}>
           <div><p>{this.props.card.createdate}</p></div>
           <Tooltip title={this.props.localize.share}>
-            <IconButton style={{color: 'white'}} size="small" aria-label="Share" onClick={()=> {
+            <IconButton size="small" aria-label="Share" onClick={()=> {
               this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , Constants.settings.base_url+'/InformationCards/'+this.props.card.CardId);
             }}>
               <ShareIcon />
             </IconButton>
           </Tooltip>
           {this.props.card.Link?<Tooltip title={this.props.localize.link}>
-            <IconButton style={{color: 'white'}} aria-label="Link" onClick={()=> {
+            <IconButton aria-label="Link" onClick={()=> {
               this.props.actions.copyToClipboard(this.props.localize.copied_to_clipboard , this.props.card.Link);
             }}>
               <LinkIcon />
@@ -50,7 +50,7 @@ export default class InformationCardPage extends Component {
           {this.props.card.Link?
             <Tooltip title={this.props.localize.go+' '+this.props.localize.link}>
             <a target="_blank" rel="noopener noreferrer" href={this.props.card.Link}>
-              <IconButton style={{color: 'white'}} size="small" aria-label="Share">
+              <IconButton size="small" aria-label="Share">
                 <LaunchIcon />
               </IconButton>
             </a>
@@ -58,7 +58,7 @@ export default class InformationCardPage extends Component {
           <br/><p style={{'fontSize': '10px'}}>{this.props.localize.modified_date+': '+this.props.card.modifydate}</p>
 
         </div>
-        <hr/>
+        <hr style={{'border': '1px solid'}}/>
         <ReactMarkdown className={'ReactMarkdown'} source={this.props.card.Description} />
       </div>
     )
@@ -91,7 +91,7 @@ export class InformationCard extends Component {
 
   render() {
     return(
-      <Grid item xs={12} sm={6} md={4} lg={3} xl={2}>
+      <Grid item xs={12} sm={6} md={4} lg={3}>
       <Card>
         <Tooltip title={this.props.localize.more_info}>
           <Link to={'/InformationCards/'+this.props.card.CardId}>

@@ -13,9 +13,10 @@ $cc: #333
       padding: 0 8%
 
 .header
-  +size(100%, 160px)
+  +size(100%, 180px)
+  +shadow
   @media(max-width: 650px)
-    height: 150px
+    height: 160px
   .tools
     top: 10px
     .lan_select, .log_select
@@ -87,7 +88,7 @@ $cc: #333
         line-height: 12px
         margin: 0px 3px
   &::after
-    +triangle-decorate()
+    +toolbar()
     top: 100%
 .stream
   z-index: 3

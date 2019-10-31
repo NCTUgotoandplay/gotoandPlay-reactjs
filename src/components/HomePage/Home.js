@@ -80,7 +80,7 @@ class Home extends React.Component {
 
   render () {
     return (
-      <div className="homepage">
+      <div className="homepage" style={this.props.dark_theme?{'color': 'white'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78) 10px, rgba(235, 248, 253, 0.78) 10px, rgba(235, 249, 255, 0.78) 20px)'}}>
         <div className="timetable-container">
           <div className="intro_container">
             <h1 className="slogan">{this.props.slogan}</h1>
@@ -110,7 +110,7 @@ class Home extends React.Component {
           <Timetable online_count={this.props.online_count} localize={this.props.localize} programs={this.props.programs}/>
         </div>
 
-        <div className="cards">
+        <div className="cards" style={this.props.dark_theme?{'borderTop': 'solid 1px white'}:{'borderTop': 'solid 1px #232f34'}}>
           <div className="container">
             <h1 className="block-header">{this.props.localize.suggestion}</h1>
             <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
