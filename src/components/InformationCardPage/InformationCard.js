@@ -29,7 +29,7 @@ import Constants from '../../flux/constants.json';
 export default class InformationCardPage extends Component {
   render() {
     return(
-      <div className="information_card_page" style={this.props.dark_theme?{'color': 'white'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78) 10px, rgba(235, 248, 253, 0.78) 10px, rgba(235, 249, 255, 0.78) 20px)'}}>
+      <div className="information_card_page" style={this.props.dark_theme?{'color': 'white', 'background': 'repeating-linear-gradient(45deg, rgba(35, 47, 52, 0.8), rgba(35, 47, 52, 0.8) 10px, rgba(47, 55, 58, 0.8) 10px, rgba(47, 55, 58, 0.8) 20px)'}:{'color': '#232f34', 'background': 'repeating-linear-gradient(45deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.78) 10px, rgba(235, 248, 253, 0.78) 10px, rgba(235, 249, 255, 0.78) 20px)'}}>
         <h1>{this.props.card.Title}</h1>
         <div className={'buttons'}>
           <div><p>{this.props.card.createdate}</p></div>
