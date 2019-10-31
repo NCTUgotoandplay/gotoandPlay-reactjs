@@ -78,8 +78,10 @@
           position: center
           object-fit: contain
           left: 0
-          bottom: -60px
+          bottom: -33px
           z-index: 2
+          @media(max-width: 900px)
+            +size(135px, 102.5px)
         h2
           +size(100%, auto)
           color: $color_primary_inverse

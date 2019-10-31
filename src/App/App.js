@@ -42,7 +42,8 @@ const Theme = createMuiTheme({
 });
 const DarkTheme = createMuiTheme({
   palette: {
-    type: 'dark'
+    type: 'dark',
+    primary: { main: '#2962ff' },
   },
 });
 
@@ -78,10 +79,15 @@ class App extends Component {
       playing: false,
       log: false,
       programs: {
+        loading: true,
         "show_days": [
           true,
           true,
-          true
+          true,
+          false,
+          false,
+          false,
+          false
         ],
         "show_segments": [
           "Loading..."

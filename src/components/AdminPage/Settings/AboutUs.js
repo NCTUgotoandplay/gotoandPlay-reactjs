@@ -35,7 +35,7 @@ export default class Settings extends React.Component {
       <CustomExpansionPanel expanded={this.props.expanded} onChange={this.props.onChange}>
       <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
         <Typography className="heading">{this.props.localize.header_AboutUs+' '+this.props.localize.settings}</Typography>
-        <Typography className="description">{this.props.localize.settings_chat_room_description}</Typography>
+        <Typography className="description">{}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{display: 'inline-block', width: '100%'}}>
         <TextField

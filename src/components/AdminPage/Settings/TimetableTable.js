@@ -43,13 +43,13 @@ export default class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      edited_timetable: this.props.app_state.programs,
+      edited_timetable: null,
       saved: true
     }
   }
 
   render() {
-    if(!this.state.edited_timetable&&this.props.app_state.programs) {
+    if(!this.state.edited_timetable&&this.props.app_state.programs&&this.props.app_state.programs.loading!==true) {
       this.setState({edited_timetable: this.props.app_state.programs});
     }
     return(

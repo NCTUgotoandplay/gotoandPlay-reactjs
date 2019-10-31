@@ -130,7 +130,7 @@ export class EditableTimetableTable extends Component{
     for(let i in show_days) {
       rows.push(
         <EditableTableCell>
-          {this.props.localize.days[i]}
+          {this.props.localize.days?this.props.localize.days[i]:null}
           <Checkbox
             checked={show_days[i]}
             onChange={(event)=> {
