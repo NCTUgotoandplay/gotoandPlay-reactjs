@@ -93,8 +93,8 @@ function Home(props){
     let programmes = props.programs;
     let rows = [];
 
-    // let todays_day = (new Date()).getDay();
-    let todays_day = 0;
+    let todays_day = (new Date()).getDay();
+    // let todays_day = 0;
     if(programmes.show_days[todays_day]) {
       for(let i in programmes.show_segments) {
         let segment_name = programmes.show_segments[i];
@@ -105,7 +105,9 @@ function Home(props){
               <CardContent >
                 <Typography gutterBottom variant="h5" component="h5">
                   <Box fontWeight="fontWeightBold" m={1}>
+                  <span style={{color: '#232f34'}}>
                     {segment_detail.title}
+                  </span>
                   </Box>
                 </Typography>
                 <Typography gutterBottom variant="body" component="p"  component="p" style={{color: 'white'}}>
@@ -143,7 +145,9 @@ function Home(props){
             <CardActionArea>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="h5">
-                  {props.localize.no_program}
+                  <span style={{color: '#232f34'}}>
+                    {props.localize.no_program}
+                  </span>
                 </Typography>
                 <Typography gutterBottom variant="body" component="p" style={{color: 'white'}}>
                   {props.localize.no_program}
