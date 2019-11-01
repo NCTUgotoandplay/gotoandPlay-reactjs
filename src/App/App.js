@@ -34,17 +34,9 @@ import blue from '@material-ui/core/colors/blue';
 import Tooltip from '@material-ui/core/Tooltip';
 
 //
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
-const Theme = createMuiTheme({
-});
-const DarkTheme = createMuiTheme({
-  palette: {
-    type: 'dark',
-    primary: { main: '#2962ff' },
-  },
-});
+
 
 //dirty code
 let ab_not_finished = 1;
@@ -56,7 +48,7 @@ class App extends Component {
     // url = url + "?id=13734151";
     // document.write()
     super(props);
-    this.controller = new Flux(this.setState.bind(this));
+    this.controller = new Flux(this.setState.bind(this), this.props.dark_theme_state);
     this.controller.enqueueSnackbar = this.props.enqueueSnackbar;
     this.controller.importNoServiceClientModule(props.NoServiceClient);
     this.actions = this.controller.Actions;
@@ -140,10 +132,10 @@ class App extends Component {
 
   render() {
     let localize = this.state.localizes[this.state.lang];
-    let theme = this.state.dark_theme===true?DarkTheme:Theme;
-    return (
-      <ThemeProvider theme={theme}>
-        {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.progress_percent}/>: <LinearProgress />):null}
+
+    return ([
+        (this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.progress_percent}/>: <LinearProgress />):null
+        ,
         <Header
           localize={localize?localize:{}}
           lang={this.state.lang}
@@ -153,14 +145,14 @@ class App extends Component {
           playing={this.state.playing}
           login_link={Constants.settings.noservice.host}
           show_admin={this.state.isadmin}
-          dark_theme={this.state.dark_theme}
+          dark_theme={this.props.dark_theme}
         />
-
+        ,
         <Switch>
           <Route exact path="/" render={props=> {
             return(
               <HomePage
-                dark_theme={this.state.dark_theme}
+                dark_theme={this.props.dark_theme}
                 slogan={this.state.slogan}
                 actions={this.actions}
                 online_count={this.state.online_count}
@@ -186,7 +178,7 @@ class App extends Component {
               card.card_id = props.match.params.card_id;
               return(
                 <InformationCardPage
-                  dark_theme={this.state.dark_theme}
+                  dark_theme={this.props.dark_theme}
                   actions={this.actions}
                   localize={localize?localize:{}}
                   card={card}
@@ -203,7 +195,7 @@ class App extends Component {
           <Route path="/Admin" render={props=> {
             return(
               <AdminPage
-                dark_theme={this.state.dark_theme}
+                dark_theme={this.props.dark_theme}
                 talksy_link={Constants.settings.talksy_link}
                 push_notification_cache = {this.state.push_notification_cache}
                 actions={this.actions}
@@ -222,7 +214,7 @@ class App extends Component {
 
               return(
                 <AlbumsPage
-                dark_theme={this.state.dark_theme}
+                dark_theme={this.props.dark_theme}
                 localize={localize?localize:{}}
                 cards={this.state.album_cards}
                 decks={this.state.album_decks} />
@@ -238,7 +230,7 @@ class App extends Component {
                 card.card_id = this.state.about_us_info_card_id;
                 return(
                   <InformationCardPage
-                    dark_theme={this.state.dark_theme}
+                    dark_theme={this.props.dark_theme}
                     actions={this.actions}
                     localize={localize?localize:{}}
                     card={card}
@@ -259,9 +251,9 @@ class App extends Component {
               );
             }}/>
         </Switch>
-
+        ,
         <Footer localize={localize?localize:{}} version={Constants.version}/>
-
+        ,
         <div style={{zIndex: 999}}>
           <Tooltip title={localize?localize.chat_room:'chat room'}>
             <Launcher
@@ -278,10 +270,7 @@ class App extends Component {
             />
           </Tooltip>
         </div>
-
-
-      </ThemeProvider>
-    );
+    ]);
   }
 }
 

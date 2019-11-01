@@ -51,7 +51,7 @@ const getCookie = (cname)=> {
 
 
 
-function Service(NoService, Dispatcher) {
+function Service(NoService, Dispatcher, DarkThemeState) {
   // [Loading Stage Forward]
   Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:10}});
 
@@ -294,8 +294,9 @@ function Service(NoService, Dispatcher) {
       setTimeout(()=>{Dispatcher.dispatch({type: 'updateLoadingStatus', data: data});}, 0);
     },
     toggleTheme: (data)=> {
-      setCookie('dark_theme', (dark_theme===true?false:true), 360);
-      setTimeout(()=>{Dispatcher.dispatch({type: 'toggleTheme'});}, 0);
+      dark_theme =  (dark_theme===true?false:true);
+      setCookie('dark_theme', dark_theme, 360);
+      DarkThemeState[1](dark_theme);
     },
     loadSuggestedInformationCards: ()=> {
       if(Services.gotoandPlay)
@@ -457,8 +458,8 @@ function Service(NoService, Dispatcher) {
 
     this.Actions.initLang(lang);
     this.Actions.importLocalizes(Localizes);
-    Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
-
+    // Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
+    DarkThemeState[1](dark_theme);
     // if(lang === 'zh') {
     //   this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
     // }
