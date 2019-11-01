@@ -13,7 +13,7 @@ $cc: #333
       padding: 0 8%
 
 .header
-  +size(100%, 180px)
+  +size(100%, 190px)
   +shadow
   @media(max-width: 650px)
     height: 160px
@@ -94,7 +94,7 @@ $cc: #333
   z-index: 3
   position: absolute
   left: 20%
-  top: 120%
+  top: 100%
   transform: translate(-50%, -50%)
   cursor: pointer
   .main
@@ -114,14 +114,16 @@ $cc: #333
     line-height: 40px
     text-align: left
 .footer
-  +size(100%, 70px)
+  +size(100%, 100px)
+  height: auto
   font-size: 13px
   text-align: center
-  h5
-    margin: 10px
+  .footer-information
     margin-top: 20px
+  .copyright
+    margin: 20px 10px 20px 10px
     letter-spacing: 2px
   &::before
-    +triangle-decorate()
+    +toolbar()
     bottom: 100%
     transform: rotate(180deg)
