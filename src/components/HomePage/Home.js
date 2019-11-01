@@ -100,7 +100,7 @@ function Home(props){
         let segment_name = programmes.show_segments[i];
         let segment_detail = programmes.segments[segment_name][todays_day];
         rows.push(
-          <Grid item xs={6} sm={5} md={4} lg={3} xl={2}>
+          <Grid item xs={11} sm={5} md={4} lg={3} xl={2}>
             <Card className={classes.program_card}>
               <CardContent >
                 <Typography gutterBottom variant="h5" component="h5">
@@ -140,7 +140,7 @@ function Home(props){
 
     if(!rows.length) {
       return([
-        <Grid item xs={6} sm={5} md={4} lg={3}  xl={2}>
+        <Grid item xs={11} sm={5} md={4} lg={3}  xl={2}>
           <Card className={classes.program_card}>
             <CardActionArea>
               <CardContent>

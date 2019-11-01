@@ -49,7 +49,7 @@ a
   // font-size:0px
   letter-spacing: 0px
 
-html, body, #root
+html, #root
   border: none
   overflow-y: auto
   // background-color: $color_white
@@ -59,12 +59,16 @@ html
   background-color: #233035
   background-image: url("./imgs/wallpaper.png")
   background-size: cover
+  scroll-behavior: smooth
 
 html
   overflow: -moz-hidden-unscrollable
 
 body::-webkit-scrollbar
   display: none
+  color: inherit
+  +size(100%, 100%)
+
 
 // body
   // -ms-overflow-style: none
