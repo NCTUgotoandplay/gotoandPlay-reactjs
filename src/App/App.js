@@ -34,8 +34,7 @@ import blue from '@material-ui/core/colors/blue';
 import Tooltip from '@material-ui/core/Tooltip';
 
 //
-import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
-import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
 import LinearProgress from '@material-ui/core/LinearProgress';
 
 const Theme = createMuiTheme({
@@ -143,7 +142,7 @@ class App extends Component {
     let localize = this.state.localizes[this.state.lang];
     let theme = this.state.dark_theme===true?DarkTheme:Theme;
     return (
-      <MuiThemeProvider theme={theme}>
+      <ThemeProvider theme={theme}>
         {(this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.progress_percent}/>: <LinearProgress />):null}
         <Header
           localize={localize?localize:{}}
@@ -281,7 +280,7 @@ class App extends Component {
         </div>
 
 
-      </MuiThemeProvider>
+      </ThemeProvider>
     );
   }
 }

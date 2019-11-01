@@ -62,7 +62,7 @@ let Cards = (props)=> {
     </Grid>
   )
   return (
-    <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={24}>
+    <Grid style={{padding: 20}} container alignItems="flex-start" direction="row" justify="center" spacing={5}>
       {listItems}
     </Grid>
   )

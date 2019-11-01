@@ -37,7 +37,7 @@ function Decks(props) {
     </Grid>
   )
   return (
-    <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={24}>
+    <Grid style={{padding: 20}} container alignItems="center" direction="row" justify="center" spacing={5}>
       {listItems}
     </Grid>
   )
