@@ -6,9 +6,11 @@
     "Vivian0507"
   ],
   "settings": {
+    "slogan": "We play, we work, we create.",
     "talksy_link": "https://gotoandplay.nctu.edu.tw/talksy/",
     "base_url": "https://gotoandplay.nctu.edu.tw",
     "default_lang": "en",
+    "default_theme": true,
     "audio_source": "http://140.113.52.126:8000/;",
     "noservice": {
       "host": "gotoandplay.nctu.edu.tw",

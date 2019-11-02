@@ -62,6 +62,10 @@ function Service(NoService, Dispatcher, DarkThemeState) {
 
   let lang = getCookie('lang');
   let dark_theme = getCookie('dark_theme');
+  if(!dark_theme) {
+    dark_theme = Constants.settings.default_theme;
+    setCookie('dark_theme', dark_theme, 360);
+  }
   if(dark_theme==='true')
     dark_theme = true
   if(dark_theme==='false')

@@ -65,7 +65,7 @@ class App extends Component {
         channel_id: null,
         welcome_message: null
       },
-      slogan: 'We play, we work, we create.',
+      slogan: Constants.settings.slogan,
       chat_room_meta: {},
       isadmin: false,
       online_count: 0,
@@ -270,7 +270,7 @@ class App extends Component {
             }}/>
         </Switch>
         ,
-        <Footer localize={localize?localize:{}} version={Constants.version}/>
+        <Footer slogan={this.state.slogan} localize={localize?localize:{}} version={Constants.version}/>
         ,
         <div style={{zIndex: 999}}>
           <Tooltip title={localize?localize.chat_room:'chat room'}>

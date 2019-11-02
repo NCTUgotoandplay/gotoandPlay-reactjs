@@ -6,9 +6,10 @@ const Footer = (props) => (
     <div className="container">
       <div className="footer-information">
         <img className="logo" src={Logo}/>
-        <h2>goto&Play</h2>
-        <p>We play, we work, we create.</p>
-        <p>Email: gotoandplaynctu@gmail.com</p>
+        <h2>{props.localize.header_title}</h2>
+        <p>{props.slogan}</p>
+        <p>{props.localize.email+': gotoandplaynctu@gmail.com'}</p>
+        <p>{props.localize.address+': 台灣新竹縣竹北市六家五路一段一號30272'}</p>
       </div>
       <p className="copyright">
         <span>{props.localize.copyright}</span>

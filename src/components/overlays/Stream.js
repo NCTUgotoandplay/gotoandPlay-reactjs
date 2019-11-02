@@ -14,7 +14,7 @@ class Stream extends Component {
   render () {
     return (
       <div className="stream">
-        <div className="bar">Online Radio</div>
+        <div className="bar"><marquee scrollamount="4" startvisable="true">{this.props.localize.header_title+' Online Radio'}</marquee></div>
         {this.props.playing?
           <Tooltip title={this.props.localize.pause_playing?this.props.localize.pause_playing:'continue'}>
             <Fab size="medium" onClick={this.props.onClick}>
