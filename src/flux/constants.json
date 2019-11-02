@@ -11,7 +11,9 @@
     "base_url": "https://gotoandplay.nctu.edu.tw",
     "default_lang": "zh",
     "default_theme": true,
+    "do_audio_source_alter": true,
     "audio_source": "http://140.113.52.126:8000/;",
+    "alternative_audio_source": "http://178.33.232.106:8046/autodj",
     "noservice": {
       "host": "gotoandplay.nctu.edu.tw",
       "conn": "WebSocketSecure"

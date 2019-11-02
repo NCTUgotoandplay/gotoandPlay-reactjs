@@ -6,7 +6,7 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 
 import WbSunnyOutlinedIcon from '@material-ui/icons/WbSunnyOutlined';
-import WbSunnyIcon from '@material-ui/icons/WbSunny'
+import WbSunnyIcon from '@material-ui/icons/WbSunny';
 
 
 import MenuItem from '@material-ui/core/MenuItem';
@@ -154,6 +154,7 @@ class Header extends Component {
           </div>
         </div>
         <Stream
+          actions={this.props.actions}
           player={this.props.player}
           localize={this.props.localize}
           playing={this.props.playing}

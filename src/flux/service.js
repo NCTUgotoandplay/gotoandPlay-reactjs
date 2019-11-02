@@ -5,6 +5,10 @@
 import Constants from './constants.json';
 import Localizes from './data/localizes.json';
 const audio_source = Constants.settings.audio_source;
+const alternative_audio_source = Constants.settings.alternative_audio_source;
+const do_audio_source_alter = Constants.settings.do_audio_source_alter;
+
+
 
 
 const copyToClipboard = str => {
@@ -76,10 +80,13 @@ function Service(NoService, Dispatcher, DarkThemeState) {
   }
 
   let gotoandPlay_audio = new Audio(audio_source);
+  let alter_gotoandPlay_audio = false;
   let gotoandPlay_audio_playing = false;
   let programs = {};
   let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
   let refresh_interv_min = 0.8;
+  let now_program = null;
+
 
   const update_program = ()=> {
     // let date = new Date('2019-10-28 21:00');
@@ -92,7 +99,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
     // console.log([programs, todays_day_start_with_mon, todays_day]);
 
     if(programs.show_days&&programs.show_days[todays_day_start_with_mon]) {
-      let now_program = null;
+      now_program = null;
       let now_segment = null;
       for(let segment in programs.segments) {
         let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
@@ -115,21 +122,33 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           title: now_program.title,
           day: todays_day_start_with_mon
         }});
+        if(alter_gotoandPlay_audio) {
+          gotoandPlay_audio = new Audio(audio_source);
+        }
+        alter_gotoandPlay_audio = false;
       }
       else {
         Dispatcher.dispatch({type: 'updatePlayer', data: {
           type: "stream",
-          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+alternative_audio_source,
           playing: gotoandPlay_audio_playing
         }});
+        if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
+          gotoandPlay_audio = new Audio(alternative_audio_source);
+          alter_gotoandPlay_audio = true;
+        }
       }
     }
     else {
       Dispatcher.dispatch({type: 'updatePlayer', data: {
         type: "stream",
-        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+alternative_audio_source,
         playing: gotoandPlay_audio_playing
       }});
+      if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
+        gotoandPlay_audio = new Audio(alternative_audio_source);
+        alter_gotoandPlay_audio = true;
+      }
     };
     // let today = ;
   };
@@ -456,6 +475,14 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       lang = l
       setCookie('lang', lang, 360);
       Dispatcher.dispatch({type: 'updateLang', data: lang});
+    },
+    FastForwardAudio: ()=> {
+      gotoandPlay_audio.currentTime += 5;
+      // this.enqueueSnackbar(Localizes[lang].fast_forward+' 10s');
+    },
+    FastRewindAudio: ()=> {
+      gotoandPlay_audio.currentTime -= 5;
+      // this.enqueueSnackbar(Localizes[lang].fast_forward+' 10s');
     },
     switchMainStream: ()=> {
       if(gotoandPlay_audio_playing) {

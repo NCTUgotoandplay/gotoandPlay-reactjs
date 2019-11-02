@@ -89,7 +89,12 @@
     "songs": "songs",
     "listen": "listen",
     "email": "email",
-    "address": "address"
+    "address": "address",
+    "fast_rewind": "fast rewind",
+    "fast_forward": "fast forward",
+    "skip_next": "skip next",
+    "skip_previous": "skip previous",
+    "switch": "switch"
   },
   "zh": {
     "lang2string": "中文",
