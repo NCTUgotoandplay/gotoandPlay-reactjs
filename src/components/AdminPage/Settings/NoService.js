@@ -10,6 +10,7 @@ import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 
@@ -38,9 +39,11 @@ export default class Settings extends React.Component {
       <List >
         <a href={'/noservice/shell.html'}>
           <ListItem>
-            <Avatar>
-              <ComputerIcon />
-            </Avatar>
+            <ListItemAvatar>
+              <Avatar>
+                <ComputerIcon />
+              </Avatar>
+            </ListItemAvatar>
             <ListItemText primary="NoShell" secondary="manipulate your noservice daemon by commands." />
           </ListItem>
         </a>
@@ -48,9 +51,11 @@ export default class Settings extends React.Component {
       <List >
         <a href={'/noservice/signup.html'}>
           <ListItem>
-            <Avatar>
-              <ComputerIcon />
-            </Avatar>
+            <ListItemAvatar>
+              <Avatar>
+                <ComputerIcon />
+              </Avatar>
+            </ListItemAvatar>
             <ListItemText primary="Signup" secondary="signup a noservice acccount." />
           </ListItem>
         </a>
@@ -58,9 +63,12 @@ export default class Settings extends React.Component {
       <List >
         <a href={'/noservice/NoUserSettings.html'}>
           <ListItem>
-            <Avatar>
-              <ComputerIcon />
-            </Avatar>
+            <ListItemAvatar>
+              <Avatar>
+                <ComputerIcon />
+              </Avatar>
+            </ListItemAvatar>
+
             <ListItemText primary="User settings" secondary="Modify your user settings." />
           </ListItem>
         </a>

@@ -159,6 +159,26 @@ function Home(props){
             </CardActionArea>
           </Card>
         </Grid>
+        ,
+        <Grid item xs={11} sm={5} md={4} lg={3}  xl={2}>
+          <Card className={classes.program_card}>
+            <CardActionArea>
+              <CardContent>
+                <Typography gutterBottom variant="h5" component="h5">
+                <span style={{color: '#232f34'}}>
+                  {props.localize.no_program}
+                </span>
+                </Typography>
+                <Typography gutterBottom variant="body" component="p" style={{color: 'white'}}>
+                  {props.localize.no_program}
+                </Typography>
+                <Typography gutterBottom variant="body" component="p" >
+                </Typography>
+              </CardContent>
+            </CardActionArea>
+          </Card>
+        </Grid>
+        
       ]);
     }
     return rows;
@@ -188,7 +208,8 @@ function Home(props){
                       </a>
                     );
                 })}
-                <li onClick={()=>{props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我哈哈哈"}</li>
+                <li onClick={()=>{props.actions.pushNotification({content:'¯\\_(ツ)_/¯', variant: 'error'})}}>{"點我大家哈哈哈"}</li>
+                <Link to="/admin"><li>{"點我進入管理頁面"}</li></Link>
               </ul>
             </div>
           </div>

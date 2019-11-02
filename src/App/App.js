@@ -20,6 +20,8 @@ import TalkRoom from "../components/TalkRoom"
 // Pages
 import HomePage from "../components/HomePage";
 import AlbumsPage from "../components/AlbumsPage";
+import {AlbumsManagementPage} from "../components/AlbumsPage";
+
 import AboutUsPage from "../components/AboutusPage";
 import AdminPage from "../components/AdminPage";
 import InformationCardPage from "../components/InformationCardPage";
@@ -214,6 +216,22 @@ class App extends Component {
 
               return(
                 <AlbumsPage
+                dark_theme={this.props.dark_theme}
+                localize={localize?localize:{}}
+                cards={this.state.album_cards}
+                decks={this.state.album_decks} />
+              )
+            }} />
+
+          <Route path="/albums-management" render={
+            props => {
+              if(ab_not_finished) {
+                this.props.enqueueSnackbar('此頁面尚未完成!', {variant: 'warning'});
+                ab_not_finished=0;
+              }
+
+              return(
+                <AlbumsManagementPage
                 dark_theme={this.props.dark_theme}
                 localize={localize?localize:{}}
                 cards={this.state.album_cards}

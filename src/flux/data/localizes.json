@@ -83,7 +83,11 @@
     "created_date": "created date",
     "modified_date": "modified date",
     "todays_programmes": "today's programmes",
-    "todays_empty_description": "We have no program today. But you can still navigate our contain. Or you can check out our schedule."
+    "todays_empty_description": "We have no program today. But you can still navigate our contain. Or you can check out our schedule.",
+    "all": "All",
+    "name": "name",
+    "songs": "songs",
+    "listen": "listen"
   },
   "zh": {
     "lang2string": "中文",

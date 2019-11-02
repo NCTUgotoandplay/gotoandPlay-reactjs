@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { Link } from "react-router-dom";
+
 import Button from '@material-ui/core/Button';
 
 import CustomExpansionPanel from '../CustomExpansionPanel';
@@ -28,10 +30,15 @@ export default class Settings extends React.Component {
         <Typography className="description">{'.'}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails style={{display: 'inline-block'}}>
-        <Typography variant="h6" component="h2">{this.props.localize.header_Albums}</Typography>
-        <Typography variant="h6" component="h2">{this.props.localize.highlighted_albums}</Typography>
-        <Typography variant="h6" component="h2">{this.props.localize.album_collections}</Typography>
+        {'Click below button to navigate to the settings.'}
       </ExpansionPanelDetails>
+      <ExpansionPanelActions>
+        <Link to="/albums-management">
+          <Button color="primary" size="small">
+            {this.props.localize.go+' '+this.props.localize.header_Albums+' '+this.props.localize.settings}
+          </Button>
+        </Link>
+      </ExpansionPanelActions>
       </CustomExpansionPanel>
     )
   }
