@@ -14,7 +14,7 @@ const Footer = (props) => (
       <p className="copyright">
         <span>{props.localize.copyright}</span>
         <br/>
-        <a href="https://nooxy.org" target="_blank"><span>{'2019- site powered by NOOXY NoService.'}</span></a>
+        <a href="https://nooxy.org" target="_blank"><span>{'Site powered by NOOXY NoService since 2019.'}</span></a>
       </p>
     </div>
   </div>
