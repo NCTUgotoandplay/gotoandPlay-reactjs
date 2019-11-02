@@ -75,29 +75,17 @@ export class TimetableTable extends Component{
     for(let i in show_days) {
       if(show_days[i]) {
         if(segment[i]) {
-          if(segment_name===this.props.program_now.segment&&parseInt(i)===this.props.program_now.day) {
-            rows.push(
-              <CustomTableCell color="primary" key={i}>
-                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
-                  <a href={segment[i].url} target="_blank">
-                    <Typography color="secondary">{'> '+segment[i].title}</Typography>
-                  </a>
-                </Tooltip>
-              </CustomTableCell>
-            );
-          }
-          else {
-            rows.push(
-              <CustomTableCell key={i}>
-                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
-                  <a href={segment[i].url} target="_blank">
-                    {segment[i].title}
-                  </a>
-                </Tooltip>
-              </CustomTableCell>
-            );
-          }
+          let emphasize = segment_name===this.props.program_now.segment&&parseInt(i)===this.props.program_now.day;
 
+          rows.push(
+            <CustomTableCell color="primary" key={i}>
+              <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
+                <a href={segment[i].url} target="_blank">
+                  {emphasize?<Typography color="secondary">{segment[i].title}</Typography>:segment[i].title}
+                </a>
+              </Tooltip>
+            </CustomTableCell>
+          );
         }
         else {
           rows.push(

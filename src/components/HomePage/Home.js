@@ -92,22 +92,21 @@ function Home(props){
   let renderTodaysProgrammes = ()=> {
     let programmes = props.programs;
     let rows = [];
-
+    // let todays_day = new Date('2019-10-28 21:00').getDay();
     let todays_day = (new Date()).getDay();
     let todays_day_start_with_mon = todays_day===0?6:todays_day-1;
     if(programmes.show_days[todays_day_start_with_mon]) {
       for(let i in programmes.show_segments) {
         let segment_name = programmes.show_segments[i];
         let segment_detail = programmes.segments[segment_name][todays_day_start_with_mon];
+        let emphasize = segment_name===props.program_now.segment&&todays_day_start_with_mon===props.program_now.day;
         rows.push(
           <Grid item xs={11} sm={5} md={4} lg={3} xl={2}>
             <Card className={classes.program_card}>
               <CardContent >
                 <Typography gutterBottom variant="h5" component="h5">
                   <Box fontWeight="fontWeightBold" m={1}>
-                  <span style={{color: '#232f34'}}>
-                    {segment_detail.title}
-                  </span>
+                  {emphasize?<Typography variant="header" color="secondary">{segment_detail.title}</Typography>:<span style={{color: '#232f34'}}>{segment_detail.title}</span>}
                   </Box>
                 </Typography>
                 <Typography gutterBottom variant="body" component="p"  component="p" style={{color: 'white'}}>

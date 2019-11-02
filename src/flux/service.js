@@ -227,7 +227,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
                         for(let i in json.r) {
                           new_messeges.push(NoTalkToChatWindow(json.r[i]));
                         };
-                        update_program();
+
                         Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
                         Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
                         Dispatcher.dispatch({type: 'readLatestLine'});
@@ -383,6 +383,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           for(let i in result) {
             op(result[i]);
           };
+          update_program();
           Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: result});
         });
     },
