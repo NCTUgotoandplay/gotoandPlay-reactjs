@@ -94,7 +94,8 @@
     "fast_forward": "fast forward",
     "skip_next": "skip next",
     "skip_previous": "skip previous",
-    "switch": "switch"
+    "switch": "switch",
+    "playing_alternative_source": "playing alternative audio sources"
   },
   "zh": {
     "lang2string": "中文",
@@ -186,7 +187,13 @@
     "songs": "曲目",
     "listen": "聆聽",
     "email": "信箱",
-    "address": "位址"
+    "address": "位址",
+    "fast_rewind": "倒轉",
+    "fast_forward": "快轉",
+    "skip_next": "下一首",
+    "skip_previous": "上一首",
+    "switch": "切換",
+    "playing_alternative_source": "正在播放替代音源"
   },
   "jp": {
     "lang2string": "日本語",
@@ -278,7 +285,13 @@
     "songs": "ソング",
     "listen": "聞き",
     "email": "エメル",
-    "address": "アドレス"
+    "address": "アドレス",
+    "fast_rewind": "fast rewind",
+    "fast_forward": "fast forward",
+    "skip_next": "skip next",
+    "skip_previous": "skip previous",
+    "switch": "switch",
+    "playing_alternative_source": "playing alternative audio sources"
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -370,7 +383,13 @@
     "songs": "songs",
     "listen": "listen",
     "email": "email",
-    "address": "address"
+    "address": "address",
+    "fast_rewind": "fast rewind",
+    "fast_forward": "fast forward",
+    "skip_next": "skip next",
+    "skip_previous": "skip previous",
+    "switch": "switch",
+    "playing_alternative_source": "playing alternative audio sources"
   },
   "ru": {
     "lang2string": "русский",
@@ -462,7 +481,13 @@
     "songs": "songs",
     "listen": "listen",
     "email": "email",
-    "address": "address"
+    "address": "address",
+    "fast_rewind": "fast rewind",
+    "fast_forward": "fast forward",
+    "skip_next": "skip next",
+    "skip_previous": "skip previous",
+    "switch": "switch",
+    "playing_alternative_source": "playing alternative audio sources"
   },
   "de": {
     "lang2string": "Deutsche",
@@ -554,6 +579,12 @@
     "songs": "songs",
     "listen": "listen",
     "email": "email",
-    "address": "address"
+    "address": "address",
+    "fast_rewind": "fast rewind",
+    "fast_forward": "fast forward",
+    "skip_next": "skip next",
+    "skip_previous": "skip previous",
+    "switch": "switch",
+    "playing_alternative_source": "playing alternative audio sources"
   }
 }

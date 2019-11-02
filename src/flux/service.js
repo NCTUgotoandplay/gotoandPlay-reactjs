@@ -130,7 +130,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       else {
         Dispatcher.dispatch({type: 'updatePlayer', data: {
           type: "stream",
-          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+alternative_audio_source,
+          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+Localizes[lang].playing_alternative_source,
           playing: gotoandPlay_audio_playing
         }});
         if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
@@ -142,7 +142,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
     else {
       Dispatcher.dispatch({type: 'updatePlayer', data: {
         type: "stream",
-        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+alternative_audio_source,
+        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+Localizes[lang].playing_alternative_source,
         playing: gotoandPlay_audio_playing
       }});
       if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
