@@ -82,8 +82,8 @@ function Service(NoService, Dispatcher, DarkThemeState) {
   let refresh_rate_min = 1;
 
   const update_program = ()=> {
-    let date = new Date('2019-10-28 21:00');
-    // let date = new Date();
+    // let date = new Date('2019-10-28 21:00');
+    let date = new Date();
 
     let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
     let todays_day = date.getDay();
