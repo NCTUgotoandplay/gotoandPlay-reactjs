@@ -114,11 +114,17 @@ class App extends Component {
         show: true,
         progress_percent: 0,
       },
+      player: {
+        type: "stream",
+        title: null,
+        playing: false
+      },
       push_notification_cache: [
         {id:'123', content: '節目開始', variant:'info'},
         {id:'13', content: '準備抽獎', variant:'warning'},
         {id:'s13', content: '節目結束', variant:'error'}
-      ]
+      ],
+      program_now: {}
     };
   }
 
@@ -139,6 +145,7 @@ class App extends Component {
         (this.state.loading_status.show)?(this.state.loading_status.determinate?<LinearProgress variant="determinate" value={this.state.loading_status.progress_percent}/>: <LinearProgress />):null
         ,
         <Header
+          player={this.state.player}
           localize={localize?localize:{}}
           lang={this.state.lang}
           lang2string = {this.state.lang2string}
@@ -154,6 +161,7 @@ class App extends Component {
           <Route exact path="/" render={props=> {
             return(
               <HomePage
+                program_now={this.state.program_now}
                 dark_theme={this.props.dark_theme}
                 slogan={this.state.slogan}
                 actions={this.actions}

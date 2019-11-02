@@ -77,7 +77,77 @@ function Service(NoService, Dispatcher, DarkThemeState) {
 
   let gotoandPlay_audio = new Audio(audio_source);
   let gotoandPlay_audio_playing = false;
+  let programs = {};
   let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
+  let refresh_rate_min = 1;
+
+  const update_program = ()=> {
+    let date = new Date('2019-10-28 21:00');
+    // let date = new Date();
+
+    let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
+    let todays_day = date.getDay();
+    let todays_day_start_with_mon = todays_day===0?6:todays_day-1;
+    // console.log([programs, todays_day_start_with_mon, todays_day]);
+
+    if(programs.show_days&&programs.show_days[todays_day_start_with_mon]) {
+      let now_program = null;
+      let now_segment = null;
+      for(let segment in programs.segments) {
+        let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
+        // console.log([segment, matches]);
+        if(date>=new Date(date_string+' '+matches[1]) && date<new Date(date_string+' '+matches[2])) {
+          now_program = programs.segments[segment][todays_day_start_with_mon];
+          now_segment = segment;
+        }
+      }
+      if(now_program) {
+        // console.log(now_program);
+        Dispatcher.dispatch({type: 'updatePlayer', data: {
+          type: "stream",
+          title: now_program.description?(Localizes[lang].header_title+' - ['+now_program.title+'] '+now_program.description):(Localizes[lang].header_title+' - ['+now_program.title+']'),
+          playing: gotoandPlay_audio_playing
+        }});
+
+        Dispatcher.dispatch({type: 'updateProgramNow', data: {
+          segment: now_segment,
+          title: now_program.title,
+          day: todays_day_start_with_mon
+        }});
+      }
+      else {
+        Dispatcher.dispatch({type: 'updatePlayer', data: {
+          type: "stream",
+          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+          playing: gotoandPlay_audio_playing
+        }});
+      }
+    }
+    else {
+      Dispatcher.dispatch({type: 'updatePlayer', data: {
+        type: "stream",
+        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+        playing: gotoandPlay_audio_playing
+      }});
+    };
+    // let today = ;
+  };
+
+
+  const update_program_recur = ()=> {
+    if(gotoandPlay_audio_playing) {
+      update_program();
+      setTimeout(()=>{
+        update_program_recur();
+      }, refresh_rate_min*1000*60);
+    }
+    else {
+      Dispatcher.dispatch({type: 'updatePlayer', data: {
+        type: "stream",
+        playing: gotoandPlay_audio_playing
+      }});
+    }
+  };
 
   const NoTalkToChatWindow = (msg)=> {
     return { type: 'text', data:{text: (msg[0]?Localizes[lang].user+'('+msg[0].slice(0, 8)+'): ':''+Localizes[lang].guest+': ')+'\n'+msg[2]}};
@@ -157,6 +227,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
                         for(let i in json.r) {
                           new_messeges.push(NoTalkToChatWindow(json.r[i]));
                         };
+                        update_program();
                         Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
                         Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
                         Dispatcher.dispatch({type: 'readLatestLine'});
@@ -190,7 +261,6 @@ function Service(NoService, Dispatcher, DarkThemeState) {
         Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell Client] \n'+msg.data.text.slice(1)}}});
         let op = ()=> {
           Services.NoShell.call('sendC', {c: msg.data.text.slice(1)}, (err, json)=>{
-            console.log(json);
             Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '[NoShell] \n'+json.r}}});
           });
         };
@@ -263,7 +333,6 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       Dispatcher.dispatch({type: 'updateAlbumDecks', data: data});
     },
     updateInformationCard: (data, callback)=> {
-      console.log(data);
       if(data.CardId) {
         if(Services.gotoandPlay)
           Services.gotoandPlay.call('updateInfoCard', data, (err, result)=> {
@@ -397,7 +466,8 @@ function Service(NoService, Dispatcher, DarkThemeState) {
         gotoandPlay_audio.play();
         this.enqueueSnackbar(Localizes[lang].continue_playing);
       }
-      Dispatcher.dispatch({type: 'reverseStreamStaus', data: !gotoandPlay_audio_playing});
+
+      update_program_recur();
     },
     pushNotification: (data)=> {
       if(Services.gotoandPlay)
@@ -424,6 +494,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
     loadPrograms: ()=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getPrograms', null, (err, data)=> {
+          programs = data;
           Dispatcher.dispatch({type: 'updatePrograms', data: data});
         });
     }
@@ -464,6 +535,11 @@ function Service(NoService, Dispatcher, DarkThemeState) {
     this.Actions.importLocalizes(Localizes);
     // Dispatcher.dispatch({type: 'updateDarktheme', data: dark_theme});
     DarkThemeState[1](dark_theme);
+    Dispatcher.dispatch({type: 'updatePlayer', data: {
+      type: "stream",
+      title: Localizes[lang].header_title+' Online Radio',
+      playing: gotoandPlay_audio_playing
+    }});
     // if(lang === 'zh') {
     //   this.enqueueSnackbar('我們還在建構這個網站!', {variant: 'error'});
     // }

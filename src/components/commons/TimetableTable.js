@@ -9,6 +9,9 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Checkbox from '@material-ui/core/Checkbox';
 
+import Typography from '@material-ui/core/Typography';
+
+
 import TextField from '@material-ui/core/TextField';
 
 import Button from '@material-ui/core/Button';
@@ -72,15 +75,29 @@ export class TimetableTable extends Component{
     for(let i in show_days) {
       if(show_days[i]) {
         if(segment[i]) {
-          rows.push(
-            <CustomTableCell key={i}>
-              <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
-                <a href={segment[i].url} target="_blank">
-                  {segment[i].title}
-                </a>
-              </Tooltip>
-            </CustomTableCell>
-          );
+          if(segment_name===this.props.program_now.segment&&parseInt(i)===this.props.program_now.day) {
+            rows.push(
+              <CustomTableCell color="primary" key={i}>
+                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
+                  <a href={segment[i].url} target="_blank">
+                    <Typography color="secondary">{'> '+segment[i].title}</Typography>
+                  </a>
+                </Tooltip>
+              </CustomTableCell>
+            );
+          }
+          else {
+            rows.push(
+              <CustomTableCell key={i}>
+                <Tooltip title={segment[i].description?segment[i].description:segment[i].title}>
+                  <a href={segment[i].url} target="_blank">
+                    {segment[i].title}
+                  </a>
+                </Tooltip>
+              </CustomTableCell>
+            );
+          }
+
         }
         else {
           rows.push(

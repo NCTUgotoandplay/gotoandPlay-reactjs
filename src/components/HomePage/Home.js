@@ -61,7 +61,7 @@ class Timetable extends Component {
           <p>{this.props.online_count+' '+this.props.localize.n_people_listening}</p>
         </div>
         <Paper className="contain">
-          {this.props.programs?<TimetableTable localize={this.props.localize} timetable={this.props.programs}/>:null}
+          {this.props.programs?<TimetableTable program_now={this.props.program_now} localize={this.props.localize} timetable={this.props.programs}/>:null}
         </Paper>
       </div>
     );
@@ -94,11 +94,11 @@ function Home(props){
     let rows = [];
 
     let todays_day = (new Date()).getDay();
-    // let todays_day = 0;
-    if(programmes.show_days[todays_day]) {
+    let todays_day_start_with_mon = todays_day===0?6:todays_day-1;
+    if(programmes.show_days[todays_day_start_with_mon]) {
       for(let i in programmes.show_segments) {
         let segment_name = programmes.show_segments[i];
-        let segment_detail = programmes.segments[segment_name][todays_day];
+        let segment_detail = programmes.segments[segment_name][todays_day_start_with_mon];
         rows.push(
           <Grid item xs={11} sm={5} md={4} lg={3} xl={2}>
             <Card className={classes.program_card}>
@@ -178,7 +178,7 @@ function Home(props){
             </CardActionArea>
           </Card>
         </Grid>
-        
+
       ]);
     }
     return rows;
@@ -213,7 +213,7 @@ function Home(props){
               </ul>
             </div>
           </div>
-          <Timetable online_count={props.online_count} localize={props.localize} programs={props.programs}/>
+          <Timetable  program_now={props.program_now} online_count={props.online_count} localize={props.localize} programs={props.programs}/>
         </div>
 
         <div className="cards" style={props.dark_theme?{'borderTop': 'solid 1px white'}:{'borderTop': 'solid 1px #232f34'}}>

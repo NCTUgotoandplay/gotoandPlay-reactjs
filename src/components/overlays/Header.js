@@ -154,6 +154,7 @@ class Header extends Component {
           </div>
         </div>
         <Stream
+          player={this.props.player}
           localize={this.props.localize}
           playing={this.props.playing}
           activeBar={1}

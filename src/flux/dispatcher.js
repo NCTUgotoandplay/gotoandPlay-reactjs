@@ -18,7 +18,6 @@ function generateDispatcher(setState) {
       });
     }
     else if (payload.type === 'updateLoadingStatus') {
-      console.log(payload);
       setState(prevstate=>{
         return({ loading_status: payload.data });
       })
@@ -36,19 +35,21 @@ function generateDispatcher(setState) {
       })
     }
     else if (payload.type === 'updateDarktheme') {
-      console.log(payload);
       setState(prevstate=>{
         return({ dark_theme: payload.data });
       })
     }
-    else if (payload.type === 'reverseStreamStaus') {
+    else if (payload.type === 'updateProgramNow') {
       setState(prevstate=>{
-        return({ playing: !prevstate.playing });
+        return({ program_now: payload.data });
       })
     }
-    else if (payload.type === 'updateStreamStaus') {
+    else if (payload.type === 'updatePlayer') {
       setState(prevstate=>{
-        return({ playing: payload.data });
+        if(!payload.data.title) {
+          payload.data.title = prevstate.player.title;
+        }
+        return({ playing: payload.data.playing, player: payload.data});
       })
     }
     else if (payload.type === 'updateProgramsTable') {
