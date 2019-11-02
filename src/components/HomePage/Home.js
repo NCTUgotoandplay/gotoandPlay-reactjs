@@ -92,8 +92,8 @@ function Home(props){
   let renderTodaysProgrammes = ()=> {
     let programmes = props.programs;
     let rows = [];
-    // let todays_day = (new Date(new Date('2019-10-28 21:00').toLocaleString("en-US", {timeZone: "Asia/Taipei"}))).getDay();
-    let todays_day = (new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Taipei"}))).getDay();
+    // let todays_day = (new Date(new Date('2019-10-28 21:00').toLocaleString("en-US", {timeZone: props.timezone}))).getDay();
+    let todays_day = (new Date(new Date().toLocaleString("en-US", {timeZone: props.timezone}))).getDay();
     let todays_day_start_with_mon = todays_day===0?6:todays_day-1;
     if(programmes.show_days[todays_day_start_with_mon]) {
       for(let i in programmes.show_segments) {

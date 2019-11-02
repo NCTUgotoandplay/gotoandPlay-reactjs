@@ -8,6 +8,7 @@ const audio_source = Constants.settings.audio_source;
 const alternative_audio_source = Constants.settings.alternative_audio_source;
 const do_audio_source_alter = Constants.settings.do_audio_source_alter;
 const timezone_offset = Constants.settings.timezone_offset;
+const timezone = Constants.settings.timezone;
 
 
 const copyToClipboard = str => {
@@ -89,7 +90,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
 
   const update_program = ()=> {
     // let date = new Date(new Date('2019-10-28 21:00').toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
-    let date = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
+    let date = new Date(new Date().toLocaleString("en-US", {timeZone: timezone}));
     console.log('now program updated.');
 
     let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;

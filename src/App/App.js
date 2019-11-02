@@ -161,6 +161,7 @@ class App extends Component {
           <Route exact path="/" render={props=> {
             return(
               <HomePage
+                timezone={Constants.settings.timezone}
                 program_now={this.state.program_now}
                 dark_theme={this.props.dark_theme}
                 slogan={this.state.slogan}

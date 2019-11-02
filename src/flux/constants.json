@@ -13,6 +13,7 @@
     "default_theme": true,
     "do_audio_source_alter": true,
     "timezone_offset": "+08:00",
+    "timezone": "Asia/Taipei",
     "audio_source": "http://140.113.52.126:8000/;",
     "alternative_audio_source": "http://178.33.232.106:8046/autodj",
     "noservice": {
