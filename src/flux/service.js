@@ -7,8 +7,7 @@ import Localizes from './data/localizes.json';
 const audio_source = Constants.settings.audio_source;
 const alternative_audio_source = Constants.settings.alternative_audio_source;
 const do_audio_source_alter = Constants.settings.do_audio_source_alter;
-
-
+const timezone_offset = Constants.settings.timezone_offset;
 
 
 const copyToClipboard = str => {
@@ -89,8 +88,8 @@ function Service(NoService, Dispatcher, DarkThemeState) {
 
 
   const update_program = ()=> {
-    // let date = new Date('2019-10-28 21:00');
-    let date = new Date();
+    // let date = new Date(new Date('2019-10-28 21:00').toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
+    let date = new Date(new Date().toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
     console.log('now program updated.');
 
     let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
@@ -104,7 +103,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       for(let segment in programs.segments) {
         let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
         // console.log([segment, matches]);
-        if(date>=new Date(date_string+' '+matches[1]) && date<new Date(date_string+' '+matches[2])) {
+        if(date>=new Date(date_string+'T'+matches[1]+timezone_offset) && date<new Date(date_string+'T'+matches[2]+timezone_offset)) {
           now_program = programs.segments[segment][todays_day_start_with_mon];
           now_segment = segment;
         }
