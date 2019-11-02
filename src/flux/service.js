@@ -79,11 +79,12 @@ function Service(NoService, Dispatcher, DarkThemeState) {
   let gotoandPlay_audio_playing = false;
   let programs = {};
   let notalk_channel_id = '478aa4d1-8bcb-4d20-b661-f502e0026166';
-  let refresh_rate_min = 1;
+  let refresh_rate_min = 0.8;
 
   const update_program = ()=> {
     // let date = new Date('2019-10-28 21:00');
     let date = new Date();
+    console.log('now program updated.');
 
     let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
     let todays_day = date.getDay();
