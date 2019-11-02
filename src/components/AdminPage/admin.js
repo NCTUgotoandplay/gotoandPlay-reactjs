@@ -14,8 +14,11 @@ class AdminPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      expanded: null
+      expanded: 'status'
     }
+  }
+  componentDidMount() {
+     window.scrollTo(0, 0);
   }
   render () {
     return (
