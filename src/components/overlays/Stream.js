@@ -21,7 +21,6 @@ import FastRewindIcon from '@material-ui/icons/FastRewind';
 import FastForwardIcon from '@material-ui/icons/FastForward';
 
 const useStyles = makeStyles(theme => {
-  console.log(theme);
   return({
       panel: {
         backgroundColor: theme.palette.background.paper,
