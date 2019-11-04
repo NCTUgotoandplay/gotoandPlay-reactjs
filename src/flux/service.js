@@ -91,12 +91,13 @@ function Service(NoService, Dispatcher, DarkThemeState) {
   const update_program = ()=> {
     // let date = new Date(new Date('2019-10-28 21:00').toLocaleString("en-US", {timeZone: "Asia/Taipei"}));
     let date = new Date(new Date().toLocaleString("en-US", {timeZone: timezone}));
-    console.log('now program updated.');
 
-    let date_string = date.getFullYear()+'-' + (date.getMonth()+1) + '-'+date.getDate();;
+    let pad = '00';
+    let date_string = date.toISOString().substring(0, 10);
     let todays_day = date.getDay();
     let todays_day_start_with_mon = todays_day===0?6:todays_day-1;
     // console.log([programs, todays_day_start_with_mon, todays_day]);
+    console.log('now program updated.');
 
     if(programs.show_days&&programs.show_days[todays_day_start_with_mon]) {
       now_program = null;
@@ -104,6 +105,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       for(let segment in programs.segments) {
         let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
         // console.log([segment, matches]);
+        console.log(date_string+'T'+matches[1]+timezone_offset);
         if(date>=new Date(date_string+'T'+matches[1]+timezone_offset) && date<new Date(date_string+'T'+matches[2]+timezone_offset)) {
           now_program = programs.segments[segment][todays_day_start_with_mon];
           now_segment = segment;

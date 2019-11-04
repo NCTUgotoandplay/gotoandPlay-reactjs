@@ -12,7 +12,7 @@
     "base_url": "https://gotoandplay.nctu.edu.tw",
     "default_lang": "zh",
     "default_theme": true,
-    "do_audio_source_alter": false,
+    "do_audio_source_alter": true,
     "timezone_offset": "+08:00",
     "timezone": "Asia/Taipei",
     "audio_source": "http://140.113.52.126:8000/;",
