@@ -188,6 +188,7 @@ function Home(props){
         <div className="timetable-container">
           <div className="intro_container">
             <h1 className="slogan">{props.slogan}</h1>
+            <h2 className="subslogan">{props.subslogan}</h2>
             <div className="intro">
               <h1>{props.localize.news}</h1>
               <ul>

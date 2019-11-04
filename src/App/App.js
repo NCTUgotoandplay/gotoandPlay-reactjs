@@ -66,6 +66,8 @@ class App extends Component {
         welcome_message: null
       },
       slogan: Constants.settings.slogan,
+      subslogan: Constants.settings.subslogan,
+
       chat_room_meta: {},
       isadmin: false,
       online_count: 0,
@@ -165,6 +167,7 @@ class App extends Component {
                 program_now={this.state.program_now}
                 dark_theme={this.props.dark_theme}
                 slogan={this.state.slogan}
+                subslogan={this.state.subslogan}
                 actions={this.actions}
                 online_count={this.state.online_count}
                 pinned_info={this.state.suggested_information_cards.map(card_id=> {
