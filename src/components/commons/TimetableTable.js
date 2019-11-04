@@ -40,7 +40,11 @@ const CustomTableCell = withStyles(theme => ({
     fontSize: 14,
     whiteSpace: 'normal',
     wordWrap: "break-word",
-    padding: '18px 18px 18px 18px'
+    padding: '18px 18px 18px 18px',
+    [theme.breakpoints.down('sm')]: {
+      padding: '10px 12px 10px 12px',
+      fontSize: 12
+    }
   },
 }))(TableCell);
 
@@ -101,7 +105,7 @@ export class TimetableTable extends Component{
   }
   render() {
     return(
-      <Table>
+      <Table  size="small">
         <TableHead>
           <TableRow>
             {this.renderHeader()}
