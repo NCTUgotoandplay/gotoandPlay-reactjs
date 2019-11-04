@@ -100,40 +100,41 @@ function Home(props){
         let segment_name = programmes.show_segments[i];
         let segment_detail = programmes.segments[segment_name][todays_day_start_with_mon];
         let emphasize = segment_name===props.program_now.segment&&todays_day_start_with_mon===props.program_now.day;
-        rows.push(
-          <Grid item xs={11} sm={5} md={4} lg={3} xl={2}>
-            <Card className={classes.program_card}>
-              <CardContent >
-                <Typography gutterBottom variant="h5" component="h5">
-                  <Box fontWeight="fontWeightBold" m={1}>
-                  {emphasize?<Typography variant="header" color="secondary">{segment_detail.title}</Typography>:<span style={{color: '#232f34'}}>{segment_detail.title}</span>}
-                  </Box>
-                </Typography>
-                <Typography gutterBottom variant="body" component="p"  component="p" style={{color: 'white'}}>
-                  <Box fontSize={12} m={1}>
-                    {segment_name}
-                  </Box>
+        if(segment_detail)
+          rows.push(
+            <Grid item xs={11} sm={5} md={4} lg={3} xl={2}>
+              <Card className={classes.program_card}>
+                <CardContent >
+                  <Typography gutterBottom variant="h5" component="h5">
+                    <Box fontWeight="fontWeightBold" m={1}>
+                    {emphasize?<Typography variant="header" color="secondary">{segment_detail.title}</Typography>:<span style={{color: '#232f34'}}>{segment_detail.title}</span>}
+                    </Box>
+                  </Typography>
+                  <Typography gutterBottom variant="body" component="p"  component="p" style={{color: 'white'}}>
+                    <Box fontSize={12} m={1}>
+                      {segment_name}
+                    </Box>
 
-                </Typography>
-                <Typography gutterBottom variant="body" component="p" >
-                  <Box fontSize={14} m={1}>
-                    {segment_detail.description?segment_detail.description:(props.localize.description+' '+props.localize.null)}
-                  </Box>
-                </Typography>
-              </CardContent>
-              <CardActionArea>
-                {segment_detail.url?
-                  <Tooltip title={props.localize.go+' '+props.localize.link}>
-                  <a target="_blank" rel="noopener noreferrer" href={segment_detail.url}>
-                    <IconButton size="small" aria-label="Share">
-                      <LaunchIcon />
-                    </IconButton>
-                  </a>
-                </Tooltip>:null}
-              </CardActionArea>
-            </Card>
-          </Grid>
-        );
+                  </Typography>
+                  <Typography gutterBottom variant="body" component="p" >
+                    <Box fontSize={14} m={1}>
+                      {segment_detail.description?segment_detail.description:(props.localize.description+' '+props.localize.null)}
+                    </Box>
+                  </Typography>
+                </CardContent>
+                <CardActionArea>
+                  {segment_detail.url?
+                    <Tooltip title={props.localize.go+' '+props.localize.link}>
+                    <a target="_blank" rel="noopener noreferrer" href={segment_detail.url}>
+                      <IconButton size="small" aria-label="Share">
+                        <LaunchIcon />
+                      </IconButton>
+                    </a>
+                  </Tooltip>:null}
+                </CardActionArea>
+              </Card>
+            </Grid>
+          );
       }
     }
 
