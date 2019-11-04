@@ -435,6 +435,12 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('updateReact', null, (err, data)=> {
           // Dispatcher.dispatch({type: 'updatePrograms', data: data});
+          if(data) {
+
+          }
+          else {
+            this.Actions.pushNotification({content:'Page updated. Please reload!', variant: '// WARNING: '});
+          }
           callback(data);
         });
       // Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
