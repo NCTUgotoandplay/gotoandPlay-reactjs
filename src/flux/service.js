@@ -104,6 +104,9 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       let now_segment = null;
       for(let segment in programs.segments) {
         let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
+        if(matches[2]==='00:00') {
+          matches[2] = '23:59';
+        }
         // console.log([segment, matches]);
         console.log(date_string+'T'+matches[1]+timezone_offset);
         if(date>=new Date(date_string+'T'+matches[1]+timezone_offset) && date<new Date(date_string+'T'+matches[2]+timezone_offset)) {
