@@ -144,9 +144,9 @@ export default class Settings extends React.Component {
                   label={this.props.localize.link}
                   type="text"
                   fullWidth
-                  defaultValue={this.props.app_state.audio.alter_audio_source}
+                  defaultValue={this.props.app_state.audio.alternative_audio_source}
                   onChange={evt => {
-                    this.setState({audio_source: evt.target.value});
+                    this.setState({alter_audio_source: evt.target.value});
                   }}
                   onKeyPress={(event)=> {
                     if(event.key == 'Enter'){

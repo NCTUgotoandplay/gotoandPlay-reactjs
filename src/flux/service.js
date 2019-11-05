@@ -256,7 +256,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
                 Services.gotoandPlay.call('getAudioSettings', null, (err, audio_settings)=> {
                   // gotoandPlay_audio.pause();
                   gotoandPlay_audio_playing = false;
-
+                  console.log(audio_settings);
                   audio_source = audio_settings.audio_source;
                   alternative_audio_source = audio_settings.alternative_audio_source;
                   do_audio_source_alter = audio_settings.do_audio_source_alter;
