@@ -81,7 +81,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
   let alternative_audio_source = Constants.settings.audio.alternative_audio_source;
   let do_audio_source_alter = Constants.settings.audio.do_audio_source_alter;
 
-  let gotoandPlay_audio = new Audio(audio_source);
+  let gotoandPlay_audio = null;
   let alter_gotoandPlay_audio = false;
   let gotoandPlay_audio_playing = false;
   let programs = {};
@@ -131,12 +131,13 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           day: todays_day_start_with_mon
         }});
         if(alter_gotoandPlay_audio) {
-          gotoandPlay_audio = new Audio(audio_source);
+          window.location.reload();
         }
+        gotoandPlay_audio = new Audio(audio_source);
         alter_gotoandPlay_audio = false;
       }
       else {
-        if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
+        if(alter_gotoandPlay_audio&&do_audio_source_alter) {
           gotoandPlay_audio = new Audio(alternative_audio_source);
           alter_gotoandPlay_audio = true;
           Dispatcher.dispatch({type: 'updatePlayer', data: {
@@ -145,7 +146,8 @@ function Service(NoService, Dispatcher, DarkThemeState) {
             playing: gotoandPlay_audio_playing
           }});
         }
-        else {
+        else if(!alter_gotoandPlay_audio){
+          gotoandPlay_audio = new Audio(audio_source);
           Dispatcher.dispatch({type: 'updatePlayer', data: {
             type: "stream",
             title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
@@ -241,66 +243,63 @@ function Service(NoService, Dispatcher, DarkThemeState) {
 
               this.setupDispatchers();
               this.Actions.loadOnlineCount();
-              this.Actions.loadPrograms();
-              this.Actions.loadSuggestedInformationCards();
-              Services.gotoandPlay.call('getAudioSettings', null, (err, audio_settings)=> {
-                gotoandPlay_audio.pause();
-                gotoandPlay_audio_playing = false;
+              this.Actions.loadPrograms(()=> {
+                this.Actions.loadSuggestedInformationCards();
+                Services.gotoandPlay.call('getAudioSettings', null, (err, audio_settings)=> {
+                  // gotoandPlay_audio.pause();
+                  gotoandPlay_audio_playing = false;
 
-                audio_source = audio_settings.audio_source;
-                alternative_audio_source = audio_settings.alternative_audio_source;
-                do_audio_source_alter = audio_settings.do_audio_source_alter;
+                  audio_source = audio_settings.audio_source;
+                  alternative_audio_source = audio_settings.alternative_audio_source;
+                  do_audio_source_alter = audio_settings.do_audio_source_alter;
 
-                if(!now_program&&do_audio_source_alter) {
-                  gotoandPlay_audio = new Audio(alternative_audio_source);
-                  console.log('');
-                }
-                else {
-                  gotoandPlay_audio = new Audio(audio_source);
-                }
-                Dispatcher.dispatch({type: 'updateAudio', data: audio_settings});
-                Dispatcher.dispatch({type: 'updatePlayer', data: {playing: false}});
+                  update_program();
 
-                // chat
-                Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
-                  Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
-                  Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
-                    // [Loading Stage Forward]
-                    Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
-                    Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
-                    notalk_channel_id = chat_room_settings.channel_id;
-                    Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
-                      Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
-                        if(err) {
-                          console.log(err);
-                        }
-                        // [Loading Stage Forward]
-                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:90}});
-                        Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
-                        Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+                  Dispatcher.dispatch({type: 'updateAudio', data: audio_settings});
+                  Dispatcher.dispatch({type: 'updatePlayer', data: {playing: false}});
+
+                  // chat
+                  Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
+                    Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
+                    Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
+                      // [Loading Stage Forward]
+                      Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
+                      Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
+                      notalk_channel_id = chat_room_settings.channel_id;
+                      Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
+                        Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
                           if(err) {
                             console.log(err);
                           }
                           // [Loading Stage Forward]
-                          Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:95}});
-                          let new_messeges = [];
-                          for(let i in json.r) {
-                            new_messeges.push(NoTalkToChatWindow(json.r[i]));
-                          };
+                          Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:90}});
+                          Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
+                          Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+                            if(err) {
+                              console.log(err);
+                            }
+                            // [Loading Stage Forward]
+                            Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:95}});
+                            let new_messeges = [];
+                            for(let i in json.r) {
+                              new_messeges.push(NoTalkToChatWindow(json.r[i]));
+                            };
 
-                          Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
-                          Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
-                          Dispatcher.dispatch({type: 'readLatestLine'});
-                          Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
-                          Dispatcher.dispatch({type: 'addLatestLine'});
-                          // [Loading Stage Forward]
-                          Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: false, progress_percent:100}});
+                            Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
+                            Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
+                            Dispatcher.dispatch({type: 'readLatestLine'});
+                            Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
+                            Dispatcher.dispatch({type: 'addLatestLine'});
+                            // [Loading Stage Forward]
+                            Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: false, progress_percent:100}});
+                          });
                         });
                       });
                     });
                   });
                 });
               });
+
             }
           });
         }
@@ -444,7 +443,6 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           for(let i in result) {
             op(result[i]);
           };
-          update_program();
           Dispatcher.dispatch({type: 'updateSuggestedInformationCards', data: result});
         });
     },
@@ -539,17 +537,19 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       // this.enqueueSnackbar(Localizes[lang].fast_forward+' 10s');
     },
     switchMainStream: ()=> {
-      if(gotoandPlay_audio_playing) {
-        gotoandPlay_audio_playing = false;
-        gotoandPlay_audio.pause();
-        this.enqueueSnackbar(Localizes[lang].pause_playing);
-      }
-      else {
-        gotoandPlay_audio_playing = true;
-        gotoandPlay_audio.play();
-        this.enqueueSnackbar(Localizes[lang].continue_playing);
-      }
 
+      if(gotoandPlay_audio) {
+        if(gotoandPlay_audio_playing) {
+          gotoandPlay_audio_playing = false;
+          gotoandPlay_audio.pause();
+          this.enqueueSnackbar(Localizes[lang].pause_playing);
+        }
+        else {
+          gotoandPlay_audio_playing = true;
+          gotoandPlay_audio.play();
+          this.enqueueSnackbar(Localizes[lang].continue_playing);
+        }
+      }
       update_program_recur();
     },
     pushNotification: (data)=> {
@@ -574,10 +574,11 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           Dispatcher.dispatch({type: 'updateOnlineCount', data: data});
         });
     },
-    loadPrograms: ()=> {
+    loadPrograms: (callback)=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('getPrograms', null, (err, data)=> {
           programs = data;
+          callback(err, data);
           Dispatcher.dispatch({type: 'updatePrograms', data: data});
         });
     }
