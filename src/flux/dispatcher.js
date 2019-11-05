@@ -39,6 +39,11 @@ function generateDispatcher(setState) {
         return({ dark_theme: payload.data });
       })
     }
+    else if (payload.type === 'updateAudio') {
+      setState(prevstate=>{
+        return({ audio: payload.data });
+      })
+    }
     else if (payload.type === 'updateProgramNow') {
       setState(prevstate=>{
         return({ program_now: payload.data });
@@ -48,6 +53,12 @@ function generateDispatcher(setState) {
       setState(prevstate=>{
         if(!payload.data.title) {
           payload.data.title = prevstate.player.title;
+        }
+        if(payload.data.playing === null) {
+          payload.data.playing = prevstate.player.playing;
+        }
+        if(!payload.data.type) {
+          payload.data.type = prevstate.player.type;
         }
         return({ playing: payload.data.playing, player: payload.data});
       })

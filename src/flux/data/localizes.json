@@ -95,7 +95,11 @@
     "skip_next": "skip next",
     "skip_previous": "skip previous",
     "switch": "switch",
-    "playing_alternative_source": "playing alternative audio sources"
+    "playing_alternative_source": "playing alternative audio sources",
+    "audio": "audio",
+    "alternative_audio": "alternative audio",
+    "alternative_audio_description": "Play the alternative audio, while current time doesn't match any program.",
+    "audio_description": "The main audio that be played by user."
   },
   "zh": {
     "lang2string": "中文",

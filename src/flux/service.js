@@ -4,9 +4,7 @@
 // Copyright 2018-2019 NOOXY. All Rights Reserved.
 import Constants from './constants.json';
 import Localizes from './data/localizes.json';
-const audio_source = Constants.settings.audio_source;
-const alternative_audio_source = Constants.settings.alternative_audio_source;
-const do_audio_source_alter = Constants.settings.do_audio_source_alter;
+
 const timezone_offset = Constants.settings.timezone_offset;
 const timezone = Constants.settings.timezone;
 
@@ -79,6 +77,10 @@ function Service(NoService, Dispatcher, DarkThemeState) {
     setCookie('lang', lang, 360);
   }
 
+  let audio_source = Constants.settings.audio.audio_source;
+  let alternative_audio_source = Constants.settings.audio.alternative_audio_source;
+  let do_audio_source_alter = Constants.settings.audio.do_audio_source_alter;
+
   let gotoandPlay_audio = new Audio(audio_source);
   let alter_gotoandPlay_audio = false;
   let gotoandPlay_audio_playing = false;
@@ -104,14 +106,15 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       let now_segment = null;
       for(let segment in programs.segments) {
         let matches = /(\d{2}:\d{2}).*(\d{2}:\d{2})/g.exec(segment);
-        if(matches[2]==='00:00') {
+        if(matches&&matches[2]&&matches[2]==='00:00') {
           matches[2] = '23:59';
         }
         // console.log([segment, matches]);
-        console.log(date_string+'T'+matches[1]+timezone_offset);
-        if(date>=new Date(date_string+'T'+matches[1]+timezone_offset) && date<new Date(date_string+'T'+matches[2]+timezone_offset)) {
-          now_program = programs.segments[segment][todays_day_start_with_mon];
-          now_segment = segment;
+        if(matches) {
+          if(date>=new Date(date_string+'T'+matches[1]+timezone_offset) && date<new Date(date_string+'T'+matches[2]+timezone_offset)) {
+            now_program = programs.segments[segment][todays_day_start_with_mon];
+            now_segment = segment;
+          }
         }
       }
       if(now_program) {
@@ -133,26 +136,41 @@ function Service(NoService, Dispatcher, DarkThemeState) {
         alter_gotoandPlay_audio = false;
       }
       else {
+        if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
+          gotoandPlay_audio = new Audio(alternative_audio_source);
+          alter_gotoandPlay_audio = true;
+          Dispatcher.dispatch({type: 'updatePlayer', data: {
+            type: "stream",
+            title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+Localizes[lang].playing_alternative_source,
+            playing: gotoandPlay_audio_playing
+          }});
+        }
+        else {
+          Dispatcher.dispatch({type: 'updatePlayer', data: {
+            type: "stream",
+            title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+            playing: gotoandPlay_audio_playing
+          }});
+        }
+      }
+    }
+    else {
+
+      if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
+        gotoandPlay_audio = new Audio(alternative_audio_source);
+        alter_gotoandPlay_audio = true;
         Dispatcher.dispatch({type: 'updatePlayer', data: {
           type: "stream",
           title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+Localizes[lang].playing_alternative_source,
           playing: gotoandPlay_audio_playing
         }});
-        if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
-          gotoandPlay_audio = new Audio(alternative_audio_source);
-          alter_gotoandPlay_audio = true;
-        }
       }
-    }
-    else {
-      Dispatcher.dispatch({type: 'updatePlayer', data: {
-        type: "stream",
-        title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program+' - '+Localizes[lang].playing_alternative_source,
-        playing: gotoandPlay_audio_playing
-      }});
-      if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
-        gotoandPlay_audio = new Audio(alternative_audio_source);
-        alter_gotoandPlay_audio = true;
+      else {
+        Dispatcher.dispatch({type: 'updatePlayer', data: {
+          type: "stream",
+          title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
+          playing: gotoandPlay_audio_playing
+        }});
       }
     };
     // let today = ;
@@ -225,41 +243,59 @@ function Service(NoService, Dispatcher, DarkThemeState) {
               this.Actions.loadOnlineCount();
               this.Actions.loadPrograms();
               this.Actions.loadSuggestedInformationCards();
+              Services.gotoandPlay.call('getAudioSettings', null, (err, audio_settings)=> {
+                gotoandPlay_audio.pause();
+                gotoandPlay_audio_playing = false;
 
-              // chat
-              Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
-                Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
-                Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
-                  // [Loading Stage Forward]
-                  Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
-                  Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
-                  notalk_channel_id = chat_room_settings.channel_id;
-                  Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
-                    Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
-                      if(err) {
-                        console.log(err);
-                      }
-                      // [Loading Stage Forward]
-                      Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:90}});
-                      Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
-                      Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+                audio_source = audio_settings.audio_source;
+                alternative_audio_source = audio_settings.alternative_audio_source;
+                do_audio_source_alter = audio_settings.do_audio_source_alter;
+
+                if(!now_program&&do_audio_source_alter) {
+                  gotoandPlay_audio = new Audio(alternative_audio_source);
+                  console.log('');
+                }
+                else {
+                  gotoandPlay_audio = new Audio(audio_source);
+                }
+                Dispatcher.dispatch({type: 'updateAudio', data: audio_settings});
+                Dispatcher.dispatch({type: 'updatePlayer', data: {playing: false}});
+
+                // chat
+                Services.gotoandPlay.call('getAboutUsInfoCardId', null, (err, about_us_info_card_id)=> {
+                  Dispatcher.dispatch({type: 'updateAboutUsInformationCardId', data: about_us_info_card_id});
+                  Services.gotoandPlay.call('getChatroomSettings', null, (err, chat_room_settings)=> {
+                    // [Loading Stage Forward]
+                    Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:75}});
+                    Dispatcher.dispatch({type: 'updateChatroomSettings', data: chat_room_settings});
+                    notalk_channel_id = chat_room_settings.channel_id;
+                    Services.NoTalk.call('bindChs', {i: [notalk_channel_id]}, (err)=> {
+                      Services.NoTalk.call('getChMeta', {c: notalk_channel_id}, (err, meta)=> {
                         if(err) {
                           console.log(err);
                         }
                         // [Loading Stage Forward]
-                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:95}});
-                        let new_messeges = [];
-                        for(let i in json.r) {
-                          new_messeges.push(NoTalkToChatWindow(json.r[i]));
-                        };
+                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:90}});
+                        Dispatcher.dispatch({type: 'updateChatroomMeta', data: meta});
+                        Services.NoTalk.call('getMsgs', {i: notalk_channel_id, r: 512}, (err, json)=> {
+                          if(err) {
+                            console.log(err);
+                          }
+                          // [Loading Stage Forward]
+                          Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: true, progress_percent:95}});
+                          let new_messeges = [];
+                          for(let i in json.r) {
+                            new_messeges.push(NoTalkToChatWindow(json.r[i]));
+                          };
 
-                        Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
-                        Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
-                        Dispatcher.dispatch({type: 'readLatestLine'});
-                        Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
-                        Dispatcher.dispatch({type: 'addLatestLine'});
-                        // [Loading Stage Forward]
-                        Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: false, progress_percent:100}});
+                          Dispatcher.dispatch({type: 'updateMessages', data: new_messeges});
+                          Dispatcher.dispatch({type: 'updateLatestLine', data: parseInt(Object.keys(json.r)[Object.keys(json.r).length-1])});
+                          Dispatcher.dispatch({type: 'readLatestLine'});
+                          Dispatcher.dispatch({type: 'appendMessage', data: { type: 'text', data:{text: '['+Localizes[lang].welcome_message+'] \n'+chat_room_settings.welcome_message}}});
+                          Dispatcher.dispatch({type: 'addLatestLine'});
+                          // [Loading Stage Forward]
+                          Dispatcher.dispatch({type: 'updateLoadingStatus', data: {determinate: true, show: false, progress_percent:100}});
+                        });
                       });
                     });
                   });
@@ -430,6 +466,13 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           Dispatcher.dispatch({type: 'addSuggestedInformationCards', data: data});
         });
     },
+
+    updateAudioSettings: (data)=> {
+      if(Services.gotoandPlay)
+        Services.gotoandPlay.call('updateAudioSettings', data, (err, result)=> {
+          Dispatcher.dispatch({type: 'updateAudioSettings', data: data});
+        });
+    },
     deleteSuggestedInformationCards: (data)=> {
       if(Services.gotoandPlay)
         Services.gotoandPlay.call('deleteSuggestedInfoCards', data, (err, result)=> {
@@ -560,6 +603,30 @@ function Service(NoService, Dispatcher, DarkThemeState) {
       });
       Services.gotoandPlay.onEvent('ProgramsChanged', (err, data)=> {
         Dispatcher.dispatch({type: 'updateProgramsTable', data: data});
+      });
+      Services.gotoandPlay.onEvent('AudioSettingsChanged', (err, data)=> {
+        window.location.reload();
+        // gotoandPlay_audio.pause();
+        // gotoandPlay_audio_playing = false;
+        // console.log(data);
+        // audio_source = data.audio_source;
+        // alternative_audio_source = data.alternative_audio_source;
+        // do_audio_source_alter = data.do_audio_source_alter;
+        //
+        // console.log('AudioSettingsChanged ');
+        // console.log((!now_program&&do_audio_source_alter));
+        //
+        // if(!now_program&&do_audio_source_alter) {
+        //   gotoandPlay_audio = new Audio(alternative_audio_source);
+        //   console.log('playing alternative audio.');
+        // }
+        // else {
+        //   gotoandPlay_audio = new Audio(audio_source);
+        // }
+        // this.enqueueSnackbar(Localizes[lang].pause_playing, {variant: 'warning'});
+        // Dispatcher.dispatch({type: 'updateAudio', data: data});
+        // Dispatcher.dispatch({type: 'updatePlayer', data: {playing: false}});
+
       });
     }
   };
