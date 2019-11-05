@@ -133,11 +133,13 @@ function Service(NoService, Dispatcher, DarkThemeState) {
         if(alter_gotoandPlay_audio) {
           window.location.reload();
         }
-        gotoandPlay_audio = new Audio(audio_source);
+        if(!gotoandPlay_audio) {
+          gotoandPlay_audio = new Audio(audio_source);
+        }
         alter_gotoandPlay_audio = false;
       }
       else {
-        if(alter_gotoandPlay_audio&&do_audio_source_alter) {
+        if(!alter_gotoandPlay_audio&&do_audio_source_alter) {
           gotoandPlay_audio = new Audio(alternative_audio_source);
           alter_gotoandPlay_audio = true;
           Dispatcher.dispatch({type: 'updatePlayer', data: {
@@ -147,7 +149,9 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           }});
         }
         else if(!alter_gotoandPlay_audio){
-          gotoandPlay_audio = new Audio(audio_source);
+          if(!gotoandPlay_audio) {
+            gotoandPlay_audio = new Audio(audio_source);
+          }
           Dispatcher.dispatch({type: 'updatePlayer', data: {
             type: "stream",
             title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
@@ -167,7 +171,11 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           playing: gotoandPlay_audio_playing
         }});
       }
-      else {
+      else if(!alter_gotoandPlay_audio){
+        if(!gotoandPlay_audio) {
+          gotoandPlay_audio = new Audio(audio_source);
+        }
+
         Dispatcher.dispatch({type: 'updatePlayer', data: {
           type: "stream",
           title: Localizes[lang].header_title+' Online Radio - '+Localizes[lang].no_program,
@@ -550,6 +558,7 @@ function Service(NoService, Dispatcher, DarkThemeState) {
           this.enqueueSnackbar(Localizes[lang].continue_playing);
         }
       }
+      Dispatcher.dispatch({type: 'updatePlayer', data: {playing: gotoandPlay_audio_playing}});
       update_program_recur();
     },
     pushNotification: (data)=> {
