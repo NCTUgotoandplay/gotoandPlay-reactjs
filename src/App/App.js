@@ -103,7 +103,7 @@ class App extends Component {
           ]
         }
       },
-      audio_display: "交大網路電台",
+      audio: Constants.settings.audio,
       localizes: {},
       news: [],
       album_cards: [],

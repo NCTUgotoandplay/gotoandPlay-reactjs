@@ -8,6 +8,12 @@ import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
 import ExpansionPanelActions from '@material-ui/core/ExpansionPanelActions';
 
+import Dialog from '@material-ui/core/Dialog';
+import DialogActions from '@material-ui/core/DialogActions';
+import DialogContent from '@material-ui/core/DialogContent';
+import DialogContentText from '@material-ui/core/DialogContentText';
+import DialogTitle from '@material-ui/core/DialogTitle';
+
 import Divider from '@material-ui/core/Divider';
 
 import Typography from '@material-ui/core/Typography';
@@ -16,11 +22,20 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 import Constants from '../../../flux/constants.json';
 
+import Switch from '@material-ui/core/Switch';
+
+import TextField from '@material-ui/core/TextField';
+
+
 export default class Settings extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      update_status: false
+      update_status: false,
+      show_audio: false,
+      audio_source: props.app_state.audio.audio_source,
+      show_alter_audio: false,
+      alter_audio_source: props.app_state.audio.alternative_audio_source,
     }
   }
 
@@ -52,6 +67,129 @@ export default class Settings extends React.Component {
           <Divider/>
           <Typography variant="h6" component="h2">{this.props.localize.version}</Typography>
           <Typography variant="body1" component="p">{this.state.update_status?Constants.version+' '+this.renderUpdateStatus():Constants.version}</Typography>
+          <Divider/>
+          <Typography variant="h6" component="h2">{this.props.localize.audio}</Typography>
+          <Typography variant="body1" component="p">{this.props.localize.audio_description}</Typography>
+
+          <Button style={{marginRight: '10px'}} color="primary" variant="outlined" size="small" onClick={() => {
+            this.setState({show_audio: true})
+          }}>
+          {this.props.localize.audio+' '+this.props.localize.link}
+          </Button>
+          <Dialog open={this.state.show_audio} onClose={()=>{this.setState({show_audio: false})}} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">{this.props.localize.audio+' '+this.props.localize.link}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {this.props.localize.audio_description}
+              </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="content"
+                  label={this.props.localize.link}
+                  type="text"
+                  fullWidth
+                  defaultValue={this.props.app_state.audio.audio_source}
+                  onChange={evt => {
+                    this.setState({audio_source: evt.target.value});
+                  }}
+                  onKeyPress={(event)=> {
+                    if(event.key == 'Enter'){
+                      this.props.actions.pushNotification({
+                        content: '['+this.props.localize.audio+'] '+this.state.audio_source,
+                        variant: 'warning'
+                      });
+                      let new_settings = this.props.app_state.audio;
+                      new_settings.audio_source = this.state.audio_source;
+                      this.props.actions.updateAudioSettings(new_settings);
+                      this.setState({show_audio: false})
+                    }
+                  }}
+                />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={()=>{this.setState({show_audio: false})}} color="primary">
+                {this.props.localize.cancel}
+              </Button>
+              <Button onClick={()=>{
+                this.props.actions.pushNotification({
+                  content: '['+this.props.localize.audio+'] '+this.state.audio_source,
+                  variant: 'warning'
+                });
+                let new_settings = this.props.app_state.audio;
+                new_settings.audio_source = this.state.audio_source;
+                this.props.actions.updateAudioSettings(new_settings);
+                this.setState({show_audio: false})
+              }} color="primary">
+                {this.props.localize.ok}
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Typography variant="body1" component="p">{this.props.localize.alternative_audio_description}</Typography>
+          <Button color="primary" variant="outlined" size="small" onClick={() => {
+            this.setState({show_alter_audio: true})
+          }}>
+          {this.props.localize.alternative_audio+' '+this.props.localize.link}
+          </Button>
+          <Dialog open={this.state.show_alter_audio} onClose={()=>{this.setState({show_alter_audio: false})}} aria-labelledby="form-dialog-title">
+            <DialogTitle id="form-dialog-title">{this.props.localize.alternative_audio+' '+this.props.localize.link}</DialogTitle>
+            <DialogContent>
+              <DialogContentText>
+                {this.props.localize.alternative_audio_description}
+              </DialogContentText>
+                <TextField
+                  autoFocus
+                  margin="dense"
+                  id="content"
+                  label={this.props.localize.link}
+                  type="text"
+                  fullWidth
+                  defaultValue={this.props.app_state.audio.alternative_audio_source}
+                  onChange={evt => {
+                    this.setState({audio_source: evt.target.value});
+                  }}
+                  onKeyPress={(event)=> {
+                    if(event.key == 'Enter'){
+                      this.props.actions.pushNotification({
+                        content: '['+this.props.localize.alternative_audio+'] '+this.state.alter_audio_source,
+                        variant: 'warning'
+                      });
+                      let new_settings = this.props.app_state.audio;
+                      new_settings.alternative_audio_source = this.state.alter_audio_source;
+                      this.props.actions.updateAudioSettings(new_settings);
+                      this.setState({show_alter_audio: false})
+                    }
+                  }}
+                />
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={()=>{this.setState({show_alter_audio: false})}} color="primary">
+                {this.props.localize.cancel}
+              </Button>
+              <Button onClick={()=>{
+                this.props.actions.pushNotification({
+                  content: '['+this.props.localize.alternative_audio+'] '+this.state.alter_audio_source,
+                  variant: 'warning'
+                });
+                let new_settings = this.props.app_state.audio;
+                new_settings.alternative_audio_source = this.state.alter_audio_source;
+                this.props.actions.updateAudioSettings(new_settings);
+                this.setState({show_alter_audio: false})
+              }} color="primary">
+                {this.props.localize.ok}
+              </Button>
+            </DialogActions>
+          </Dialog>
+          <Switch
+            checked={this.props.app_state.audio.do_audio_source_alter}
+            onChange={()=>{
+              let new_settings = this.props.app_state.audio;
+              new_settings.do_audio_source_alter = !new_settings.do_audio_source_alter;
+              this.props.actions.updateAudioSettings(new_settings);
+            }}
+            value="checkedA"
+            inputProps={{ 'aria-label': 'secondary checkbox' }}
+          />
         </ExpansionPanelDetails>
         <ExpansionPanelActions>
           <Button color="primary" size="small" onClick={() => {
