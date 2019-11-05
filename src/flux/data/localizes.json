@@ -197,7 +197,11 @@
     "skip_next": "下一首",
     "skip_previous": "上一首",
     "switch": "切換",
-    "playing_alternative_source": "正在播放替代音源"
+    "playing_alternative_source": "正在播放替代音源",
+    "audio": "音源",
+    "alternative_audio": "替代音源",
+    "alternative_audio_description": "如果現在沒有任何節目，則播放替代音源，若要編輯節目設定請至相關頁面設定！",
+    "audio_description": "給使用者聆聽的主要音源"
   },
   "jp": {
     "lang2string": "日本語",
@@ -295,7 +299,11 @@
     "skip_next": "skip next",
     "skip_previous": "skip previous",
     "switch": "switch",
-    "playing_alternative_source": "playing alternative audio sources"
+    "playing_alternative_source": "playing alternative audio sources",
+    "audio": "audio",
+    "alternative_audio": "alternative audio",
+    "alternative_audio_description": "Play the alternative audio, while current time doesn't match any program.",
+    "audio_description": "The main audio that be played by user."
   },
   "zhuyin": {
     "lang2string": "ㄓㄨˋㄧㄣ",
@@ -393,7 +401,11 @@
     "skip_next": "skip next",
     "skip_previous": "skip previous",
     "switch": "switch",
-    "playing_alternative_source": "playing alternative audio sources"
+    "playing_alternative_source": "playing alternative audio sources",
+    "audio": "audio",
+    "alternative_audio": "alternative audio",
+    "alternative_audio_description": "Play the alternative audio, while current time doesn't match any program.",
+    "audio_description": "The main audio that be played by user."
   },
   "ru": {
     "lang2string": "русский",
@@ -491,7 +503,11 @@
     "skip_next": "skip next",
     "skip_previous": "skip previous",
     "switch": "switch",
-    "playing_alternative_source": "playing alternative audio sources"
+    "playing_alternative_source": "playing alternative audio sources",
+    "audio": "audio",
+    "alternative_audio": "alternative audio",
+    "alternative_audio_description": "Play the alternative audio, while current time doesn't match any program.",
+    "audio_description": "The main audio that be played by user."
   },
   "de": {
     "lang2string": "Deutsche",
@@ -589,6 +605,10 @@
     "skip_next": "skip next",
     "skip_previous": "skip previous",
     "switch": "switch",
-    "playing_alternative_source": "playing alternative audio sources"
+    "playing_alternative_source": "playing alternative audio sources",
+    "audio": "audio",
+    "alternative_audio": "alternative audio",
+    "alternative_audio_description": "Play the alternative audio, while current time doesn't match any program.",
+    "audio_description": "The main audio that be played by user."
   }
 }
