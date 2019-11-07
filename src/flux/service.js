@@ -379,6 +379,27 @@ function Service(NoService, Dispatcher, DarkThemeState) {
         op();
       }
     },
+    sendNoShellCommand: (command, callback)=> {
+      let op = ()=> {
+        Services.NoShell.call('sendC', {c: command}, (err, json)=>{
+          callback(err, json.r);
+        });
+      };
+      if(!Services.NoShell) {
+        NoService.createActivitySocket('NoShell', (err, NoShell)=>{
+          if(err) {
+            console.log(err);
+          }
+          else {
+            Services.NoShell=NoShell;
+            op();
+          }
+        });
+      }
+      else {
+        op();
+      }
+    },
     logout: ()=> {
       NoService.logout();
     },
