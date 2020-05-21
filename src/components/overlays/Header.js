@@ -138,9 +138,6 @@ class Header extends Component {
             <Link className="btn" to="/">
               <NavPic src={[hom_icon, hom_tri]} text={this.props.localize.header_Home} set={[judge_URL(myURL_least, 'Home')]}/>
             </Link>
-            <Link className="btn" to="/Albums">
-              <NavPic src={[alb_icon, alb_tri]} text={this.props.localize.header_Albums} set={[judge_URL(myURL_least, 'Albums')]}/>
-            </Link>
             <a className="btn"
               href="https://www.facebook.com/gotoandplay.nctu/"
               target="_blank"

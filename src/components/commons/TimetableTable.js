@@ -38,6 +38,7 @@ const CustomTableCell = withStyles(theme => ({
   },
   body: {
     fontSize: 14,
+    minWidth: "80px",
     whiteSpace: 'normal',
     wordWrap: "break-word",
     padding: '18px 18px 18px 18px',
